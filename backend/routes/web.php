@@ -2,6 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\AUTH\RegisterController;
+use App\Http\Controllers\AUTH\LoginController;
+use App\Http\Controllers\AUTH\ResetPasswordController;
+use App\Http\Controllers\AUTH\VerificationController;
+use App\Http\Controllers\AUTH\ForgotPasswordController;
+use App\Http\Controllers\AUTH\ConfirmPasswordController;
+
+use App\Http\Controllers\ArtistsController;
+use App\Http\Controllers\TagsController;
+use App\Http\Controllers\UserFollowController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WorksController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +33,28 @@ Route::get('/', function () {
 });
 
 
+/*--------------------------------------------------------------------------
+    ユーザ登録
+--------------------------------------------------------------------------*/
+    
+        // ユーザ登録ページ表示
+
+        Route::get('signup', [RegisterController::class, 'showRegistrationForm'])->name('signup.get');
+
+        // ユーザ登録ページから送られたリクエストの作成処理(create ≒ post ≒ store)
+        Route::post('signup', [RegisterController::class, 'register'])->name('signup.post');
+
+/*--------------------------------------------------------------------------
+    認証
+--------------------------------------------------------------------------*/
+
+        // ログインページ表示
+        Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+        // ログイン処理
+        Route::post('login', [LoginController::class, 'login'])->name('login.post');
+        // ログアウトボタン
+        Route::get('logout', [LoginController::class, 'logout'])->name('logout.get');
+        
 
 /*-----------------------------------------------------------------------------------------
     体重測定機能
