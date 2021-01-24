@@ -42,7 +42,7 @@
 
 
                     {!! Form::open(['route' => 'weight.post']) !!}
-
+                    
                         @csrf
                         
                         <p>今朝の体重は測りましたか？</p>

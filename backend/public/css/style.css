@@ -1,0 +1,21 @@
+
+body {
+    background-color: #DDDD;
+}
+
+
+.navibar{
+    height: 50px;
+    background-color: #fff;
+}
+
+
+.navibar__inner{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 200px;
+}
+
+.navMeasurement{
+    display: flex;
+}

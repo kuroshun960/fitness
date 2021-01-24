@@ -16,3 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+/*-----------------------------------------------------------------------------------------
+    体重測定機能
+-----------------------------------------------------------------------------------------*/
+
+
+    //作品をアップロードする処理のルーティング
+    Route::post('/weightpost', [WeightController::class, 'upload'])->name('weight.post');
+    //作品の詳細ページを表示するページ
+    Route::put('/artist/work/{id}', [WorksController::class, 'update'])->name('work.update');
+
+ 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
