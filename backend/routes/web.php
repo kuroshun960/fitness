@@ -16,7 +16,9 @@ use App\Http\Controllers\UserFollowController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorksController;
 use App\Http\Controllers\WeightsController;
+use App\Http\Controllers\ProtainsettingsController;
 use App\Http\Controllers\DatesController;
+
 
 
 /*
@@ -57,13 +59,9 @@ Route::get('/', function () {
         // ログアウトボタン
         Route::get('logout', [LoginController::class, 'logout'])->name('logout.get');
 
-/*-----------------------------------------------------------------------------------------
-    体重測定機能
------------------------------------------------------------------------------------------*/
-
 
 /*-----------------------------------------------------------------------------------------
-    ログインユーザー情報
+    ログインユーザー情報 (認証付きルート)
 -----------------------------------------------------------------------------------------*/
 
 Route::group(['middleware' => ['auth']], function () {
@@ -71,11 +69,37 @@ Route::group(['middleware' => ['auth']], function () {
     //ログインユーザーの今日の日付と体重を表示
     Route::get('/', [UsersController::class,'show'])->name('users.show');
 
-});
 
+
+
+
+/*-----------------------------------------------------------------------------------------
+    体重測定機能
+-----------------------------------------------------------------------------------------*/
 
     //送られてきた体重データの処理
     Route::post('weight', [WeightsController::class, 'input'])->name('weight.input');
+
+
+/*-----------------------------------------------------------------------------------------
+    プロテイン機能
+-----------------------------------------------------------------------------------------*/
+
+    Route::get('protainsettings', [ProtainsettingsController::class,'show'])->name('protainsettings.show');
+
+    Route::post('protainsettings', [ProtainsettingsController::class,'setting'])->name('protainsettings.setting');
+
+
+
+
+
+
+
+
+
+
+});
+
 
 
 
@@ -85,7 +109,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Auth::routes();
------------------------------------------------------------------------------------------*/
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+-----------------------------------------------------------------------------------------*/
 

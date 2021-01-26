@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-
 use Illuminate\Http\Request;
 
 //S3用に追記//
@@ -30,7 +28,7 @@ class WeightsController extends Controller
         //ログインユーザーのidでユーザーを取得
         $user = User::find($id);
 
-        //ログインユーザーの体重を取得
+        //ログインユーザーの体重を作成
         $weight = $user->weights()->create([
             'weight' => $request->number,
         ]);

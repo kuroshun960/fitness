@@ -4,11 +4,7 @@
 @if (Auth::check())
 
 
-    {{-- ユーザー名と今日の体重表示 --}}
-
-
-
-
+{!! link_to_route('protainsettings.show','プロテイン設定',[],['class'=>'userRegistBtn']) !!}
 
     {{-- 今朝の体重を測定 --}}
     <div class="todayWeight">
@@ -36,8 +32,28 @@
     </div>
 
 
+    {{-- 今日のプロテインタスクチェック --}}
+
+    <div class="todayProtain">
+        <div class="todayProtain__inner" style="width: 400px;margin: 150px auto 0;">
+            <p>今日のプロテインをチェック！</p>
+
+            {!! Form::open(['route' => 'weight.input']) !!}
+                @csrf
+ 
+                {!! Form::submit('飲んだ!', ['name' => 'firstcup','class' => 'btn btn-primary btn-block']) !!}
+            {!! Form::close() !!}
+
+
+
+
+
+        </div>
+    </div>
+
+
+
 
 @endif
-
 
 @endsection

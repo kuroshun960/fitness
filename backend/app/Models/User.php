@@ -52,6 +52,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Weight::class);
     }
+
+    public function protainsetting()
+    {
+        return $this->hasMany(Protainsetting::class);
+    }
     
 
 
