@@ -15,12 +15,12 @@ class CreateWeightsTable extends Migration
     {
         Schema::create('weights', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('weight_id');
+            $table->unsignedBigInteger('date_id');
             $table->timestamps();
-            $table->integer('weight');
+            $table->integer('weight')->nullable();
             
             // 外部キー制約
-            $table->foreign('weight_id')->references('id')->on('dates');
+            $table->foreign('date_id')->references('id')->on('dates');
         });
     }
 
