@@ -1,35 +1,26 @@
 @extends('layouts.app')
 @section('content')
 
-
-            {!! Form::open(['route' => 'date.input']) !!}
-
-                @csrf
-                
-                <p>今日の日付は？</p>
-                
-                {!! Form::text('number', old(''), ['class' => 'form-control','placeholder' => '今日の日付 1000-01-01']) !!}
-                <br>
-
-                <br>
-                {!! Form::submit('日付を設定', ['class' => 'btn btn-primary btn-block']) !!}
-        
-            {!! Form::close() !!}
+@if (Auth::check())
 
 
+    {{-- ユーザー名と今日の体重表示 --}}
+
+
+
+
+
+    {{-- 今朝の体重を測定 --}}
     <div class="todayWeight">
         <div class="measurement__inner">
-
             <div class=""></div>
 
-
-            
-
+            {{-- 今朝の体重を測定”済み”であれば、体重測定フォームは表示しない --}}
+            @if (!isset($weight))
             {!! Form::open(['route' => 'weight.input']) !!}
-
                 @csrf
                 
-                <p>今朝の体重は測りましたか？</p>
+                <p>今朝の体重は何kgでしたか？</p>
                 
                 {!! Form::text('number', old(''), ['class' => 'form-control','placeholder' => '体重を入力']) !!}
                 <br>
@@ -38,15 +29,15 @@
         
                 <br>
                 {!! Form::submit('測った', ['class' => 'btn btn-primary btn-block']) !!}
-        
             {!! Form::close() !!}
-
+            @endif
 
         </div>
     </div>
 
 
 
+@endif
 
 
 @endsection

@@ -16,50 +16,9 @@
 
 
 
-        @if (Auth::check())
-        <span>ユーザー名：</span>{{ Auth::user()->name }}<br>
 
 
 
-        <span>今日の日付は：</span>
-            @foreach ($dates as $date)
-                {{ $date->date }}<br>
-            @endforeach
-
-        {{-- 
-            <span>現在の体重：</span>
-            @foreach ($todayweights as $todayweight)
-            {{ $todayweight->weight }}<br>
-            @endforeach
-        --}}
-
-
-
-        @endif
-
-
-
-        {{-- ナビゲーションバー --}}
-
-
-            
-            @if (Auth::check())
-            {{--ログアウトへのリンク --}}
-            <div class="nav-item">{!! link_to_route('logout.get', 'Logout', [], ['class' => 'btn btn-lg btn-primary']) !!}</div>
-            
-            @else
-            
-            <div style="display: flex">
-                <div class="">
-                    {{-- ユーザ登録ページへのリンク --}}
-                    {!! link_to_route('signup.get', 'ユーザー登録!', [], ['class' => 'btn btn-lg btn-primary']) !!}
-                </div>
-        
-                    {{--ログインへのリンク --}}
-                <div class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'btn btn-lg btn-primary']) !!}</div>
-            </div>
-            
-            @endif
 
         @include('commons.navbar')
 

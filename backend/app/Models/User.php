@@ -48,6 +48,10 @@ class User extends Authenticatable
         return $this->hasMany(Date::class);
     }
 
+    public function weights()
+    {
+        return $this->hasMany(Weight::class);
+    }
     
 
 

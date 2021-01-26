@@ -17,41 +17,31 @@ use App\Models\Date;
 class UsersController extends Controller
 {
 
+    //今日の体重表示を表示//
     public function show()
     {
 
+        
         $date = [];
 
+        $todaydate = date("Y-m-d");
 
         if (\Auth::check()){
 
             //ログインユーザー//
             $user = \Auth::user();
 
-            //ログインユーザーの今日の日付//
-            $dates = $user->dates()->get();
 
-            
+            //ログインユーザーの今日の体重をひとつだけ取得//
+            $weight = $user->weights()->whereDate('created_at', $todaydate)->first();
 
-       
-
-
-            //今日の日付//
-            $today = date("Y-m-d");
-            
-
-            $date = [
-                'dates' => $dates,
-                // 'todayweights' => $todayweights, //
-            ];
         }
 
- 
-
-        return view('welcome', $date);
-
+        //取得した体重をビューに渡す
+        return view('welcome',compact('weight'));
         
 
+        
     }
 
 

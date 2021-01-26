@@ -30,8 +30,8 @@ class WeightsController extends Controller
         //ログインユーザーのidでユーザーを取得
         $user = User::find($id);
 
-        //ログインユーザーの”その日付”に付随する”体重”を取得
-        $weight = $user->dates()->first()->weights()->create([
+        //ログインユーザーの体重を取得
+        $weight = $user->weights()->create([
             'weight' => $request->number,
         ]);
 

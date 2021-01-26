@@ -10,9 +10,9 @@ class Weight extends Model
     protected $fillable = ['weight'];
 
 
-    public function dates()
+    public function user()
     {
-        return $this->belongsTo(Date::class);
+        return $this->belongsTo(User::class);
     }
     
 }

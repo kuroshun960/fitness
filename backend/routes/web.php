@@ -66,12 +66,12 @@ Route::get('/', function () {
     ログインユーザー情報
 -----------------------------------------------------------------------------------------*/
 
+Route::group(['middleware' => ['auth']], function () {
+  
     //ログインユーザーの今日の日付と体重を表示
     Route::get('/', [UsersController::class,'show'])->name('users.show');
 
-    //送られてきた日付の処理
-    Route::post('date', [DatesController::class, 'input'])->name('date.input');
-
+});
 
 
     //送られてきた体重データの処理
