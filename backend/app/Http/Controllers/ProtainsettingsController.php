@@ -37,12 +37,13 @@ class ProtainsettingsController extends Controller
             $weight = $user->protainsetting()->create([
                 'name' => $request->name,
                 'kcal' => $request->kcal,
-                'carbo' => $request->carbo,
                 'protain' => $request->protain,
+                'carbo' => $request->carbo,
+                'fat' => $request->fat,
             ]);
             
 
-            return redirect('/');
+            return redirect()->route('users.show');
         }
 
 

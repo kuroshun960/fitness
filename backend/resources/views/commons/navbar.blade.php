@@ -30,15 +30,19 @@
                 <p class="navIncrease">増量期<span></span>日継続中</p>
 
                     <div class="navMeasurement">
-                        <p><span></span>/kcal</p>
-                        <p><span></span>/P</p>
-                        <p><span></span>/F</p>
-                        <p><span></span>/C</p>
+                        <p style="margin-right:15px;"><span>{{ isset($data['protainAll']) ? $data['protainAll']['kcal']:0 }}</span>/kcal</p>
+                        <p style="margin-right:15px;"><span>{{ isset($data['protainAll']) ? $data['protainAll']['protain']:0 }}</span>/P</p>
+                        <p style="margin-right:15px;"><span>{{ isset($data['protainAll']) ? $data['protainAll']['carbo']:0 }}</span>/C</p>
+                        <p><span>{{ isset($data['protainAll']) ? $data['protainAll']['fat']:0 }}</span>/F</p>
+                        
                     </div>
 
                 <div>
-                @if(isset($weight))
-                    <span>今日の体重：{{ $weight->weight }}</span>
+
+                
+
+                @if(isset( $data['weight']->weight ))
+                    <span>今日の体重：{{ $data['weight']->weight }}kg</span>
                 @else
                     <span>今日の体重：未測定</span>
                 @endif

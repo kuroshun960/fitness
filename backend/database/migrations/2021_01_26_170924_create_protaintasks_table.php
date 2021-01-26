@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProtainsettingsTable extends Migration
+class CreateProtaintasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateProtainsettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('protainsettings', function (Blueprint $table) {
+        Schema::create('protaintasks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->string('name');
+            $table->string('cups');
+
             $table->integer('kcal')->nullable();
-            
             $table->integer('protain')->nullable();
             $table->integer('carbo')->nullable();
             $table->integer('fat')->nullable();
-            
+
             // 外部キー制約
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -37,6 +37,6 @@ class CreateProtainsettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('protainsettings');
+        Schema::dropIfExists('protaintasks');
     }
 }

@@ -18,13 +18,18 @@
 {!! Form::text('kcal', '', ['class' => 'form-control','placeholder' => 'カロリー']) !!}
 <br>
 
+<p>１杯あたりのタンパク質を入力</p>
+{!! Form::text('protain', '', ['class' => 'form-control','placeholder' => 'タンパク質']) !!}
+<br>
+
 <p>１杯あたりの炭水化物を入力</p>
 {!! Form::text('carbo', '', ['class' => 'form-control','placeholder' => '炭水化物']) !!}
 <br>
 
-<p>１杯あたりのタンパク質を入力</p>
-{!! Form::text('protain', '', ['class' => 'form-control','placeholder' => 'タンパク質']) !!}
+<p>１杯あたりの脂質を入力</p>
+{!! Form::text('fat', '', ['class' => 'form-control','placeholder' => 'タンパク質']) !!}
 <br>
+
 
 
 <br>

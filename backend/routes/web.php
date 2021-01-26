@@ -17,6 +17,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorksController;
 use App\Http\Controllers\WeightsController;
 use App\Http\Controllers\ProtainsettingsController;
+use App\Http\Controllers\ProtaintasksController;
 use App\Http\Controllers\DatesController;
 
 
@@ -74,7 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 /*-----------------------------------------------------------------------------------------
-    体重測定機能
+    体重測定 機能
 -----------------------------------------------------------------------------------------*/
 
     //送られてきた体重データの処理
@@ -82,7 +83,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 /*-----------------------------------------------------------------------------------------
-    プロテイン機能
+    プロテイン設定
 -----------------------------------------------------------------------------------------*/
 
     Route::get('protainsettings', [ProtainsettingsController::class,'show'])->name('protainsettings.show');
@@ -90,7 +91,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('protainsettings', [ProtainsettingsController::class,'setting'])->name('protainsettings.setting');
 
 
+/*-----------------------------------------------------------------------------------------
+    プロテインタスク 機能
+-----------------------------------------------------------------------------------------*/
 
+    Route::post('protaintasks', [ProtaintasksController::class,'drank'])->name('protaintasks.drank');
 
 
 

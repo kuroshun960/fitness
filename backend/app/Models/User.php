@@ -57,6 +57,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Protainsetting::class);
     }
+
+    public function protaintasks()
+    {
+        return $this->hasMany(Protaintask::class);
+    }
     
 
 

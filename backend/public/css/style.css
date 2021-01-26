@@ -20,3 +20,8 @@ body {
 .navMeasurement{
     display: flex;
 }
+
+.todayProtaintask{
+
+    justify-content: space-between;
+}

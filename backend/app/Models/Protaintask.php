@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Protainsetting extends Model
+class Protaintask extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
-        
-        'name',
+        'cups',
         'kcal',
         'protain',
         'carbo',
         'fat',
+
     ];
 
 
@@ -23,4 +24,5 @@ class Protainsetting extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }
