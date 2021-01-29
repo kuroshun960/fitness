@@ -83,12 +83,26 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 /*-----------------------------------------------------------------------------------------
-    プロテイン設定
+    プロテイン設定 機能
 -----------------------------------------------------------------------------------------*/
 
     Route::get('protainsettings', [ProtainsettingsController::class,'show'])->name('protainsettings.show');
 
     Route::post('protainsettings', [ProtainsettingsController::class,'setting'])->name('protainsettings.setting');
+
+/*-----------------------------------------------------------------------------------------
+    ユーザー設定 機能
+-----------------------------------------------------------------------------------------*/
+
+    Route::get('personalsettings', [UsersController::class,'personalsettingspage'])->name('personalsettingspage.show');
+
+    Route::post('personalsettings', [UsersController::class,'setting'])->name('personalsettings.setting');
+
+/*-----------------------------------------------------------------------------------------
+    活動日誌
+-----------------------------------------------------------------------------------------*/
+
+    Route::get('daily', [UsersController::class,'daily'])->name('users.daily');
 
 
 /*-----------------------------------------------------------------------------------------

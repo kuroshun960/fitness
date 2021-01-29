@@ -27,13 +27,23 @@
                 <p><span>ユーザー名：</span>{{ Auth::user()->name }}</p>
                 
 
-                <p class="navIncrease">増量期<span></span>日継続中</p>
+                <p class="navIncrease">{{ Auth::user()->IncreaseOrDecrease }}/<span></span>日継続中</p>
 
                     <div class="navMeasurement">
-                        <p style="margin-right:15px;"><span>{{ isset($data['protainAll']) ? $data['protainAll']['kcal']:0 }}</span>/kcal</p>
-                        <p style="margin-right:15px;"><span>{{ isset($data['protainAll']) ? $data['protainAll']['protain']:0 }}</span>/P</p>
-                        <p style="margin-right:15px;"><span>{{ isset($data['protainAll']) ? $data['protainAll']['carbo']:0 }}</span>/C</p>
-                        <p><span>{{ isset($data['protainAll']) ? $data['protainAll']['fat']:0 }}</span>/F</p>
+
+                        <p style="margin-right:15px;">
+                            <span>{{ isset($data['protainAll']) ? $data['protainAll']['kcal']:0 }}</span>/{{ Auth::user()->kcalParday }}kcal
+                        </p>
+
+                        <p style="margin-right:15px;">
+                            <span>{{ isset($data['protainAll']) ? $data['protainAll']['protain']:0 }}</span>/{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P
+                        </p>
+                        <p style="margin-right:15px;">
+                            <span>{{ isset($data['protainAll']) ? $data['protainAll']['fat']:0 }}</span>/{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F
+                        </p>
+                        <p>
+                            <span>{{ isset($data['protainAll']) ? $data['protainAll']['carbo']:0 }}</span>/{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C
+                        </p>
                         
                     </div>
 
