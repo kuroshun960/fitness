@@ -16,6 +16,7 @@ class Protaintask extends Model
         'protain',
         'carbo',
         'fat',
+        'KcalPardayAtThatTime',
 
     ];
 

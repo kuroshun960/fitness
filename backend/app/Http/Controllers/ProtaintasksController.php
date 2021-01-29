@@ -19,50 +19,53 @@ class ProtaintasksController extends Controller
     //いっぱい目のプロテインタスク
     public function drank(Request $request)
         {
+
+            $todaydate = date("Y-m-d");
+
             //ログインユーザーのid取得
             $id = Auth::id();
             //ログインユーザーのidでユーザーを取得
             $user = User::find($id);
 
-                if ($request->firstcup == "飲んだ!"){
+            //ユーザーの最新のプロテイン設定の各数値を取得
+            $cup = $user->protainsetting()->orderBy('created_at', 'desc')->select('kcal','carbo','protain','fat')->first();
 
-                    $firstcup = $user->protainsetting()->orderBy('created_at', 'desc')->select('kcal','carbo','protain','fat')->first();
+                if ($request->firstcup == "飲んだ!"){
 
                     //プロテインタスクに保存
                     $user->protaintasks()->create([
                         'cups' => "firstcup",
-                        'kcal' => $firstcup->kcal,
-                        'protain' => $firstcup->protain,
-                        'carbo' => $firstcup->carbo,
-                        'fat' => $firstcup->fat,
+                        'kcal' => $cup->kcal,
+                        'protain' => $cup->protain,
+                        'carbo' => $cup->carbo,
+                        'fat' => $cup->fat,
+                        'KcalPardayAtThatTime' => $user->kcalParday,
                     ]);
                 }
 
                 if ($request->secondcup == "飲んだ!"){
 
-                    $secondcup = $user->protainsetting()->orderBy('created_at', 'desc')->select('kcal','carbo','protain','fat')->first();
-
                     //プロテインタスクに保存
                     $user->protaintasks()->create([
                         'cups' => "secondcup",
-                        'kcal' => $secondcup->kcal,
-                        'protain' => $secondcup->protain,
-                        'carbo' => $secondcup->carbo,
-                        'fat' => $secondcup->fat,
+                        'kcal' => $cup->kcal,
+                        'protain' => $cup->protain,
+                        'carbo' => $cup->carbo,
+                        'fat' => $cup->fat,
+                        'KcalPardayAtThatTime' => $user->kcalParday,
                     ]);
                 }
 
                 if ($request->thirdcup == "飲んだ!"){
 
-                    $thirdcup = $user->protainsetting()->orderBy('created_at', 'desc')->select('kcal','carbo','protain','fat')->first();
-
                     //プロテインタスクに保存
                     $user->protaintasks()->create([
                         'cups' => "thirdcup",
-                        'kcal' => $thirdcup->kcal,
-                        'protain' => $thirdcup->protain,
-                        'carbo' => $thirdcup->carbo,
-                        'fat' => $thirdcup->fat,
+                        'kcal' => $cup->kcal,
+                        'protain' => $cup->protain,
+                        'carbo' => $cup->carbo,
+                        'fat' => $cup->fat,
+                        'KcalPardayAtThatTime' => $user->kcalParday,
                     ]);
                 }
 

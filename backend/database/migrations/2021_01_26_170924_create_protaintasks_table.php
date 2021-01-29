@@ -25,6 +25,9 @@ class CreateProtaintasksTable extends Migration
             $table->integer('carbo')->nullable();
             $table->integer('fat')->nullable();
 
+            // 格納時の日あたりの目標カロリー
+            $table->integer('KcalPardayAtThatTime')->nullable();
+
             // 外部キー制約
             $table->foreign('user_id')->references('id')->on('users');
         });

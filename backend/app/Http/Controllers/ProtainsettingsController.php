@@ -27,6 +27,7 @@ class ProtainsettingsController extends Controller
 
     public function setting(Request $request)
         {
+
             //ログインユーザーのid取得
             $id = Auth::id();
 

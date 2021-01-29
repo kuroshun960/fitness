@@ -11,7 +11,7 @@
 @csrf
 
 <p>プロテインのメーカー</p>
-{!! Form::text('name', '', ['class' => 'form-control','placeholder' => 'メーカー名']) !!}
+{!! Form::text('name', old('name'), ['class' => 'form-control','placeholder' => 'メーカー名']) !!}
 <br>
 
 <p>１杯あたりのカロリーを入力</p>
