@@ -19,10 +19,26 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
+            // $table->rememberToken(); //
+            // $table->foreignId('current_team_id')->nullable(); //
             $table->text('profile_photo_path')->nullable();
             $table->timestamps();
+
+            // 目標カロリー/1日 //
+            $table->integer('kcalParday')->nullable();
+            // 目標カロリー/１週 //
+            $table->integer('kcalParweek')->nullable();
+            // 増量or減量 //
+            $table->string('IncreaseOrDecrease')->nullable()->default('増量期');
+            // 性別 //
+            $table->string('sex')->nullable()->default('男性');
+            // 運動量 //
+            $table->string('HardOrSoft')->nullable()->default('middle');
+            // 年齢 //
+            $table->integer('age')->nullable();
+            // 身長 //
+            $table->integer('height')->nullable();
+
         });
     }
 

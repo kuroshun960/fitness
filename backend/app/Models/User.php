@@ -20,6 +20,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'kcalParday',
+        'kcalParweek',
+        'IncreaseOrDecrease',
+        'HardOrSoft',
+        'age',
+        'sex',
+        'height',
     ];
 
     /**
