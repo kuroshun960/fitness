@@ -18,13 +18,6 @@ class ProtainsettingsController extends Controller
     プロテイン設定ページ
 --------------------------------------------------------------------------*/
     
-
-    public function show()
-        {
-            return view('protainsettings');
-        }
-
-
     public function setting(Request $request)
         {
 

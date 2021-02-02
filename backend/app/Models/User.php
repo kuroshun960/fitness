@@ -69,6 +69,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Protaintask::class);
     }
+
+    public function meals()
+    {
+        return $this->hasMany(Meals::class);
+    }
+
+    public function eats()
+    {
+        return $this->hasMany(Eats::class);
+    }
     
 
 

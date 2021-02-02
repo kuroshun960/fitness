@@ -38,7 +38,6 @@
  null, ['class' => 'my_class']) }}
 <br>
 
-
 <p>性別はどちらですか？</p>
 {{ Form::select('sex',['男性'=> '男性' ,'女性'=> '女性' ,], null, ['class' => 'my_class']) }}
 <br>
@@ -46,10 +45,6 @@
 <p>日あたりの目標摂取カロリー</p>
 {!! Form::text('kcalParday', '', ['class' => 'form-control','placeholder' => '']) !!}
 <br>
-
-
-
-
 
 <br>
 {!! Form::submit('設定', ['class' => 'btn btn-primary btn-block']) !!}

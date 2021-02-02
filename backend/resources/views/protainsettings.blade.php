@@ -27,7 +27,7 @@
 <br>
 
 <p>１杯あたりの脂質を入力</p>
-{!! Form::text('fat', '', ['class' => 'form-control','placeholder' => 'タンパク質']) !!}
+{!! Form::text('fat', '', ['class' => 'form-control','placeholder' => '脂質']) !!}
 <br>
 
 

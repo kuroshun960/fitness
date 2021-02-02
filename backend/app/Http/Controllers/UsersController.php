@@ -129,7 +129,7 @@ class UsersController extends Controller
             
 
 /*-----------------------------------------------------------------------------------------
-    プロテインタスク 関連処理
+    摂取栄養素 （プロテインタスク分追加処理）
 -----------------------------------------------------------------------------------------*/
             
             //プロテインタスクがどのくらい達成されてるか、プロテインタスクテーブルのカラム内容で判定//
@@ -171,75 +171,184 @@ class UsersController extends Controller
     
                         $protainAll = ['kcal' => $cupKcal,'protain' => $cupProtain,'fat' => $cupFat,'carbo' => $cupCarbo];
 
+                        
                     }
                 }
             }
         
-        }
+            
 
-
-/*-----------------------------------------------------------------------------------------
-    目標値までの数値の表示
------------------------------------------------------------------------------------------*/   
-        
-        $kcalPardayToGoal = $kcalParday - $protainAll['kcal'];
-        $protainPardayToGoal = $protainPardayCeil - $protainAll['protain'];
-        $fatPardayCeilToGoal = $fatPardayCeil - $protainAll['fat'];
-        $carboPardayCeilToGoal = $carboPardayCeil - $protainAll['carbo'];
 
 /*-----------------------------------------------------------------------------------------
     今日取得した栄養素の合計値
 -----------------------------------------------------------------------------------------*/   
         
-        $dayNuts = $user->protaintasks()->get();
+        $dayProtainNuts = $user->protaintasks()->get();
+
+        $dayMealNuts = $user->eats()->get();
         
         $daily = [];
 
-        $sumKcal1 = 0;
-        $sumKcal2 = 0;
-        $sumKcal3 = 0;
-        $sumKcal4 = 0;
-        $sumKcal5 = 0;
-        $sumKcal6 = 0;
-        $sumKcal7 = 0;
+        $sumKcal1 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
 
-        foreach ($dayNuts as $dayNut) {
+        $sumKcal2 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
+        $sumKcal3 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
+        $sumKcal4 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
+        $sumKcal5 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
+        $sumKcal6 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
+        $sumKcal7 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
+        
+
+        $aaa = 1;
+
+        foreach ($dayProtainNuts as $dayProtainNut) {
 
             
-            if(date('Y/m/d', strtotime($dayNut->created_at)) === date('Y/m/d', strtotime($todaydate))){
-                $sumKcal1 += $dayNut->kcal;
+            if(date('Y/m/d', strtotime($dayProtainNut->created_at)) === date('Y/m/d', strtotime($todaydate))){
+                $sumKcal1['kcal'] += $dayProtainNut->kcal;
+                $sumKcal1['protain'] += $dayProtainNut->protain;
+                $sumKcal1['fat'] += $dayProtainNut->fat;
+                $sumKcal1['carbo'] += $dayProtainNut->carbo;
             }
 
-            elseif( date('Y/m/d', strtotime($dayNut->created_at)) === date('Y/m/d', strtotime('-1 day')) ) {
-                $sumKcal2 += $dayNut->kcal;
+            elseif( date('Y/m/d', strtotime($dayProtainNut->created_at)) === date('Y/m/d', strtotime('-'.$aaa.' day')) ) {
+                $sumKcal2['kcal'] += $dayProtainNut->kcal;
+                $sumKcal2['protain'] += $dayProtainNut->protain;
+                $sumKcal2['fat'] += $dayProtainNut->fat;
+                $sumKcal2['carbo'] += $dayProtainNut->carbo;
             }
-            elseif( date('Y/m/d', strtotime($dayNut->created_at)) === date('Y/m/d', strtotime('-2 day')) ) {
-                $sumKcal3 += $dayNut->kcal;
+            elseif( date('Y/m/d', strtotime($dayProtainNut->created_at)) === date('Y/m/d', strtotime('-2 day')) ) {
+                $sumKcal3['kcal'] += $dayProtainNut->kcal;
+                $sumKcal3['protain'] += $dayProtainNut->protain;
+                $sumKcal3['fat'] += $dayProtainNut->fat;
+                $sumKcal3['carbo'] += $dayProtainNut->carbo;
             }
-            elseif( date('Y/m/d', strtotime($dayNut->created_at)) === date('Y/m/d', strtotime('-3 day')) ) {
-                $sumKcal4 += $dayNut->kcal;
+            elseif( date('Y/m/d', strtotime($dayProtainNut->created_at)) === date('Y/m/d', strtotime('-3 day')) ) {
+                $sumKcal4['kcal'] += $dayProtainNut->kcal;
+                $sumKcal4['protain'] += $dayProtainNut->protain;
+                $sumKcal4['fat'] += $dayProtainNut->fat;
+                $sumKcal4['carbo'] += $dayProtainNut->carbo;
             }
-            elseif( date('Y/m/d', strtotime($dayNut->created_at)) === date('Y/m/d', strtotime('-4 day')) ) {
-                $sumKcal5 += $dayNut->kcal;
+            elseif( date('Y/m/d', strtotime($dayProtainNut->created_at)) === date('Y/m/d', strtotime('-4 day')) ) {
+                $sumKcal5['kcal'] += $dayProtainNut->kcal;
+                $sumKcal5['protain'] += $dayProtainNut->protain;
+                $sumKcal5['fat'] += $dayProtainNut->fat;
+                $sumKcal5['carbo'] += $dayProtainNut->carbo;
             }
-            elseif( date('Y/m/d', strtotime($dayNut->created_at)) === date('Y/m/d', strtotime('-5 day')) ) {
-                $sumKcal6 += $dayNut->kcal;
+            elseif( date('Y/m/d', strtotime($dayProtainNut->created_at)) === date('Y/m/d', strtotime('-5 day')) ) {
+                $sumKcal6['kcal'] += $dayProtainNut->kcal;
+                $sumKcal6['protain'] += $dayProtainNut->protain;
+                $sumKcal6['fat'] += $dayProtainNut->fat;
+                $sumKcal6['carbo'] += $dayProtainNut->carbo;
             }
-            elseif( date('Y/m/d', strtotime($dayNut->created_at)) === date('Y/m/d', strtotime('-6 day')) ) {
-                $sumKcal7 += $dayNut->kcal;
+            elseif( date('Y/m/d', strtotime($dayProtainNut->created_at)) === date('Y/m/d', strtotime('-6 day')) ) {
+                $sumKcal7['kcal'] += $dayProtainNut->kcal;
+                $sumKcal7['protain'] += $dayProtainNut->protain;
+                $sumKcal7['fat'] += $dayProtainNut->fat;
+                $sumKcal7['carbo'] += $dayProtainNut->carbo;
             }
   
         }
 
+        foreach ($dayMealNuts as $dayMealNut) {
+            
+            if(date('Y/m/d', strtotime($dayMealNut->created_at)) === date('Y/m/d', strtotime($todaydate))){
+                $sumKcal1['kcal'] += $dayMealNut->eatKcal;
+                $sumKcal1['protain'] += $dayMealNut->eatProtain;
+                $sumKcal1['fat'] += $dayMealNut->eatFat;
+                $sumKcal1['carbo'] += $dayMealNut->eatCarbo;
+            }
+            elseif( date('Y/m/d', strtotime($dayMealNut->created_at)) === date('Y/m/d', strtotime('-1 day')) ) {
+                $sumKcal2['kcal'] += $dayMealNut->eatKcal;
+                $sumKcal2['protain'] += $dayMealNut->eatProtain;
+                $sumKcal2['fat'] += $dayMealNut->eatFat;
+                $sumKcal2['carbo'] += $dayMealNut->eatCarbo;
+            }
+            elseif( date('Y/m/d', strtotime($dayMealNut->created_at)) === date('Y/m/d', strtotime('-2 day')) ) {
+                $sumKcal3['kcal'] += $dayMealNut->eatKcal;
+                $sumKcal3['protain'] += $dayMealNut->eatProtain;
+                $sumKcal3['fat'] += $dayMealNut->eatFat;
+                $sumKcal3['carbo'] += $dayMealNut->eatCarbo;
+            }
+            elseif( date('Y/m/d', strtotime($dayMealNut->created_at)) === date('Y/m/d', strtotime('-3 day')) ) {
+                $sumKcal4['kcal'] += $dayMealNut->eatKcal;
+                $sumKcal4['protain'] += $dayMealNut->eatProtain;
+                $sumKcal4['fat'] += $dayMealNut->eatFat;
+                $sumKcal4['carbo'] += $dayMealNut->eatCarbo;
+            }
+            elseif( date('Y/m/d', strtotime($dayMealNut->created_at)) === date('Y/m/d', strtotime('-4 day')) ) {
+                $sumKcal5['kcal'] += $dayMealNut->eatKcal;
+                $sumKcal5['protain'] += $dayMealNut->eatProtain;
+                $sumKcal5['fat'] += $dayMealNut->eatFat;
+                $sumKcal5['carbo'] += $dayMealNut->eatCarbo;
+            }
+            elseif( date('Y/m/d', strtotime($dayMealNut->created_at)) === date('Y/m/d', strtotime('-5 day')) ) {
+                $sumKcal6['kcal'] += $dayMealNut->eatKcal;
+                $sumKcal6['protain'] += $dayMealNut->eatProtain;
+                $sumKcal6['fat'] += $dayMealNut->eatFat;
+                $sumKcal6['carbo'] += $dayMealNut->eatCarbo;
+            }
+            elseif( date('Y/m/d', strtotime($dayMealNut->created_at)) === date('Y/m/d', strtotime('-6 day')) ) {
+                $sumKcal7['kcal'] += $dayMealNut->eatKcal;
+                $sumKcal7['protain'] += $dayMealNut->eatProtain;
+                $sumKcal7['fat'] += $dayMealNut->eatFat;
+                $sumKcal7['carbo'] += $dayMealNut->eatCarbo;
+            }
 
+        }
+
+/*-----------------------------------------------------------------------------------------
+    目標値までの数値の表示
+-----------------------------------------------------------------------------------------*/   
+                
+        $kcalPardayToGoal = $kcalParday - $sumKcal1['kcal'];
+        $protainPardayToGoal = $protainPardayCeil - $sumKcal1['protain'];
+        $fatPardayCeilToGoal = $fatPardayCeil - $sumKcal1['fat'];
+        $carboPardayCeilToGoal = $carboPardayCeil - $sumKcal1['carbo'];
+                
+/*-----------------------------------------------------------------------------------------
+        継続日数
+-----------------------------------------------------------------------------------------*/   
+
+        $meals = $user->eats()->orderBy('created_at', 'desc')->get()
+                    ->groupBy(function ($row) {
+                    return $row->created_at->format('y-m-d');
+                    });
+        
+        $i = -1;
+        $continueDay = 0; 
+        foreach ($meals as $meal => $value) {
+
+            //昨日のデータがあれば、$iに数字を渡す。なければ渡さないので、一昨日以降の処理がされない
+            if( $meal === date("y-m-d", strtotime($i.'day')) ){
+                $i -= 1;
+                $continueDay += 1;
+                //dd($i);
+            }
+            //今日のデータが入力されたら、継続日数に1加算
+            if( $meal === date("y-m-d", strtotime('today')) ){
+                $continueDay += 1;
+            }
+        }
         
 
-       
+
+/*-----------------------------------------------------------------------------------------
+        食品リスト
+-----------------------------------------------------------------------------------------*/   
+                
+        $getMeals = $user->meals()->get();
+                
+        $mealslists = [];
+
+        foreach ($getMeals as $getMeal) {
+
+            array_push($mealslists,$getMeal);
+        }
+
 /*-----------------------------------------------------------------------------------------
         ビューに渡す
 -----------------------------------------------------------------------------------------*/
-
-        
 
         $data = [
 
@@ -248,7 +357,6 @@ class UsersController extends Controller
 
             //プロテインの摂取栄養素
             'protainAll' => $protainAll,
-
 
             //適正体重、基礎代謝、必要カロリー
             'fitWeightFloor' => $fitWeightFloor,
@@ -276,9 +384,16 @@ class UsersController extends Controller
             'sumKcal6' => $sumKcal6,
             'sumKcal7' => $sumKcal7,
 
+            //登録した食品のリスト
+            'mealslists' => $mealslists,
+
+            //継続日数
+            'continueDay' => $continueDay,
+
         ];
 
         return view('welcome',compact('data'));
+    }
 
     }
 
@@ -288,16 +403,152 @@ class UsersController extends Controller
 
     public function personalsettingspage()
     {
-        return view('personalsettings');
+        $userAlldata = $this->show();
+        $data = $userAlldata['data'];
+
+        return view('personalsettings',compact('data'));
     }
 
 /*-----------------------------------------------------------------------------------------
-        活動日誌ページ
+        プロテイン設定
+-----------------------------------------------------------------------------------------*/
+
+
+    public function protainsettingpage()
+        {
+            $userAlldata = $this->show();
+            $data = $userAlldata['data'];
+
+            return view('protainsettings',compact('data'));
+        }
+
+
+
+/*-----------------------------------------------------------------------------------------
+        活動日誌 一覧ページ
 -----------------------------------------------------------------------------------------*/
 
 public function daily()
 {
-    return view('daily');
+    $userAlldata = $this->show();
+
+    $user = Auth::User();
+
+    $days = $user->eats()->orderBy('created_at', 'desc')->get()
+            ->groupBy(function ($row) {
+                return $row->created_at->format('y-m-d');
+            });
+
+    
+
+    $protaintasks = $user->protaintasks()->orderBy('created_at', 'desc')->get()
+            ->groupBy(function ($row) {
+                return $row->created_at->format('y-m-d');
+            });
+    
+    $dayKcal = [];
+
+    //日付のデータ取得
+    foreach( $days as $day){
+        
+        $allKcal = 0;
+            //その日の食事を一個ずつ取得
+            foreach( $day as $meal ){
+                //その日の食事のkcalを一個ずつ加算
+                $allKcal = $allKcal + $meal->eatKcal;
+            }
+            $i=0;
+            //プロテインタスクデータを取得
+            foreach( $protaintasks as $protaintask ){
+                //プロテインタスクデータを日ごとに振り分け
+                foreach($protaintask as $protain){
+                    //日付データと、プロテインを飲んだ日が同じなら、$allkcalに加算
+                    if($day[0]->created_at->format('Y/m/d') === $protaintask[0]->created_at->format('Y/m/d')){
+                        $allKcal = $allKcal + $protaintask[0]->kcal;
+                    }
+                }
+            }
+            
+        array_push($dayKcal,$allKcal);
+    }    
+    
+
+    //$dayKcalrev = array_reverse($dayKcal);
+
+    $data = $userAlldata['data'];
+
+    return view('daily',compact('data','days','dayKcal'));
+}
+
+
+/*-----------------------------------------------------------------------------------------
+        活動日誌 日ページ
+-----------------------------------------------------------------------------------------*/
+
+public function daypage($id)
+{
+    $userAlldata = $this->show();
+    $data = $userAlldata['data'];
+
+
+    $day = $id;
+
+    //dd($day);
+
+    $user = Auth::User();
+
+    //今日の日付
+    $todaydate = date("Y-m-d");
+
+    $eatmeals = $user->eats()->whereDate('created_at', $day)->get();
+    $protaintasks = $user->protaintasks()->whereDate('created_at', $day)->get();
+
+    
+
+    $allKcal = 0;
+    $allProtain = 0;
+    $allFat = 0;
+    $allCarbo = 0;
+    $allPrice = 0;
+    
+
+    foreach($eatmeals as $eatmeal){
+        
+        $allKcal += $eatmeal->eatKcal;
+        $allProtain += $eatmeal->eatProtain;
+        $allFat += $eatmeal->eatFat;
+        $allCarbo += $eatmeal->eatCarbo;
+        $allPrice += $eatmeal->eatPrice;
+
+    }
+
+    
+
+    foreach($protaintasks as $protaintask){
+
+        $allKcal += $protaintask->kcal;
+        $allProtain += $protaintask->Pprotain;
+        $allFat += $protaintask->fat;
+        $allCarbo += $protaintask->carbo;
+        $allPrice += $protaintask->price;
+
+    }
+
+    
+
+    $nutdata = [
+        'allKcal' => $allKcal,
+        'allProtain' => $allProtain,
+        'allFat' => $allFat,
+        'allCarbo' => $allCarbo,
+        'allPrice' => $allPrice,
+        ];
+
+        
+
+    //dd($eatmeals);
+
+    return view('daypage',compact('eatmeals','day','protaintasks','nutdata','data'));
 }
 
 /*-----------------------------------------------------------------------------------------

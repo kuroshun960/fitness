@@ -19,6 +19,8 @@ use App\Http\Controllers\WeightsController;
 use App\Http\Controllers\ProtainsettingsController;
 use App\Http\Controllers\ProtaintasksController;
 use App\Http\Controllers\DatesController;
+use App\Http\Controllers\MealsController;
+use App\Http\Controllers\EatsController;
 
 
 
@@ -86,7 +88,7 @@ Route::group(['middleware' => ['auth']], function () {
     プロテイン設定 機能
 -----------------------------------------------------------------------------------------*/
 
-    Route::get('protainsettings', [ProtainsettingsController::class,'show'])->name('protainsettings.show');
+    Route::get('protainsettingpage', [UsersController::class,'protainsettingpage'])->name('protainsettingpage');
 
     Route::post('protainsettings', [ProtainsettingsController::class,'setting'])->name('protainsettings.setting');
 
@@ -99,10 +101,31 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('personalsettings', [UsersController::class,'setting'])->name('personalsettings.setting');
 
 /*-----------------------------------------------------------------------------------------
+    食事登録
+-----------------------------------------------------------------------------------------*/
+
+    Route::post('mealssetting', [MealsController::class,'setting'])->name('mealssetting.setting');
+
+    Route::get('mealssetting/{id}', [MealsController::class,'updatepage'])->name('mealssetting.updatepage');
+    Route::post('mealsupdate/{id}', [MealsController::class,'update'])->name('mealssetting.update');
+    Route::delete('mealsdetroy/{id}', [MealsController::class,'mealsdetroy'])->name('meals.detroy');
+
+    Route::get('mealssetting', [MealsController::class,'show'])->name('mealssetting.show');
+
+    Route::get('drinkssetting', [MealsController::class,'drinks'])->name('drinks.show');
+    Route::get('snackssetting', [MealsController::class,'snacks'])->name('snacks.show');
+
+    Route::post('eats', [MealsController::class,'eats'])->name('eats');
+
+    Route::post('eatsdelete', [MealsController::class,'destroy'])->name('eats.destroy');
+
+/*-----------------------------------------------------------------------------------------
     活動日誌
 -----------------------------------------------------------------------------------------*/
 
     Route::get('daily', [UsersController::class,'daily'])->name('users.daily');
+
+    Route::get('daily/{id}/', [UsersController::class,'daypage'])->name('users.day');
 
 
 /*-----------------------------------------------------------------------------------------
