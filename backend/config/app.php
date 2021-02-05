@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,6 +108,7 @@ return [
 
     'faker_locale' => 'en_US',
 
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -118,6 +119,9 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
+
+
+
 
     'key' => env('APP_KEY'),
 

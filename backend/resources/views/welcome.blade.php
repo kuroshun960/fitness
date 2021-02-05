@@ -12,6 +12,7 @@ date("Y年m月d日", strtotime("1 day"))
 
 
 
+
 {!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'userRegistBtn']) !!}
 
 {!! link_to_route('personalsettingspage.show','パーソナル設定',[],['class'=>'userRegistBtn']) !!}
@@ -160,38 +161,64 @@ date("Y年m月d日", strtotime("1 day"))
             {!! Form::label(3,'飲み物', ['class' => 'mealtype__drink__tab']) !!}
 
             <div class="topMealsList__container mealtype__meal">
-            @foreach ( $data['mealslists'] as $mealslist)
-                @if ( $mealslist['type'] === '食事')
-                {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
-                {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$mealslist->id]) !!}
-                @endif
-            @endforeach
+                @foreach ( $data['mealslists'] as $mealslist)
+                    
+                    @if (isset($mealslist->gram))
+                    <?php $net = 'g' ?>
+                    @elseif (isset($mealslist->piece))
+                        <?php $net = '個' ?>
+                    @endif
+
+                    @if ( $mealslist['type'] === '食事')
+                    {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
+                    {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                    @endif
+                @endforeach
             </div>
 
             <div class="topMealsList__container mealtype__snack">
                 @foreach ( $data['mealslists'] as $mealslist)
+
+                    @if (isset($mealslist->gram))
+                    <?php $net = 'g' ?>
+                    @elseif (isset($mealslist->piece))
+                        <?php $net = '個' ?>
+                    @endif
+                    
                     @if ( $mealslist['type'] === 'おやつ')
                     {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
-                    {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$mealslist->id]) !!}
+                    {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
                     @endif
+   
                 @endforeach
             </div>
 
             <div class="topMealsList__container mealtype__drink">
                 @foreach ( $data['mealslists'] as $mealslist)
+
+                    @if (isset($mealslist->gram))
+                    <?php $net = 'g' ?>
+                    @elseif (isset($mealslist->piece))
+                        <?php $net = '個' ?>
+                    @endif
+
                     @if ( $mealslist['type'] === '飲料')
                     {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
-                    {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$mealslist->id]) !!}
+                    {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
                     @endif
+   
                 @endforeach
             </div>
 
 
+        
+
 
             <div class="topMealsList__input">
                 <div style="display: flex;">
-                    <p><span class="mealname"></span> / 摂取量</p>
+                    <p><span class="mealname"></span> </p>
                     {!! Form::text('net', '', ['class' => 'net','placeholder' => '']) !!}
+                    <span class="mealnettype"></span>
                 </div>
                 <div>
                     {!! Form::submit('食べた！', ['class' => 'btn  eatBtn']) !!}
@@ -270,6 +297,14 @@ date("Y年m月d日", strtotime("1 day"))
 
 
 
+    @if (count($errors) > 0)
+        <ul class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $error)
+                <li class="ml-4">{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
 
     {!! Form::open(['route' => 'mealssetting.setting']) !!}
     @csrf
@@ -289,11 +324,11 @@ date("Y年m月d日", strtotime("1 day"))
 
     <p class="gram">内容量/g</p>
     {!! Form::text('gram', '', ['class' => 'form-control gram','placeholder' => '','selected']) !!}
-    <br>
+    <br class="gram">
 
     <p class="piece">内容量/個</p>
     {!! Form::text('piece', '', ['class' => 'form-control piece','placeholder' => '']) !!}
-    <br>
+    <br class="piece">
 
     <p>価格を入力</p>
     {!! Form::text('price', '', ['class' => 'form-control','placeholder' => '']) !!}
@@ -323,7 +358,10 @@ date("Y年m月d日", strtotime("1 day"))
         }
     </style>
 
+
     <script>
+
+    //グラム、個数のフォームをセレクトで分岐
     $(".type").change(function() {
         var type_val = $(".type").val();
             if(type_val == "gram") {
@@ -336,24 +374,27 @@ date("Y年m月d日", strtotime("1 day"))
     });
 
 
-    
+    //商品をクリックすると摂取量入力画面を表示
     $('.topMealsList__Box').click(function(){  
 
         var val = $(this).attr('id');
         var mealname = $(this).text();
+        var mealnettype = $(this).attr('class');
+        var mealnettypes = mealnettype.split(' ');
+        
         
         $('.topMealsList__input').css('display', 'flex');
-
         $(this).addClass('checked');
-
         $('.checked').not(this).removeClass('checked');
-        
-        console.log(mealname);
 
         $('.mealname').html(mealname);
+        $('.mealnettype').html(mealnettypes[1]);
+
+        
 
     });
 
+    //商品タイプ 食事
     $('.mealtype__meal__tab').click(function(){  
         $('.mealtype__meal').css('display','flex');
         $('.mealtype__snack').css('display','none');
@@ -364,6 +405,7 @@ date("Y年m月d日", strtotime("1 day"))
 
     });
 
+    //商品タイプ おやつ
     $('.mealtype__snack__tab').click(function(){  
         $('.mealtype__snack').css('display','flex');
         $('.mealtype__meal').css('display','none');
@@ -374,6 +416,7 @@ date("Y年m月d日", strtotime("1 day"))
 
     });
 
+    //商品タイプ 飲み物
     $('.mealtype__drink__tab').click(function(){  
         $('.mealtype__drink').css('display','flex');
         $('.mealtype__snack').css('display','none');

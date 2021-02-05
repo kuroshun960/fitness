@@ -186,19 +186,29 @@ class MealsController extends Controller
 
 
 
-    public function updatepage()
+    public function updatepage($id)
     {
+        $user = \Auth::user();
+        $meal = $user->meals()->find($id);
+        
         $users_controller = app()->make('App\Http\Controllers\UsersController');
         $userAlldata = $users_controller->show();
         $data = $userAlldata['data'];
 
-        return view('meal-update',compact('data'));
+        return view('meal-update',compact('data','meal'));
     }
 
     public function update(Request $request ,$id)
     {
 
-        
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'kcal' => 'required',
+            'protain' => 'required',
+            'fat' => 'required',
+            'carbo' => 'required',
+        ]);
 
         $user = \Auth::user();
 
@@ -228,9 +238,12 @@ class MealsController extends Controller
     public function eats(Request $request)
         {
 
-            $user = \Auth::user();
+            $request->validate([
+                'net' => 'required',
+            ]);
 
             
+            $user = \Auth::user();
 
             $eatmeal = $user->meals()->find($request->eatmeal);
 
@@ -308,6 +321,23 @@ class MealsController extends Controller
 
     public function setting(Request $request)
         {
+
+
+
+            $request->validate([
+
+                'name' => 'required|max:20',
+                //'gram' => 'required|max:4',
+                //'piece' => 'required|max:5',
+                'price' => 'required|max:5',
+                'kcal' => 'required',
+                'protain' => 'required',
+                'fat' => 'required',
+                'carbo' => 'required',
+                
+            ]);
+
+
 
             //ログインユーザーのid取得
             $id = Auth::id();

@@ -16,12 +16,15 @@ $last = end($path); //最後の要素を取得
 
 
 
-<style>
-    .piece{
-        display: none;
-    }
-</style>
 
+
+@if (count($errors) > 0)
+<ul class="alert alert-danger" role="alert">
+    @foreach ($errors->all() as $error)
+        <li class="ml-4">{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
 
 
 {!! Form::open(['route' => ['mealssetting.update','id' => $last]]) !!}
@@ -33,34 +36,60 @@ $last = end($path); //最後の要素を取得
 <br>
 
 <p>名前</p>
-{!! Form::text('name', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('name', $meal->name, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 
+@if( isset($meal->gram) )
+
+<style> .piece{display: none;}</style>
+    
 <p>種別</p>
 {{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'gram', ['class' => 'form-control type']) }}
+<br class="">
+
+<p class="gram">内容量/g</p>
+{!! Form::text('gram', $meal->gram, ['class' => 'form-control gram','placeholder' => '','selected']) !!}
+<br class="gram">
+
+<p class="piece">内容量/個</p>
+{!! Form::text('piece', '', ['class' => 'form-control piece','placeholder' => '']) !!}
+<br class="piece">
+
+@elseif(isset($meal->piece))
+
+<style> .gram{display: none;}</style>
+
+<p>種別</p>
+{{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'piece', ['class' => 'form-control type']) }}
 <br>
 
 <p class="gram">内容量/g</p>
 {!! Form::text('gram', '', ['class' => 'form-control gram','placeholder' => '','selected']) !!}
+<br class="gram">
 
 <p class="piece">内容量/個</p>
-{!! Form::text('piece', '', ['class' => 'form-control piece','placeholder' => '']) !!}
-<br>
+{!! Form::text('piece', $meal->piece, ['class' => 'form-control piece','placeholder' => '']) !!}
+<br class="piece">
+
+@endif
+
+
+
 
 <p>価格を入力</p>
-{!! Form::text('price', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('price', $meal->price, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 <p>カロリーを入力</p>
-{!! Form::text('kcal', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('kcal', $meal->kcal, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 <p>タンパク質を入力</p>
-{!! Form::text('protain', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('protain', $meal->protain, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 <p>炭水化物を入力</p>
-{!! Form::text('carbo', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('carbo', $meal->carbo, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 <p>脂質を入力</p>
-{!! Form::text('fat', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('fat', $meal->fat, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 
 

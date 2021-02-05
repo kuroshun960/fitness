@@ -66,8 +66,8 @@
 
                 @if ( $meal['mealType'] === '食事')
 
-
-                    <a href="{{URL::to('mealssetting/'.$meal['mealId'])}}">
+                    
+                    <a href="{{ route('mealssetting.updatepage', ['id' => $meal['mealId']]) }}">
                     <div class="itemsHead">
                         <p>{{ $meal['mealName'] }}</p>
                         <p>{{ $meal['mealKcal'] }}kcal</p>

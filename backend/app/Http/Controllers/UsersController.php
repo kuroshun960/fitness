@@ -557,6 +557,13 @@ public function daypage($id)
 
     public function setting(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:20',
+            'age' => 'required|max:3',
+            'height' => 'required|max:3',
+            'kcalParday' => 'required',
+            
+        ]);
 
         //ログインユーザーのid取得
         $id = Auth::id();
