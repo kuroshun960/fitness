@@ -86,12 +86,14 @@ date("Y年m月d日", strtotime("1 day"))
         .topMealsList__Box{
             width :100px;
             height :100px;
-            background-color: rgb(199, 199, 199);
+            background-color: rgb(255, 255, 255);
             font-size: 5px;
             text-align: center;
             line-height: 100px;
             border-radius: 5px;
             margin: 10px 5px 8px;
+            background-size: cover;
+            box-shadow: 10px 10px 25px 10px rgba(0, 0, 0, .02);
         }
 
         .topMealsList__container{
@@ -136,6 +138,12 @@ date("Y年m月d日", strtotime("1 day"))
             display: none;
         }
 
+        .itemImage{
+            background: center / contain no-repeat;
+            background-size: cover;
+        }
+
+
     </style>
 
 
@@ -163,15 +171,14 @@ date("Y年m月d日", strtotime("1 day"))
             <div class="topMealsList__container mealtype__meal">
                 @foreach ( $data['mealslists'] as $mealslist)
                     
-                    @if (isset($mealslist->gram))
-                    <?php $net = 'g' ?>
-                    @elseif (isset($mealslist->piece))
-                        <?php $net = '個' ?>
-                    @endif
-
+                    @if (isset($mealslist->gram))<?php $net = 'g' ?>@elseif (isset($mealslist->piece))<?php $net = '個' ?>@endif
                     @if ( $mealslist['type'] === '食事')
-                    {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
-                    {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+
+                        {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
+                        @if (isset($mealslist->item_photo_path)){!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' itemImage' ,'style'=>'background-image: url("'.$mealslist->item_photo_path.'");']) !!}
+                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                        @endif
+
                     @endif
                 @endforeach
             </div>
@@ -179,34 +186,26 @@ date("Y年m月d日", strtotime("1 day"))
             <div class="topMealsList__container mealtype__snack">
                 @foreach ( $data['mealslists'] as $mealslist)
 
-                    @if (isset($mealslist->gram))
-                    <?php $net = 'g' ?>
-                    @elseif (isset($mealslist->piece))
-                        <?php $net = '個' ?>
-                    @endif
-                    
+                    @if (isset($mealslist->gram))<?php $net = 'g' ?>@elseif (isset($mealslist->piece))<?php $net = '個' ?>@endif
                     @if ( $mealslist['type'] === 'おやつ')
-                    {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
-                    {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                        {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
+                        @if (isset($mealslist->item_photo_path)){!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' itemImage' ,'style'=>'background-image: url("'.$mealslist->item_photo_path.'");']) !!}
+                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                        @endif
                     @endif
-   
                 @endforeach
             </div>
 
             <div class="topMealsList__container mealtype__drink">
                 @foreach ( $data['mealslists'] as $mealslist)
 
-                    @if (isset($mealslist->gram))
-                    <?php $net = 'g' ?>
-                    @elseif (isset($mealslist->piece))
-                        <?php $net = '個' ?>
-                    @endif
-
+                    @if (isset($mealslist->gram))<?php $net = 'g' ?>@elseif (isset($mealslist->piece))<?php $net = '個' ?>@endif
                     @if ( $mealslist['type'] === '飲料')
-                    {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
-                    {!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                        {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
+                        @if (isset($mealslist->item_photo_path)){!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' itemImage' ,'style'=>'background-image: url("'.$mealslist->item_photo_path.'");']) !!}
+                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                        @endif
                     @endif
-   
                 @endforeach
             </div>
 
@@ -234,7 +233,6 @@ date("Y年m月d日", strtotime("1 day"))
 
         </div>
     </div>
-
 
 
 
@@ -389,6 +387,7 @@ date("Y年m月d日", strtotime("1 day"))
 
         $('.mealname').html(mealname);
         $('.mealnettype').html(mealnettypes[1]);
+        
 
         
 

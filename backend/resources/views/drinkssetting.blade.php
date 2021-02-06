@@ -64,7 +64,7 @@
 
                 @if ( $meal['mealType'] === '飲料')
 
-
+                <a href="{{ route('mealssetting.updatepage', ['id' => $meal['mealId']]) }}">
                     <div class="itemsHead">
                         <p>{{ $meal['mealName'] }}</p>
                         <p>{{ $meal['mealKcal'] }}kcal</p>
@@ -107,7 +107,7 @@
 
 
                     </div>
-
+                </a>
                 @endif  
 
             @endforeach

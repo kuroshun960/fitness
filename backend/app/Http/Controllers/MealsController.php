@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+
 use App\Models\User;
 use App\Models\Weight;
 use App\Models\Date;
@@ -200,6 +201,8 @@ class MealsController extends Controller
 
     public function update(Request $request ,$id)
     {
+        
+        //dd($request->file_name);
 
         $request->validate([
             'name' => 'required',
@@ -208,10 +211,21 @@ class MealsController extends Controller
             'protain' => 'required',
             'fat' => 'required',
             'carbo' => 'required',
+
+            'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
+ 
         ]);
 
         $user = \Auth::user();
 
+        $path = null;
+
+        if( isset($request->file_name) ){
+        $upload_info = Storage::disk('s3')->putFile('/meals', $request->file('file_name'), 'public');
+
+        $path = Storage::disk('s3')->url($upload_info);
+        }
+            
         
 
         //プロテインタスクに保存
@@ -223,6 +237,7 @@ class MealsController extends Controller
             'protain' => $request->protain,
             'fat' => $request->fat,
             'carbo' => $request->carbo,
+            'item_photo_path' => $path,
 
             'piece' => $request->piece,
             'gram' => $request->gram,
@@ -403,6 +418,91 @@ class MealsController extends Controller
 
 
 
+/*--------------------------------------------------------------------------
+    アーティスト画像をS3にアップロードする処理
+--------------------------------------------------------------------------*/
+
+public function upload(Request $request)
+    {        
+        
+        
+        //名前と説明文のバリデーション
+        
+        $request->validate([
+            'name' => 'required|max:20',
+            'description' => 'required|max:255',
+        ]);
+        
+        
+        // 画像のアップ形式のバリデーション
+        $this->validate($request, [
+            'file' => [
+                // 必須
+                'required',
+                // アップロードされたファイルであること
+                'file',
+                // 画像ファイルであること
+                'image',
+                // MIMEタイプを指定
+                'mimes:jpeg,png',
+            ]
+        ]);
+        
+
+        if ($request->file('file')->isValid([])) {
+            
+            //バリデーションを正常に通過した時の処理
+            //S3へのファイルアップロード処理の時の情報を変数$upload_infoに格納する
+            $upload_info = Storage::disk('s3')->putFile('/test', $request->file('file'), 'public');
+            
+            //S3へのファイルアップロード処理の時の情報が格納された変数を用いてアップロードされた画像へのリンクURLを変数に格納する
+            $path = Storage::disk('s3')->url($upload_info);
+            
+            //現在ログイン中のユーザIDを変数$user_idに格納する
+            $user_id = Auth::id();
+            
+            //モデルクラスのインスタンスを作成し、変数に格納
+            $new_artist_data = new Artist();
+            
+            //このインスタンスを、”ログインユーザーが作成したインスタンス”として結びつける。
+            $new_artist_data->user_id = $user_id;
+            
+            /*
+            プロパティ(静的メソッド)に
+            1.変数$pathに格納されている内容、
+            2.$requestのnameの値
+            3.$requestのdescriptionの値　を格納する
+            */
+            $new_artist_data->path = $path;
+            $new_artist_data->name = $request->name;
+            $new_artist_data->description = $request->description;
+            $new_artist_data->style = $request->style;
+            $new_artist_data->officialHp = $request->officialHp;
+            $new_artist_data->twitter = $request->twitter;
+            $new_artist_data->insta = $request->insta;
+            
+            //インスタンスの内容をDBのテーブルに保存する
+            $new_artist_data->save();
+            
+
+            /* 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
+            $request->user()->artist()->create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'path' => $path->path,
+            ]);
+            */
+
+            return redirect('/');
+            
+        }else{
+            //バリデーションではじかれた時の処理
+            return redirect('/upload/image');
+        }
+        
+        
+    }
+    
 
 
 

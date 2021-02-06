@@ -27,70 +27,74 @@ $last = end($path); //最後の要素を取得
 @endif
 
 
-{!! Form::open(['route' => ['mealssetting.update','id' => $last]]) !!}
+{!! Form::open( ['route' => ['mealssetting.update','id' => $last],'enctype'=>'multipart/form-data' ]) !!}
 @csrf
 
 
-<p>種別</p>
-{{ Form::select('type',['食事'=> '食事' ,'飲料'=> '飲料' ,'おやつ'=> 'おやつ'], null, ['class' => 'form-control']) }}
-<br>
+    <p>種別</p>
+    {{ Form::select('type',['食事'=> '食事' ,'飲料'=> '飲料' ,'おやつ'=> 'おやつ'], null, ['class' => 'form-control']) }}
+    <br>
 
-<p>名前</p>
-{!! Form::text('name', $meal->name, ['class' => 'form-control','placeholder' => '']) !!}
-<br>
+    <p>名前</p>
+    {!! Form::text('name', $meal->name, ['class' => 'form-control','placeholder' => '']) !!}
+    <br>
 
-@if( isset($meal->gram) )
+    @if( isset($meal->gram) )
 
-<style> .piece{display: none;}</style>
-    
-<p>種別</p>
-{{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'gram', ['class' => 'form-control type']) }}
-<br class="">
+    <style> .piece{display: none;}</style>
+        
+    <p>種別</p>
+    {{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'gram', ['class' => 'form-control type']) }}
+    <br class="">
 
-<p class="gram">内容量/g</p>
-{!! Form::text('gram', $meal->gram, ['class' => 'form-control gram','placeholder' => '','selected']) !!}
-<br class="gram">
+    <p class="gram">内容量/g</p>
+    {!! Form::text('gram', $meal->gram, ['class' => 'form-control gram','placeholder' => '','selected']) !!}
+    <br class="gram">
 
-<p class="piece">内容量/個</p>
-{!! Form::text('piece', '', ['class' => 'form-control piece','placeholder' => '']) !!}
-<br class="piece">
+    <p class="piece">内容量/個</p>
+    {!! Form::text('piece', '', ['class' => 'form-control piece','placeholder' => '']) !!}
+    <br class="piece">
 
-@elseif(isset($meal->piece))
+    @elseif(isset($meal->piece))
 
-<style> .gram{display: none;}</style>
+    <style> .gram{display: none;}</style>
 
-<p>種別</p>
-{{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'piece', ['class' => 'form-control type']) }}
-<br>
+    <p>種別</p>
+    {{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'piece', ['class' => 'form-control type']) }}
+    <br>
 
-<p class="gram">内容量/g</p>
-{!! Form::text('gram', '', ['class' => 'form-control gram','placeholder' => '','selected']) !!}
-<br class="gram">
+    <p class="gram">内容量/g</p>
+    {!! Form::text('gram', '', ['class' => 'form-control gram','placeholder' => '','selected']) !!}
+    <br class="gram">
 
-<p class="piece">内容量/個</p>
-{!! Form::text('piece', $meal->piece, ['class' => 'form-control piece','placeholder' => '']) !!}
-<br class="piece">
+    <p class="piece">内容量/個</p>
+    {!! Form::text('piece', $meal->piece, ['class' => 'form-control piece','placeholder' => '']) !!}
+    <br class="piece">
 
-@endif
+    @endif
+
+    {!! Form::label('file_name','プロフィール写真') !!}
+    {!! Form::file('file_name') !!}
+    <br>
 
 
 
+    <p>価格を入力</p>
+    {!! Form::text('price', $meal->price, ['class' => 'form-control','placeholder' => '']) !!}
+    <br>
+    <p>カロリーを入力</p>
+    {!! Form::text('kcal', $meal->kcal, ['class' => 'form-control','placeholder' => '']) !!}
+    <br>
+    <p>タンパク質を入力</p>
+    {!! Form::text('protain', $meal->protain, ['class' => 'form-control','placeholder' => '']) !!}
+    <br>
+    <p>炭水化物を入力</p>
+    {!! Form::text('carbo', $meal->carbo, ['class' => 'form-control','placeholder' => '']) !!}
+    <br>
+    <p>脂質を入力</p>
+    {!! Form::text('fat', $meal->fat, ['class' => 'form-control','placeholder' => '']) !!}
+    <br>
 
-<p>価格を入力</p>
-{!! Form::text('price', $meal->price, ['class' => 'form-control','placeholder' => '']) !!}
-<br>
-<p>カロリーを入力</p>
-{!! Form::text('kcal', $meal->kcal, ['class' => 'form-control','placeholder' => '']) !!}
-<br>
-<p>タンパク質を入力</p>
-{!! Form::text('protain', $meal->protain, ['class' => 'form-control','placeholder' => '']) !!}
-<br>
-<p>炭水化物を入力</p>
-{!! Form::text('carbo', $meal->carbo, ['class' => 'form-control','placeholder' => '']) !!}
-<br>
-<p>脂質を入力</p>
-{!! Form::text('fat', $meal->fat, ['class' => 'form-control','placeholder' => '']) !!}
-<br>
 
 
 <br>

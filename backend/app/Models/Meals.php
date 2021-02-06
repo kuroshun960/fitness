@@ -19,6 +19,7 @@ class Meals extends Model
         'protain',
         'carbo',
         'fat',
+        'item_photo_path',
 
         'type',
         'piece',

@@ -8,7 +8,7 @@
 
         
         <link rel="stylesheet" href="{{ asset('/css/reset.css?334414413356433') }}">
-        <link rel="stylesheet" href="{{ asset('/css/style.css?334415644133433') }}">
+        <link rel="stylesheet" href="{{ asset('/css/style.css?33441564413233433') }}">
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
