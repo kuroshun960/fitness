@@ -25,15 +25,15 @@
 @csrf
 
 <p>名前</p>
-{!! Form::text('name', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('name', Auth::user()->name, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 
 <p>年齢</p>
-{!! Form::text('age', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('age', Auth::user()->age, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 
 <p>身長</p>
-{!! Form::text('height', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('height', Auth::user()->height, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 
 <p>今は増量期/減量期どちらですか？</p>
@@ -47,11 +47,11 @@
 <br>
 
 <p>性別はどちらですか？</p>
-{{ Form::select('sex',['男性'=> '男性' ,'女性'=> '女性' ,], null, ['class' => 'my_class']) }}
+{{ Form::select('sex',['男性'=> '男性' ,'女性'=> '女性' ,], Auth::user()->sex, ['class' => 'my_class']) }}
 <br>
 
 <p>日あたりの目標摂取カロリー</p>
-{!! Form::text('kcalParday', '', ['class' => 'form-control','placeholder' => '']) !!}
+{!! Form::text('kcalParday', Auth::user()->kcalParday, ['class' => 'form-control','placeholder' => '']) !!}
 <br>
 
 <br>

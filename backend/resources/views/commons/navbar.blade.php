@@ -24,43 +24,29 @@
             <div class="navibar__inner">
 
                 @if (Auth::check())
-                <p><span>ユーザー名：</span>{{ Auth::user()->name }}</p>
-                
-
-                <p class="navIncrease">{{ Auth::user()->IncreaseOrDecrease }}/<span>{{ $data['continueDay'] }}</span>日継続中</p>
-
+                    <div class="navIncrease"><p class="navIncrease_item">{{ Auth::user()->IncreaseOrDecrease }}</p><p class="navIncrease_item__number">{{ $data['continueDay'] }}</p><p class="navIncrease_item">日継続中</p></div>
+                    
                     <div class="navMeasurement">
 
-                        <p style="margin-right:15px;">
-                            <span>{{ isset($data['sumKcal1']) ? $data['sumKcal1']['kcal']:0 }}</span>/{{ Auth::user()->kcalParday }}kcal
-                        </p>
+                        <p style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? number_format($data['sumKcal1']['kcal']):0 }}</span><span class="navNutrition_goal">/</span><span>{{ number_format(Auth::user()->kcalParday) }}kcal</span></p>
 
-                        <p style="margin-right:15px;">
-                            <span>{{ isset($data['sumKcal1']) ? $data['sumKcal1']['protain']:0 }}</span>/{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P
-                        </p>
-                        <p style="margin-right:15px;">
-                            <span>{{ isset($data['sumKcal1']) ? $data['sumKcal1']['fat']:0 }}</span>/{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F
-                        </p>
-                        <p>
-                            <span>{{ isset($data['sumKcal1']) ? $data['sumKcal1']['carbo']:0 }}</span>/{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C
-                        </p>
+                        <p style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['protain']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P</span></p>
+                        
+                        <p style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['fat']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F</span></p>
+                        <p><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['carbo']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C<span></p>
                         
                     </div>
+                    
 
-                <div>
+                    @if(isset( $data['weight']->weight ))
 
-                
+                        <div class="navIncrease"><p class="navIncrease_item">現在の体重</p><p class="navIncrease_item__number">{{ $data['weight']->weight }}</p><p class="navIncrease_item">kg</p></div>
+                    @else
+                        <div class="navIncrease"><p class="navIncrease_item">現在の体重</p><p class="navIncrease_item__number">--</p><p class="navIncrease_item">kg</p></div>
+                    @endif
 
-                @if(isset( $data['weight']->weight ))
-                    <span>今日の体重：{{ $data['weight']->weight }}kg</span>
-                @else
-                    <span>今日の体重：未測定</span>
-                @endif
-                </div>
-
-                {{--ログアウトへのリンク --}}
-                <div class="nav-item">{!! link_to_route('logout.get', 'Logout', [], ['class' => 'btn btn-lg btn-primary']) !!}</div>
-        
+                    <div class="navIncrease userSetting"><p class="navIncrease_item">{{ Auth::user()->name }}</p><div class="userImage"><img src="" alt=""></div></div>
+   
 
                 @endif
             </div>

@@ -1,0 +1,802 @@
+
+
+a{
+    text-decoration: none;
+    color: rgb(110, 110, 110);
+}
+
+
+a:hover{
+    text-decoration: none;
+    color: rgb(110, 110, 110);
+}
+
+
+.navibar{
+    height: 50px;
+    border-bottom: solid 1px #000000;
+}
+
+.navibar__inner{
+    padding: 0px 30px;
+}
+
+.navIncrease{
+    display: flex;
+    align-items: center;
+}
+
+.userImage{
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 40px;
+    background-color: rgb(255, 152, 67);
+}
+
+.navIncrease_item{
+    font-size: 16px;
+    line-height: 48px;
+    font-weight: bold;
+}
+
+.navIncrease_item__number{
+    font-size: 24px;
+    line-height: 48px;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+.navIncrease span{
+    font-size: 32px;
+}
+
+.navMeasurement{
+    font-size: 16px;
+    line-height: 46px;
+}
+
+.navNutrition{
+    font-size: 26px;
+    
+}
+
+.navNutrition_goal{
+    padding: 0 5px;
+    vertical-align:5%;
+}
+
+.navTodayWeight{
+    font-size: 16px;
+}
+
+.navTodayWeight span{
+    font-size: 32px;
+}
+
+.settingMenu{
+    display: none;
+}
+
+.settingMenu__inner{
+    width: 940px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+.settingMenu__inner > div{
+
+}
+
+/*-----------------------------------------------
+    ユーザーの現状ステータス
+-----------------------------------------------*/
+
+
+.userStatus{
+    background-color: #d7d7d7;
+
+}
+.userStatus__inner{
+    width: 1140px;
+    padding: 70px 0;
+    margin: 0 auto;
+    display: flex;
+}
+
+.userStatus__inner__kcal{
+    width: 700px;
+    display: flex;
+    
+    margin-bottom: 45px;
+    padding: 0 40px;
+    justify-content: space-between;
+}
+
+.slash{
+    padding-bottom: 10px;
+    vertical-align: 15%;
+}
+
+.userStatus__inner__kcal > div > p:nth-of-type(1){
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.userStatus__inner__kcal > div > p > span:nth-of-type(1){
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.userStatus__inner__kcal > div > p > span:nth-of-type(n+2){
+    font-size: 20px;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+
+.userStatus__inner__pfc{
+    width: 700px;
+    height: 150px;
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: 40px 40px;
+    justify-content: space-between;
+}
+
+.userStatus__inner__pfc > div{
+    width: 175px;
+    text-align: center;
+}
+
+.userStatus__inner__pfc span{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.userStatus__inner__pfc span:nth-of-type(n+2){
+    padding-left: 5px;
+}
+
+.userStatus__inner__pfc > div > p:nth-of-type(1){
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.userStatus__inner__pfc .P,
+.userStatus__inner__pfc .F,
+.userStatus__inner__pfc .C{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.userStatus__inner__metabo{
+    position: relative;
+    width: 300px;
+}
+
+
+.userStatus__metabo > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.userStatus__weight{
+    width: 300px;
+    position: absolute;
+    top: 0;
+    left: 30%;
+    margin: 0 auto;
+}
+
+.userStatus__weight p{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.userStatus__weight .weight{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.userStatus__weight  span{
+    font-size: 20px;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.userStatus__weight .userStatus__weight__week{
+    font-size: 16px;
+}
+
+.userStatus__metabo{
+    position: absolute;
+    bottom: 0;
+    border-radius: 30px;
+    width: 300px;
+    height: 150px;
+    padding: 32px;
+    border: solid 3px #ffffff ;
+}
+
+.userStatus__metabo p{
+    font-size: 18px;
+    padding-bottom: 14px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+
+.human{
+    height: 285px;
+    padding: 0 40px;
+}
+
+.human img{
+    height: 100%;
+}
+
+
+/*-----------------------------------------------
+    体重測定
+-----------------------------------------------*/
+
+.todayWeight{
+    height: 150px;
+    background-color: #D0D0D0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todayWeight__form{
+    display: flex;
+    align-items: center;
+    width: 940px;
+    
+    justify-content: space-between;
+}
+
+
+.todayWeight__inner{
+    display: flex;
+}
+
+.todayWeightFrom{
+    display: flex;
+    align-items: center;
+}
+
+.todayWeightFrom{
+    display: flex;
+    align-items: center;
+}
+
+.todayWeight__inner p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.todayWeightFrom div{
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.todayWeight__form-control{
+    display: block;
+    width: 220px;
+    height: 60px;
+    padding: .375rem .75rem;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #292929;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.todayWeight__form-control::placeholder{
+    color: #C4C4C4;
+    font-size: 18px;
+    text-align: center;
+}
+
+.todayWeight__form-control.submit{
+    width: 170px;
+}
+
+/*-----------------------------------------------
+    食事リスト
+-----------------------------------------------*/
+
+.topMealsList{
+    margin-bottom: 0;
+    background-color: #ececec;
+}
+
+.topMealsList__inner{
+    width: 940px;
+    margin: 0 auto;
+    padding: 70px 0 0 0;
+}
+
+.topMealsList__inner > p{
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 70px;
+}
+
+.topMealsList__container{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.topMealsList__Box {
+    width: 80px;
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    font-size: 12px;
+    text-align: center;
+    /*line-height: 100px;*/
+    padding: 20px 5px;
+    border-radius: 5px;
+    margin: 10px 15px 10px 0;
+    background-size: cover;
+    box-shadow: 10px 10px 25px 10px rgb(0 0 0 / 2%);
+}
+
+.topMealsList__Box:hover{
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+
+.topMealsList__Box:nth-of-type(10n) {
+    margin-right: 0;
+}
+
+
+
+.net{
+    width: 100px;
+}
+
+.topMealsList__Box__radio{
+    display: none;
+}
+
+.topMealsList__input{
+    display: none;
+    justify-content: space-between;
+    
+}
+
+
+.mealtype__meal{
+    display: flex;
+}
+
+.mealtype__snack{
+    display: none;
+}
+
+.mealtype__drink{
+    display: none;
+}
+
+.itemImage{
+    background: center / contain no-repeat;
+    background-size: cover;
+}
+
+
+.topMealsList__group{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.mealtype__meal__tab,
+.mealtype__snack__tab,
+.mealtype__drink__tab{
+    width: 152px;
+    font-size: 20px;
+    height: 66px;
+    text-align: center;
+    line-height: 66px;
+    color: #7D7D7D;
+    
+}
+
+
+.isActive{
+    font-weight: bold;
+    border: solid 2px #7D7D7D;
+    border-radius: 10px 10px 0 0;
+    border-bottom: none;
+    line-height: 63px;
+    background-color:#ececec;
+    z-index: 5;
+    color: #292929;
+}
+
+.topMealsList__group__hr{
+    border: solid 1px #7D7D7D;
+    height: 0;
+    margin: 0;
+    position: relative;
+    top: -2px;
+    margin-bottom: 45px;
+}
+
+.eatnet{
+    display: none;
+    margin: 0 10px;
+    width: 150px;
+    height: 60px;
+    padding: .375rem .75rem;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #292929;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: none;
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.eatnet::placeholder{
+    color: #C4C4C4;
+    font-weight: normal;
+}
+
+.mealname{
+    font-size: 18px;
+    color: #494949;
+    font-weight: bold;
+}
+
+.topMealsList__input{
+    display: flex;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
+.topMealsList__net{
+    display: flex;
+    align-items: baseline;
+}
+
+.eatBtn{
+    display: none;
+    width: 150px;
+    height: 60px;
+    padding: .375rem .75rem;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #292929;
+    background-color: rgb(255, 161, 161);
+    background-clip: padding-box;
+    border: none;
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.mealnettype{
+    font-size: 18px;
+    margin-right: 30px;
+    font-weight: bold;
+}
+
+.topMealsList__input > p {
+    margin-bottom: 0px;
+}
+
+.topMealsList__container{
+    margin-bottom: 20px;
+}
+
+
+/*-----------------------------------------------
+    プロテインエリア
+-----------------------------------------------*/
+
+.todayProtain{
+    background-color: #D0D0D0;
+    padding-bottom: 70px;
+}
+
+.todayProtain > p{
+    font-size: 26px;
+    font-weight: bold;
+    padding-top: 70px;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.todayProtain__tasks{
+    width: 940px;
+    margin: 0 auto;
+}
+
+.todayProtain__tasks__inner{
+    display: flex;
+    justify-content: space-between;
+}
+
+.todayProtaintask{
+    width: 295px;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    border: none;
+    color: #fff;
+    z-index: 0;
+    text-indent:-9999px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+a:hover{
+    text-decoration: none;
+    color: rgb(110, 110, 110);
+}
+
+.dailyBtn{
+    display: block;
+    width: 350px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: rgb(110, 110, 110);
+    border: none;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.todayProtaintask:hover{
+    cursor: pointer;
+}
+
+.todayProtaintask__done{
+
+}
+
+.a .todayProtaintask{
+    background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/1cup.png);
+    z-index: 10;
+}
+
+.b .todayProtaintask{
+    background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/2cup.png);
+    z-index: 10;
+}
+
+.c .todayProtaintask{
+    background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/3cup.png);
+    z-index: 10;
+}
+
+.a .todayProtaintask__done{
+    width: 295px;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    position: relative;
+    border: none;
+    color: #fff;
+    z-index: 0;
+    background-color: rgb(71, 71, 71);
+    background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/1cup.png);
+    z-index: 10;
+}
+
+
+.b .todayProtaintask__done{
+    width: 295px;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    position: relative;
+    border: none;
+    color: #fff;
+    z-index: 0;
+    background-color: rgb(71, 71, 71);
+    background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/2cup.png);
+    z-index: 10;
+}
+
+.c .todayProtaintask__done{
+    width: 295px;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    position: relative;
+    border: none;
+    color: #fff;
+    z-index: 0;
+    background-color: rgb(71, 71, 71);
+    background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/3cup.png);
+    z-index: 10;
+}
+
+.todayProtaintask__done::after {
+    content: '飲んだ!';
+    position: absolute;
+    font-size: 36px;
+    top: 38%;
+    left: 31%;
+}
+
+/*-----------------------------------------------
+    デイリー
+-----------------------------------------------*/
+
+.daily{
+    width: 940px;
+    height: 330px;
+    border-top: solid 4px #b7b7b7;
+    margin: 0 auto 70px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.dayContainer{
+    margin-right: 15px;
+}
+
+.dayContainer:nth-of-type(6){
+    
+}
+
+.dayBox{
+    text-align: center;
+    width: 105px;
+    background-color: #b1b1b1;
+    border-radius: 5px;
+    line-height: 100%;
+    padding: 15px 0 0;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+.date{
+    margin-top: 10px;
+    height: 20px;
+    width: 105px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.dayContainer__today{
+    width: 220px;
+}
+
+.dayBox__today{
+    text-align: center;
+    width: 220px;
+    height: 120px;
+    background-color: rgb(128, 128, 128);
+    border-radius: 5px;
+    line-height: 100%;
+    padding: 15px 0 0;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+.date__today{
+    margin-top: 10px;
+    height: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.dayContainer:hover{
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.dayContainer__today:hover{
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+/*-----------------------------------------------
+    食事登録エリア
+-----------------------------------------------*/
+
+.mealFrom{
+    background-color: #c1c1c1;
+    padding: 70px 0 ;
+    font-weight: bold;
+}
+
+.mealFrom__inner > p{
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 70px;
+}
+
+.meal-form{
+    width: 350px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+}
+
+.mealFrom__inner > form > div{
+    display: flex;
+    align-items: center;
+    width: 710px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    
+}
+
+.mealFrom__inner > form > div > p{
+    width: 150px;
+    font-size: 16px;
+    margin-right: 30px;
+    text-align: end;
+}
+
+.mealFrom__inner > form > div > p:last-child{
+    width: 150px;
+    margin-left: 30px;
+    font-size: 16px;
+    text-align: start;
+    margin-right: 0px;
+}
+
+.mealregist{
+    width: 350px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 25px;
+    border: none;
+}
+
+.mealFrom__inner > form > .piece{
+    display: none;
+}
+
+.mealFrom__inner > form > div > select{
+    padding: 0 20px;
+    color: #a3a3a3;
+    font-weight: bold;
+}
+
+.mealregist{
+    margin-top: 70px;
+}
+
+.daily span{
+    font-size: 12px;
+}
+
+.itemImage{
+    text-indent:-9999px;
+    white-space: nowrap;
+    overflow: hidden;
+}

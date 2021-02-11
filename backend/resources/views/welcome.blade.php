@@ -11,31 +11,81 @@ date("Y年m月d日", strtotime("1 day"))
 @endphp
 
 
+    <div class="settingMenu">
+        <div class="settingMenu__inner">
+        <div>{!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'userRegistBtn']) !!}</div>
+        <div>{!! link_to_route('personalsettingspage.show','パーソナル設定',[],['class'=>'userRegistBtn']) !!}</div>
+        <div>{!! link_to_route('mealssetting.show','食品リスト',[],['class'=>'userRegistBtn']) !!}</div>
+        <div>{!! link_to_route('logout.get', 'Logout', [], ['class' => '']) !!}</div>
+        </div>
+    </div>
 
 
-{!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'userRegistBtn']) !!}
+    <div class="userStatus">
+        <div class="userStatus__inner">
+            <div class="userStatus__inner__nut">
+                <div class="userStatus__inner__kcal">
+                    <div>
+                        <p>摂取カロリー/日目標</p>
+                        <p><span>{{ isset($data['sumKcal1']) ? number_format($data['sumKcal1']['kcal']):0 }}</span><span class="slash">/</span><span>{{ number_format(Auth::user()->kcalParday) }}kcal</span></p>
+                    </div>
 
-{!! link_to_route('personalsettingspage.show','パーソナル設定',[],['class'=>'userRegistBtn']) !!}
+                    <div>
+                        <p>目標まで残り</p>
+                        <p><span>{{ number_format($data['kcalPardayToGoal']) }}</span><span>kcal</span></p>
+                    </div>
+                </div>
 
-{!! link_to_route('mealssetting.show','食品リスト',[],['class'=>'userRegistBtn']) !!}
+                <div class="userStatus__inner__pfc">
+                    <div>
+                        <p>タンパク質</p>
+                        <p><span class="P">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['protain']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P</span></p>
+                    </div>
 
-<a href="{{ url('daily', $parameters = $todaydate, $secure = null) }}">今日</a>
+                    <div>
+                        <p>脂質</p>
+                        <p><span class="F">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['fat']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F</span></p>
+                    </div>
 
-    <br>
-    <br>
+                    <div>
+                        <p>炭水化物</p>
+                        <p><span class="C">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['carbo']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C<span></p>
+                    </div>
+                </div>
+            </div>
 
-    <p>適正体重:{{ $data['fitWeightFloor'] }}</p>
-    <p>基礎代謝:{{ $data['baseEnergy'] }}</p>
-    <p>必要カロリー:{{ $data['needEnergy'] }}</p>
-    <br>
+            <div class="human">
+                @if (Auth::user()->sex === '男性')<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men.png" alt="">
+                @else<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women.png" alt="">
+                @endif
+            </div>
 
-    <p>目標カロリーまで:{{ $data['kcalPardayToGoal'] }}</p>
+            <div class="userStatus__inner__metabo">
+                <div class="userStatus__weight">
+                    @if(isset( $data['weight']->weight))
+                    <div><p>現在の体重</p><p class="weight">{{ $data['weight']->weight }}<span>kg</span></p></div>
+                    @else
+                    <div><p>現在の体重</p><p class="weight">--<span>kg</span></p></div>
+                    @endif
+                    <p class="userStatus__weight__week">7日前より00kg</p>
+                </div>
+                <div class="userStatus__metabo">
+                    <div><p>適正体重</p><p>{{ $data['fitWeightFloor'] }}kg</p></div>
+                    <div><p>基礎代謝</p><p>{{ $data['baseEnergy'] }}kcal</p></div>
+                    <div><p>必要カロリー</p><p>{{ $data['needEnergy'] }}kcal</p></div>
+                </div>
+            </div>
+
+            
+    <!--
     <p>目標タンパク質まで:{{ $data['protainPardayToGoal'] }}</p>
     <p>目標脂質まで:{{ $data['fatPardayCeilToGoal'] }}</p>
     <p>目標炭水化物まで:{{ $data['carboPardayCeilToGoal'] }}</p>
+    -->
+        </div>
+    </div>
 
-    <br>
-    
+    <!--
     <a href="{{URL::to('daily/'.date("y-m-d", strtotime("today")) )}} "><p style="color: rgb(255, 55, 55)";>今日 : {{ $data['sumKcal1']['kcal'] }}</p></a>
     <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-1 day")) )}} "><p>{{date('m/d', strtotime('-1 day'))}} : {{ $data['sumKcal2']['kcal'] }}</p></a>
     <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-2 day")) )}} "><p>{{date('m/d', strtotime('-2 day'))}} : {{ $data['sumKcal3']['kcal'] }}</p></a>
@@ -43,131 +93,53 @@ date("Y年m月d日", strtotime("1 day"))
     <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-4 day")) )}} "><p>{{date('m/d', strtotime('-4 day'))}} :{{ $data['sumKcal5']['kcal'] }}</p></a>
     <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-5 day")) )}} "><p>{{date('m/d', strtotime('-5 day'))}} :{{ $data['sumKcal6']['kcal'] }}</p></a>
     <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-6 day")) )}} "><p>{{date('m/d', strtotime('-6 day'))}} :{{ $data['sumKcal7']['kcal'] }}</p></a>
+    -->
+
+
+
+    
 
 
 
 
-    {!! link_to_route('users.daily','日誌',[],['class'=>'userRegistBtn']) !!}
-
-
-
-
-
+    @if (!isset( $data['weight']->weight ))
     {{-- 今朝の体重を測定 --}}
     <div class="todayWeight">
-        <div class="measurement__inner">
-            <div class=""></div>
-
-            
-
+        <div class="todayWeight__inner">
             {{-- 今朝の体重を測定”済み”であれば、体重測定フォームは表示しない --}}
-            @if (!isset( $data['weight']->weight ))
-            {!! Form::open(['route' => 'weight.input']) !!}
-                @csrf
+            {!! Form::open(['route' => 'weight.input','class'=>'todayWeight__form']) !!} @csrf
                 
-                <p>今朝の体重は何kgでしたか？</p>
+                <p>今朝の体重を記録しましょう。</p>
+                <div class="todayWeightFrom">{!! Form::text('number', old(''), ['class' => 'todayWeight__form-control form','placeholder' => '今日の体重を入力']) !!}<div>kg</div></div>
                 
-                {!! Form::text('number', old(''), ['class' => 'form-control','placeholder' => '体重を入力']) !!}
-                <br>
-        
-                <p>kg</p>
-        
-                <br>
-                {!! Form::submit('測った', ['class' => 'btn btn-primary btn-block']) !!}
-            {!! Form::close() !!}
-            @endif
+                <div class="todayWeightSubmit">{!! Form::submit('記録', ['class' => 'todayWeight__form-control submit']) !!}</div>
 
+            {!! Form::close() !!}
         </div>
     </div>
-
-
-
-    <style>
-        .topMealsList__Box{
-            width :100px;
-            height :100px;
-            background-color: rgb(255, 255, 255);
-            font-size: 5px;
-            text-align: center;
-            line-height: 100px;
-            border-radius: 5px;
-            margin: 10px 5px 8px;
-            background-size: cover;
-            box-shadow: 10px 10px 25px 10px rgba(0, 0, 0, .02);
-        }
-
-        .topMealsList__container{
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .net{
-            width: 100px;
-        }
-
-        .topMealsList__Box__radio{
-            display: none;
-        }
-
-        .topMealsList__input{
-            display: none;
-            justify-content: space-between;
-            
-        }
-
-        .checked{
-            color: rgb(255, 55, 55);
-        }
-
-        .eatBtn{
-            width :300px;
-            background-color: rgb(116, 176, 176);
-        }
-
-
-        .mealtype__meal{
-            display: flex;
-        }
-
-        .mealtype__snack{
-            display: none;
-        }
-
-        .mealtype__drink{
-            display: none;
-        }
-
-        .itemImage{
-            background: center / contain no-repeat;
-            background-size: cover;
-        }
-
-
-    </style>
+    @endif
 
 
     {{-- 食べたものをチェック --}}
     <div class="topMealsList">
-        <div class="topMealsList__innner" style="width:880px; margin: 0 auto;">
+        <div class="topMealsList__inner">
 
-            <p style="text-align: center">今日食べたものをチェック！</p>
-
-            <div class=""></div>
-
-
+            <p>今日食べたものをチェック！</p>
 
             {!! Form::open(['route' => 'eats']) !!}
 
+            <div class="topMealsList__group">
             {!! Form::radio('eatmeal', 1, false, ['id' => 1,'class' => 'topMealsList__Box__radio']) !!}
-            {!! Form::label(1,'食事', ['class' => 'mealtype__meal__tab checked']) !!}
+            {!! Form::label(1,'食事', ['class' => 'mealtype__meal__tab isActive' ]) !!}
 
             {!! Form::radio('eatmeal', 2, false, ['id' => 2,'class' => 'topMealsList__Box__radio']) !!}
             {!! Form::label(2,'おやつ', ['class' => 'mealtype__snack__tab']) !!}
 
             {!! Form::radio('eatmeal', 3, false, ['id' => 1,'class' => 'topMealsList__Box__radio']) !!}
             {!! Form::label(3,'飲み物', ['class' => 'mealtype__drink__tab']) !!}
-
+            </div>
+        <hr class="topMealsList__group__hr">
+        
             <div class="topMealsList__container mealtype__meal">
                 @foreach ( $data['mealslists'] as $mealslist)
                     
@@ -214,85 +186,140 @@ date("Y年m月d日", strtotime("1 day"))
 
 
             <div class="topMealsList__input">
-                <div style="display: flex;">
-                    <p><span class="mealname"></span> </p>
-                    {!! Form::text('net', '', ['class' => 'net','placeholder' => '']) !!}
-                    <span class="mealnettype"></span>
-                </div>
-                <div>
-                    {!! Form::submit('食べた！', ['class' => 'btn  eatBtn']) !!}
+                <p><span class="mealname"></span></p>
+                <div class="topMealsList__net">
+                    <div>{!! Form::text('net', '', ['class' => 'eatnet','placeholder' => '摂取量']) !!}</div>
+                    <p><span class="mealnettype"></span></p>
+                    <div>{!! Form::submit('食べた！', ['class' => 'btn  eatBtn']) !!}</div>
                 </div>
             </div>
 
             {!! Form::close() !!}
             <br>
 
-            </div>
-
-    
+            
 
         </div>
     </div>
 
 
 
+
     {{-- プロテイン設定が設定されていれば表示 --}}
+    <div class="todayProtain">
     @if( count( Auth::user()->protainsetting()->get() ) >= 1 )
 
+        {{-- プロテインタスクが３つとも達成されていなければ --}}
+        @if( count( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->get() ) <= 2 )
+        <p>今日のプロテインをチェック！</p>
+        @else<p>今日のプロテインは全て飲み終えました</p>
+        @endif
         {{-- 今日のプロテインタスクチェック --}}
-        <div class="todayProtain">
-            <div class="todayProtain__inner" style="width: 400px;margin: 150px auto 0;">
 
-                {{-- プロテインタスクが３つとも達成されていなければ --}}
-                @if( count( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->get() ) <= 2 )
-                <p>今日のプロテインをチェック！</p>
-                @endif
-
-            </div>
-
-            <div class="todayProtain__tasks" style="width:500px;margin:0 auto;">
-                <div class="todayProtain__tasks__inner" style="display: flex;justify-content: space-between;">
+            <div class="todayProtain__tasks">
+                <div class="todayProtain__tasks__inner">
                     
                     {{-- プロテインタスクが達成数０の場合 --}}
-                    @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->first() === null)
-                    <div class="todayProtaintask a">
+                    <div class="a">
                         {!! Form::open(['route' => 'protaintasks.drank']) !!}
-                            @csrf
-            
-                            {!! Form::submit('飲んだ!', ['name' => 'firstcup','class' => 'btn btn-primary btn-block']) !!}
+                        @csrf
+                        
+                        @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->first() === null)
+                            {!! Form::submit('飲んだ!', ['name' => 'firstcup','class' => 'todayProtaintask']) !!}
+                        @else <div class="todayProtaintask__done"></div>
+                        @endif
+                            
                         {!! Form::close() !!}
                     </div>
-                    @endif
                     
                     {{-- プロテインタスクが達成数1の場合 --}}
-                    @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(1)->first() === null)
-                    <div class="todayProtaintask b">
+                    <div class="b">
                         {!! Form::open(['route' => 'protaintasks.drank']) !!}
-                            @csrf
-            
-                            {!! Form::submit('飲んだ!', ['name' => 'secondcup','class' => 'btn btn-primary btn-block']) !!}
+                        @csrf
+                        
+                        @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(1)->first() === null)
+                            {!! Form::submit('飲んだ!', ['name' => 'secondcup','class' => 'todayProtaintask']) !!}
+                        @else <div class="todayProtaintask__done"></div>
+                        @endif
+
                         {!! Form::close() !!}
                     </div>
-                    @endif
+                    
 
                     {{-- プロテインタスクが達成数2の場合 --}}
-                    @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(2)->first() === null)
-                    <div class="todayProtaintask c">
+                    <div class="c">
                         {!! Form::open(['route' => 'protaintasks.drank']) !!}
-                            @csrf
-            
-                            {!! Form::submit('飲んだ!', ['name' => 'thirdcup','class' => 'btn btn-primary btn-block']) !!}
+                        @csrf
+                        
+                        @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(2)->first() === null)
+                            {!! Form::submit('飲んだ!', ['name' => 'thirdcup','class' => 'todayProtaintask']) !!}
+                        @else <div class="todayProtaintask__done"></div>
+                        @endif
                         {!! Form::close() !!}
                     </div>
-                    @endif
                     
 
                 </div>
             </div>
-        </div>
-
     @endif
 
+    <div class="daily">
+        <div class="dayContainer">
+            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-6 day")) )}} ">
+            <div class="dayBox _6">{{ $data['sumKcal7']['kcal'] }}<span>kcal</span></div>
+            @php $sumKcal7parGoal = $data['sumKcal7']['kcal']/ Auth::user()->kcalParday *100;@endphp
+            <div class="date">{{date('m/d', strtotime('-6 day'))}}</div>
+            </a>
+        </div>
+        <div class="dayContainer">
+            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-5 day")) )}} ">
+            <div class="dayBox _5">{{ $data['sumKcal6']['kcal'] }}<span>kcal</span></div>
+            @php $sumKcal6parGoal = $data['sumKcal6']['kcal']/Auth::user()->kcalParday*100;@endphp
+            <div class="date">{{date('m/d', strtotime('-5 day'))}}</div>
+            </a>
+        </div>
+        <div class="dayContainer">
+            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-4 day")) )}} ">
+            <div class="dayBox _4">{{ $data['sumKcal5']['kcal'] }}<span>kcal</span></div>
+            @php $sumKcal5parGoal = $data['sumKcal5']['kcal']/Auth::user()->kcalParday*100;@endphp
+            <div class="date">{{date('m/d', strtotime('-4 day'))}}</div>
+            </a>
+        </div>
+        <div class="dayContainer">
+            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-3 day")) )}} ">
+            <div class="dayBox _3">{{ $data['sumKcal4']['kcal'] }}<span>kcal</span></div>
+            @php $sumKcal4parGoal = $data['sumKcal4']['kcal']/Auth::user()->kcalParday*100;@endphp
+            <div class="date">{{date('m/d', strtotime('-3 day'))}}</div>
+            </a>
+        </div>
+        <div class="dayContainer">
+            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-2 day")) )}} ">
+            <div class="dayBox _2">{{ $data['sumKcal3']['kcal'] }}<span>kcal</span></div>
+            @php $sumKcal3parGoal = $data['sumKcal3']['kcal']/Auth::user()->kcalParday*100;@endphp
+            <div class="date">{{date('m/d', strtotime('-2 day'))}}</div>
+        </div>
+
+        <div class="dayContainer">
+            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-1 day")) )}} ">
+            <div class="dayBox _1">{{ $data['sumKcal2']['kcal'] }}<span>kcal</span></div>
+            @php $sumKcal2parGoal = $data['sumKcal2']['kcal']/Auth::user()->kcalParday*100;@endphp
+            <div class="date">{{date('m/d', strtotime('-1 day'))}}</div>
+            </a>
+        </div>
+
+        <div class="dayContainer__today">
+            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("today")) )}} ">
+            <div class="dayBox__today">{{ $data['sumKcal1']['kcal'] }}<span>kcal</span></div>
+            @php $sumKcal1parGoal = $data['sumKcal1']['kcal']/Auth::user()->kcalParday*100;@endphp
+            <div class="date__today">今日</div>
+            </a>
+        </div>
+    </div>
+
+
+    {!! link_to_route('users.daily','日誌',[],['class'=>'dailyBtn']) !!}
+
+    </div>
 
 
     @if (count($errors) > 0)
@@ -304,50 +331,91 @@ date("Y年m月d日", strtotime("1 day"))
     @endif
 
 
-    {!! Form::open(['route' => 'mealssetting.setting']) !!}
-    @csrf
+    <div class="mealFrom">
+        <div class="mealFrom__inner">
+
+
+        <p>食事を登録する</p>
+
+
+        {!! Form::open(['route' => 'mealssetting.setting']) !!}
+        @csrf
+        
+        <div>
+        <p>種別</p>
+        {{ Form::select('type',['食事'=> '食事' ,'飲料'=> '飲料' ,'おやつ'=> 'おやつ'], null, ['class' => 'meal-form']) }}
+        </div>
+
+        <div>
+        <p>食名</p>
+        {!! Form::text('name', '', ['class' => 'meal-form','placeholder' => '']) !!}
+        </div>
+
+        <div>
+        <p>種別</p>
+        {{ Form::select('',['gram'=> 'グラム' ,'piece'=> '個数'], 'gram', ['class' => 'meal-form type']) }}
+        </div>
+
+        <div class="gram">
+        <p class="">内容量</p>
+        {!! Form::text('gram', '', ['class' => 'meal-form gram','placeholder' => '','selected']) !!}
+        <p class="">g</p>
+        </div>
+        
+        <div class="piece">
+        <p class="">内容量</p>
+        {!! Form::text('piece', '', ['class' => 'meal-form piece','placeholder' => '']) !!}
+        <p class="">個</p>
+        </div>
+
+        <div>
+        <p>価格</p>
+        {!! Form::text('price', '', ['class' => 'meal-form','placeholder' => '']) !!}
+        <p>円</p>
+        </div>
+
+        <div>
+        <p>カロリー</p>
+        {!! Form::text('kcal', '', ['class' => 'meal-form','placeholder' => '']) !!}
+        <p>kcal</p>
+        </div>
+
+        <div>
+        <p>タンパク質</p>
+        {!! Form::text('protain', '', ['class' => 'meal-form','placeholder' => '']) !!}
+        </div>
+
+        <div>
+        <p>炭水化物</p>
+        {!! Form::text('carbo', '', ['class' => 'meal-form','placeholder' => '']) !!}
+        </div>
+
+        <div>
+        <p>脂質</p>
+        {!! Form::text('fat', '', ['class' => 'meal-form','placeholder' => '']) !!}
+        </div>
+
+        
+        
+        <div class="mealregist">{!! Form::submit('登録する', ['class' => 'mealregist']) !!}</div>
+        {!! Form::close() !!}
+
+        </div>
+    </div>
+
+
+
     
-    
-    <p>種別</p>
-    {{ Form::select('type',['食事'=> '食事' ,'飲料'=> '飲料' ,'おやつ'=> 'おやつ'], null, ['class' => 'form-control']) }}
-    <br>
 
-    <p>名前</p>
-    {!! Form::text('name', '', ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
+    <!---------------------------------------------------------------
+        script
+    ----------------------------------------------------------------->
 
-    <p>種別</p>
-    {{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'gram', ['class' => 'form-control type']) }}
-    <br>
 
-    <p class="gram">内容量/g</p>
-    {!! Form::text('gram', '', ['class' => 'form-control gram','placeholder' => '','selected']) !!}
-    <br class="gram">
 
-    <p class="piece">内容量/個</p>
-    {!! Form::text('piece', '', ['class' => 'form-control piece','placeholder' => '']) !!}
-    <br class="piece">
 
-    <p>価格を入力</p>
-    {!! Form::text('price', '', ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
-    <p>カロリーを入力</p>
-    {!! Form::text('kcal', '', ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
-    <p>タンパク質を入力</p>
-    {!! Form::text('protain', '', ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
-    <p>炭水化物を入力</p>
-    {!! Form::text('carbo', '', ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
-    <p>脂質を入力</p>
-    {!! Form::text('fat', '', ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
 
-    
-    <br>
-    {!! Form::submit('設定', ['class' => 'btn btn-primary btn-block']) !!}
-    {!! Form::close() !!}
+
 
 
     <style>
@@ -359,15 +427,17 @@ date("Y年m月d日", strtotime("1 day"))
 
     <script>
 
+    $(function(){
+
     //グラム、個数のフォームをセレクトで分岐
     $(".type").change(function() {
         var type_val = $(".type").val();
             if(type_val == "gram") {
-                $('.gram').css('display', 'block');
+                $('.gram').css('display', 'flex');
                 $('.piece').css('display', 'none').val(null).val();
             }if(type_val == "piece") {
                 $('.gram').css('display', 'none').val(null).val();
-                $('.piece').css('display', 'block');
+                $('.piece').css('display', 'flex');
         }
     });
 
@@ -385,6 +455,8 @@ date("Y年m月d日", strtotime("1 day"))
         $(this).addClass('checked');
         $('.checked').not(this).removeClass('checked');
 
+        $('.eatnet').css('display','block');
+        $('.eatBtn').css('display','block');
         $('.mealname').html(mealname);
         $('.mealnettype').html(mealnettypes[1]);
         
@@ -399,8 +471,8 @@ date("Y年m月d日", strtotime("1 day"))
         $('.mealtype__snack').css('display','none');
         $('.mealtype__drink').css('display','none');
 
-        $(this).addClass('checked');
-        $('.checked').not(this).removeClass('checked');
+        $(this).addClass('isActive');
+        $('.isActive').not(this).removeClass('isActive');
 
     });
 
@@ -410,8 +482,8 @@ date("Y年m月d日", strtotime("1 day"))
         $('.mealtype__meal').css('display','none');
         $('.mealtype__drink').css('display','none');
 
-        $(this).addClass('checked');
-        $('.checked').not(this).removeClass('checked');
+        $(this).addClass('isActive');
+        $('.isActive').not(this).removeClass('isActive');
 
     });
 
@@ -421,14 +493,268 @@ date("Y年m月d日", strtotime("1 day"))
         $('.mealtype__snack').css('display','none');
         $('.mealtype__meal').css('display','none');
 
-        $(this).addClass('checked');
-        $('.checked').not(this).removeClass('checked');
+        $(this).addClass('isActive');
+        $('.isActive').not(this).removeClass('isActive');
 
     });
 
+    $('.userSetting').click(function(){  
+        $('.settingMenu').toggle();
+
+    });
+
+    //商品タイプ 飲み物
+        
+    var sumKcal1parGoal = <?php echo$sumKcal1parGoal; ?> ;
+    var sumKcal2parGoal = <?php echo$sumKcal2parGoal; ?> ;
+    var sumKcal3parGoal = <?php echo$sumKcal3parGoal; ?> ;
+    var sumKcal4parGoal = <?php echo$sumKcal4parGoal; ?> ;
+    var sumKcal5parGoal = <?php echo$sumKcal5parGoal; ?> ;
+    var sumKcal6parGoal = <?php echo$sumKcal6parGoal; ?> ;
+    var sumKcal7parGoal = <?php echo$sumKcal7parGoal; ?> ;
+
+    switch(true){
+        case sumKcal1parGoal >= 90:
+        $(".dayBox__today").css('height','300px')
+        break;
+        case sumKcal1parGoal >= 80:
+        $(".dayBox__today").css('height','270px')
+        break;
+        case sumKcal1parGoal >= 70:
+        $(".dayBox__today").css('height','240px')
+        break;
+        case sumKcal1parGoal >= 60:
+        $(".dayBox__today").css('height','210px')
+        break;
+        case sumKcal1parGoal >= 50:
+        $(".dayBox__today").css('height','180px')
+        break;
+        case sumKcal1parGoal >= 40:
+        $(".dayBox__today").css('height','150px')
+        break;
+        case sumKcal1parGoal >= 30:
+        $(".dayBox__today").css('height','120px')
+        break;
+        case sumKcal1parGoal >= 20:
+        $(".dayBox__today").css('height','90px')
+        break;
+        case sumKcal1parGoal >= 10:
+        $(".dayBox__today").css('height','60px')
+        break;
+        case sumKcal1parGoal >= 0:
+        $(".dayBox__today").css('height','30px')
+        $(".dayBox__today").css('padding','8px 0 0')
+        break;
+    }
+
+    switch(true){
+        case sumKcal2parGoal >= 90:
+        $("._1").css('height','300px')
+        break;
+        case sumKcal2parGoal >= 80:
+        $("._1").css('height','270px')
+        break;
+        case sumKcal2parGoal >= 70:
+        $("._1").css('height','240px')
+        break;
+        case sumKcal2parGoal >= 60:
+        $("._1").css('height','210px')
+        break;
+        case sumKcal2parGoal >= 50:
+        $("._1").css('height','180px')
+        break;
+        case sumKcal2parGoal >= 40:
+        $("._1").css('height','150px')
+        break;
+        case sumKcal2parGoal >= 30:
+        $("._1").css('height','120px')
+        break;
+        case sumKcal2parGoal >= 20:
+        $("._1").css('height','90px')
+        break;
+        case sumKcal2parGoal >= 10:
+        $("._1").css('height','60px')
+        break;
+        case sumKcal2parGoal >= 0:
+        $("._1").css('height','30px')
+        $("._1").css('padding','8px 0 0')
+        break;
+    }
+
+    switch(true){
+        case sumKcal3parGoal >= 90:
+        $("._2").css('height','300px')
+        break;
+        case sumKcal3parGoal >= 80:
+        $("._2").css('height','270px')
+        break;
+        case sumKcal3parGoal >= 70:
+        $("._2").css('height','240px')
+        break;
+        case sumKcal3parGoal >= 60:
+        $("._2").css('height','210px')
+        break;
+        case sumKcal3parGoal >= 50:
+        $("._2").css('height','180px')
+        break;
+        case sumKcal3parGoal >= 40:
+        $("._2").css('height','150px')
+        break;
+        case sumKcal3parGoal >= 30:
+        $("._2").css('height','120px')
+        break;
+        case sumKcal3parGoal >= 20:
+        $("._2").css('height','90px')
+        break;
+        case sumKcal3parGoal >= 10:
+        $("._2").css('height','60px')
+        break;
+        case sumKcal3parGoal >= 0:
+        $("._2").css('height','30px')
+        $("._2").css('padding','8px 0 0')
+        break;
+    }
+
+    switch(true){
+        case sumKcal4parGoal >= 90:
+        $("._3").css('height','300px')
+        break;
+        case sumKcal4parGoal >= 80:
+        $("._3").css('height','270px')
+        break;
+        case sumKcal4parGoal >= 70:
+        $("._3").css('height','240px')
+        break;
+        case sumKcal4parGoal >= 60:
+        $("._3").css('height','210px')
+        break;
+        case sumKcal4parGoal >= 50:
+        $("._3").css('height','180px')
+        break;
+        case sumKcal4parGoal >= 40:
+        $("._3").css('height','150px')
+        break;
+        case sumKcal4parGoal >= 30:
+        $("._3").css('height','120px')
+        break;
+        case sumKcal4parGoal >= 20:
+        $("._3").css('height','90px')
+        break;
+        case sumKcal4parGoal >= 10:
+        $("._3").css('height','60px')
+        break;
+        case sumKcal4parGoal >= 0:
+        $("._3").css('height','30px')
+        $("._3").css('padding','8px 0 0')
+        break;
+    }
+
+    switch(true){
+        case sumKcal5parGoal >= 90:
+        $("._4").css('height','300px')
+        break;
+        case sumKcal5parGoal >= 80:
+        $("._4").css('height','270px')
+        break;
+        case sumKcal5parGoal >= 70:
+        $("._4").css('height','240px')
+        break;
+        case sumKcal5parGoal >= 60:
+        $("._4").css('height','210px')
+        break;
+        case sumKcal5parGoal >= 50:
+        $("._4").css('height','180px')
+        break;
+        case sumKcal5parGoal >= 40:
+        $("._4").css('height','150px')
+        break;
+        case sumKcal5parGoal >= 30:
+        $("._4").css('height','120px')
+        break;
+        case sumKcal5parGoal >= 20:
+        $("._4").css('height','90px')
+        break;
+        case sumKcal5parGoal >= 10:
+        $("._4").css('height','60px')
+        break;
+        case sumKcal5parGoal >= 0:
+        $("._4").css('height','30px')
+        $("._4").css('padding','8px 0 0')
+        break;
+    }
+
+    switch(true){
+        case sumKcal6parGoal >= 90:
+        $("._5").css('height','300px')
+        break;
+        case sumKcal6parGoal >= 80:
+        $("._5").css('height','270px')
+        break;
+        case sumKcal6parGoal >= 70:
+        $("._5").css('height','240px')
+        break;
+        case sumKcal6parGoal >= 60:
+        $("._5").css('height','210px')
+        break;
+        case sumKcal6parGoal >= 50:
+        $("._5").css('height','180px')
+        break;
+        case sumKcal6parGoal >= 40:
+        $("._5").css('height','150px')
+        break;
+        case sumKcal6parGoal >= 30:
+        $("._5").css('height','120px')
+        break;
+        case sumKcal6parGoal >= 20:
+        $("._5").css('height','90px')
+        break;
+        case sumKcal6parGoal >= 10:
+        $("._5").css('height','60px')
+        break;
+        case sumKcal6parGoal >= 0:
+        $("._5").css('height','30px')
+        $("._5").css('padding','8px 0 0')
+        break;
+    }
+
+    switch(true){
+        case sumKcal7parGoal >= 90:
+        $("._6").css('height','300px')
+        break;
+        case sumKcal7parGoal >= 80:
+        $("._6").css('height','270px')
+        break;
+        case sumKcal7parGoal >= 70:
+        $("._6").css('height','240px')
+        break;
+        case sumKcal7parGoal >= 60:
+        $("._6").css('height','210px')
+        break;
+        case sumKcal7parGoal >= 50:
+        $("._6").css('height','180px')
+        break;
+        case sumKcal7parGoal >= 40:
+        $("._6").css('height','150px')
+        break;
+        case sumKcal7parGoal >= 30:
+        $("._6").css('height','120px')
+        break;
+        case sumKcal7parGoal >= 20:
+        $("._6").css('height','90px')
+        break;
+        case sumKcal7parGoal >= 10:
+        $("._6").css('height','60px')
+        break;
+        case sumKcal7parGoal >= 0:
+        $("._6").css('height','30px')
+        $("._6").css('padding','8px 0 0')
+        break;
+    }
 
 
-  
+
+
+    });
     </script>
 
 
