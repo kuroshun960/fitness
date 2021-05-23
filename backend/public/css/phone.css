@@ -1,0 +1,295 @@
+
+@media screen and (min-width:200px) and ( max-width:1024px) {
+
+
+
+    
+    .logo{
+        font-size: 10px;
+        height: 100%;
+    }
+    
+    
+    .navIncrease_item{
+        font-size: 10px;
+    }
+
+
+
+/*-----------------------------------------------
+    ナビアイテム
+-----------------------------------------------*/
+
+.navIncrease {
+    display: none;
+}
+
+.navMeasurement {
+    display: none;
+}
+    
+    
+/*-----------------------------------------------
+    ユーザーの現状ステータス
+-----------------------------------------------*/
+
+    .userStatus__inner {
+        width: 320px;
+        padding: 60px 0;
+        margin: 0 auto;
+        display: flex;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+
+    .userStatus__inner__kcal {
+        display: none;
+    }
+
+    .userStatus__inner__pfc > div > p:nth-of-type(1) {
+        margin-bottom: 12px;
+    }
+
+    .userStatus__inner__pfc > div > p:nth-of-type(1) {
+        margin-bottom: 12px;
+    }
+
+    .userStatus__inner__pfc {
+        width: 150px;
+        display: block;
+        background-color: #ffffff;
+        border-radius: 30px;
+        padding: 10px 10px;
+        justify-content: space-between;
+        margin: none;
+    }
+
+
+
+    .human{
+        height: 110px;
+    }
+
+    .userStatus__weight p {
+        font-size: 10px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .userStatus__metabo p {
+        font-size: 10px;
+        padding-bottom: 14px;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+
+    .userStatus__weight__week{
+        display: none;
+    }
+
+    
+    .userStatus__inner__pfc > div > p:nth-of-type(1) {
+        font-size: 14px;
+    }
+
+    .userStatus__inner__pfc > div {
+        width: auto;
+    }
+
+    .userStatus__inner__pfc {
+        width: auto;
+    }
+
+    
+
+    .userStatus__inner__pfc .P,
+    .userStatus__inner__pfc .F,
+    .userStatus__inner__pfc .C {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .userStatus__inner__pfc span {
+        font-size: 14px;
+    }
+
+    .userStatus__inner__pfc > div > p:nth-of-type(1) {
+        margin-bottom: 5px;
+    }
+
+    .userStatus__inner__pfc {
+
+        border-radius: 5px;
+    }
+
+    .P_num,
+    .F_num,
+    .C_num{
+        margin-bottom: 18px;
+    }
+
+    .userStatus__inner__pfc {
+        padding: 30px 10px;
+    }
+
+    .userStatus__metabo {
+        border-radius: 5px;
+        border: solid 2px #ffffff;
+        padding: 30px 10px;
+        width: 130px;
+    }
+
+    .userStatus__weight span {
+        font-size: 15px;
+        padding-left: 10px;
+    }
+
+    .userStatus__weight .weight {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+
+/*-----------------------------------------------
+    体重リスト
+-----------------------------------------------*/
+
+    .todayWeight__inner p {
+        font-size: 12px;
+    }
+
+    .todayWeight__form {
+        width: 300px;
+    }
+
+    .todayWeight__form {
+        display: block;
+    }
+
+    .todayWeight__inner p {
+        font-size: 20px;
+    }
+
+    .todayWeight {
+        height: inherit;
+        padding: 50px;
+    }
+
+    .todayWeightSubmit{
+        margin: 0 auto;
+    }
+    
+/*-----------------------------------------------
+    食品リスト
+-----------------------------------------------*/
+
+    .topMealsList__inner{
+        width: 300px;
+    }
+
+    .topMealsList__Box {
+        width: 60px;
+        height: 60px;
+        margin: 10px 10px 10px 0;
+    }
+
+
+    .topMealsList__inner > p,
+    .todayProtain > p{
+
+        font-size: 20px;
+
+    }
+
+
+/*-----------------------------------------------
+    プロテイン
+-----------------------------------------------*/
+
+    .todayProtain__tasks{
+        width: 320px;
+    }
+
+    .todayProtaintask,
+    .a .todayProtaintask__done{
+        width: 100px;
+        height: 60px;
+    }
+
+    .todayProtaintask__done::after {
+        font-size: 16px;
+        left: 26%;
+    }
+
+    .todayProtaintask,
+    .a .todayProtaintask__done{
+        background-size: cover;
+    }
+
+
+
+
+
+
+    .mealFrom__inner > form > div {
+        width: 280px;
+    }
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------------
+    プロテイン
+-----------------------------------------------*/
+
+
+    .dayContainer {
+        margin-right: 5px;
+    }
+
+    .daily{
+        width: 320px;
+    }
+
+    .dayBox{
+        width: 40px;
+    }
+
+    .date {
+        font-size: 10px;
+        width: 40px;
+    }
+
+    .dayBox__today {
+        text-align: center;
+        width: 40px;
+        font-size: 10px;
+    }
+
+
+
+
+
+
+    .dayBox {
+
+        font-size: 12px;
+        padding: 3px 5px;
+    }
+
+    .daily span {
+        display: block;
+        font-size: 10px;
+    }
+
+    
+    
+}    

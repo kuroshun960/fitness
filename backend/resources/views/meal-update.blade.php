@@ -3,8 +3,7 @@
 
 @if (Auth::check())
 
-<a href="{{URL::to('mealssetting')}}">もどる</a>
-
+<a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
 <?php
 
 $url = url()->full();
@@ -27,91 +26,99 @@ $last = end($path); //最後の要素を取得
 @endif
 
 
-{!! Form::open( ['route' => ['mealssetting.update','id' => $last],'enctype'=>'multipart/form-data' ]) !!}
-@csrf
+<style>
+    .meal_update_mealname{
+        text-align: center;
+    }
+</style>
+
+<div class="protain_setting__container">
 
 
-    <p>種別</p>
-    {{ Form::select('type',['食事'=> '食事' ,'飲料'=> '飲料' ,'おやつ'=> 'おやつ'], null, ['class' => 'form-control']) }}
-    <br>
+    <div class="meal_update_mealname"><p>{{ $meal->name }}</p></div>
 
-    <p>名前</p>
-    {!! Form::text('name', $meal->name, ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
 
-    @if( isset($meal->gram) )
+    {!! Form::open( ['route' => ['mealssetting.update','id' => $last],'enctype'=>'multipart/form-data','class'=>'mealsupdate' ]) !!}
+    @csrf
 
-    <style> .piece{display: none;}</style>
+
+        <p>種別</p>
+        {{ Form::select('type',['食事'=> '食事' ,'飲料'=> '飲料' ,'おやつ'=> 'おやつ'],$meal->type, ['class' => 'form-control']) }}
         
-    <p>種別</p>
-    {{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'gram', ['class' => 'form-control type']) }}
-    <br class="">
 
-    <p class="gram">内容量/g</p>
-    {!! Form::text('gram', $meal->gram, ['class' => 'form-control gram','placeholder' => '','selected']) !!}
-    <br class="gram">
+        <p>名前</p>
+        {!! Form::text('name', $meal->name, ['class' => 'form-control','placeholder' => '']) !!}
+        
 
-    <p class="piece">内容量/個</p>
-    {!! Form::text('piece', '', ['class' => 'form-control piece','placeholder' => '']) !!}
-    <br class="piece">
+        @if( isset($meal->gram) )
 
-    @elseif(isset($meal->piece))
+            <style> .piece{display: none;}</style>
+                
+            <p>種別</p>
+            {{ Form::select('',['gramu '=> 'グラム' ,'piece'=> '個数'], 'gram', ['class' => 'form-control type']) }}
 
-    <style> .gram{display: none;}</style>
+            <p class="gram">内容量/g</p>
+            {!! Form::text('gram', $meal->gram, ['class' => 'form-control gram','placeholder' => '','selected']) !!}
 
-    <p>種別</p>
-    {{ Form::select('',['gram'=> 'gram' ,'piece'=> 'piece'], 'piece', ['class' => 'form-control type']) }}
-    <br>
+            <p class="piece">内容量/個</p>
+            {!! Form::text('piece', '', ['class' => 'form-control piece','placeholder' => '']) !!}
 
-    <p class="gram">内容量/g</p>
-    {!! Form::text('gram', '', ['class' => 'form-control gram','placeholder' => '','selected']) !!}
-    <br class="gram">
+        @elseif(isset($meal->piece))
 
-    <p class="piece">内容量/個</p>
-    {!! Form::text('piece', $meal->piece, ['class' => 'form-control piece','placeholder' => '']) !!}
-    <br class="piece">
+            <style> .gram{display: none;}</style>
 
-    @endif
+            <p>種別</p>
+            {{ Form::select('',['gram'=> 'gram' ,'piece'=> 'kosuu'], 'piece', ['class' => 'form-control type']) }}
+            
 
-    {!! Form::label('file_name','プロフィール写真') !!}
-    {!! Form::file('file_name') !!}
-    <br>
+            <p class="gram">内容量/g</p>
+            {!! Form::text('gram', '', ['class' => 'form-control gram','placeholder' => '','selected']) !!}
+            
 
+            <p class="piece">内容量/個</p>
+            {!! Form::text('piece', $meal->piece, ['class' => 'form-control piece','placeholder' => '']) !!}
 
-
-    <p>価格を入力</p>
-    {!! Form::text('price', $meal->price, ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
-    <p>カロリーを入力</p>
-    {!! Form::text('kcal', $meal->kcal, ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
-    <p>タンパク質を入力</p>
-    {!! Form::text('protain', $meal->protain, ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
-    <p>炭水化物を入力</p>
-    {!! Form::text('carbo', $meal->carbo, ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
-    <p>脂質を入力</p>
-    {!! Form::text('fat', $meal->fat, ['class' => 'form-control','placeholder' => '']) !!}
-    <br>
+        @endif
 
 
-
-<br>
-{!! Form::submit('更新', ['class' => 'btn btn-primary btn-block','id']) !!}
-{!! Form::close() !!}
+        <p>価格を入力</p>
+        {!! Form::text('price', $meal->price, ['class' => 'form-control','placeholder' => '']) !!}
+        
+        <p>カロリーを入力</p>
+        {!! Form::text('kcal', $meal->kcal, ['class' => 'form-control','placeholder' => '']) !!}
+        
+        <p>タンパク質を入力</p>
+        {!! Form::text('protain', $meal->protain, ['class' => 'form-control','placeholder' => '']) !!}
+        
+        <p>炭水化物を入力</p>
+        {!! Form::text('carbo', $meal->carbo, ['class' => 'form-control','placeholder' => '']) !!}
+        
+        <p>脂質を入力</p>
+        {!! Form::text('fat', $meal->fat, ['class' => 'form-control','placeholder' => '']) !!}
 
 
 
-
-{!! Form::open(['route' => ['meals.detroy','id' => $last],'method' => 'delete']) !!}
-@csrf
-<br>
-{!! Form::submit('この商品を削除', ['class' => 'btn btn-primary btn-block']) !!}
-{!! Form::close() !!}
+        {!! Form::label('file_name','写真') !!}
+        {!! Form::file('file_name') !!}
+        
+        
 
 
 
+    
+    {!! Form::submit('更新', ['class' => 'submitBtn','id']) !!}
+    {!! Form::close() !!}
+
+
+
+
+    {!! Form::open(['route' => ['meals.detroy','id' => $last],'method' => 'delete']) !!}
+    @csrf
+    {!! Form::submit('この商品を削除', ['class' => 'submitBtn denger','onclick' => 'delete_alert(event);return false;']) !!}
+    {!! Form::close() !!}
+
+
+</div>
 
 
 <script>
@@ -174,6 +181,14 @@ $last = end($path); //最後の要素を取得
         $('.checked').not(this).removeClass('checked');
 
     });
+
+
+    function delete_alert(e){
+       if(!window.confirm('本当に削除しますか？')){
+          return false;
+       }
+       document.deleteform.submit();
+    };
 
 
 

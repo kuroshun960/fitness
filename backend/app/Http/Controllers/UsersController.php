@@ -431,32 +431,33 @@ class UsersController extends Controller
 public function daily()
 {
     $userAlldata = $this->show();
-
     $user = Auth::User();
 
-    $days = $user->eats()->orderBy('created_at', 'desc')->get()
-            ->groupBy(function ($row) {
-                return $row->created_at->format('y-m-d');
-            });
+        $days = $user->eats()->orderBy('created_at', 'desc')->get()
+                ->groupBy(function ($row) {
+                    return $row->created_at->format('y-m-d');
+                });
 
-    
-
-    $protaintasks = $user->protaintasks()->orderBy('created_at', 'desc')->get()
-            ->groupBy(function ($row) {
-                return $row->created_at->format('y-m-d');
-            });
-    
+        $protaintasks = $user->protaintasks()->orderBy('created_at', 'desc')->get()
+                ->groupBy(function ($row) {
+                    return $row->created_at->format('y-m-d');
+                });
+  
     $dayKcal = [];
 
     //日付のデータ取得
     foreach( $days as $day){
+
         
+        $daydate = $day[0]->created_at->format('y-m-d');
+            
         $allKcal = 0;
             //その日の食事を一個ずつ取得
             foreach( $day as $meal ){
                 //その日の食事のkcalを一個ずつ加算
                 $allKcal = $allKcal + $meal->eatKcal;
             }
+
             $i=0;
             //プロテインタスクデータを取得
             foreach( $protaintasks as $protaintask ){
@@ -469,15 +470,23 @@ public function daily()
                 }
             }
             
-        array_push($dayKcal,$allKcal);
-    }    
-    
+        $dayKcal = array_merge($dayKcal,array($daydate=>$allKcal));
+
+        if(isset($days[21-05-23])){
+            $allKcal = 3000;
+            array_push($dayKcal,$allKcal);
+        }
+
+    }
 
     //$dayKcalrev = array_reverse($dayKcal);
 
     $data = $userAlldata['data'];
 
+
     return view('daily',compact('data','days','dayKcal'));
+
+
 }
 
 

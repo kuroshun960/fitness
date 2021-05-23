@@ -6,19 +6,32 @@ a{
 }
 
 
+body{
+    background-color: #ececec;
+    padding-bottom: 100px;
+}
+
 a:hover{
     text-decoration: none;
     color: rgb(110, 110, 110);
 }
 
 
+
+/*-----------------------------------------------
+    ログインフォーム
+-----------------------------------------------*/
+
+
 .navibar{
-    height: 50px;
+    height: 40px;
     border-bottom: solid 1px #000000;
+    display: flex;
 }
 
 .navibar__inner{
-    padding: 0px 30px;
+    padding: 0px 50px;
+    width: 100%;
 }
 
 .navIncrease{
@@ -28,20 +41,20 @@ a:hover{
 
 .userImage{
     margin-left: 10px;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border-radius: 40px;
     background-color: rgb(255, 152, 67);
 }
 
 .navIncrease_item{
-    font-size: 16px;
+    font-size: 14px;
     line-height: 48px;
     font-weight: bold;
 }
 
 .navIncrease_item__number{
-    font-size: 24px;
+    font-size: 22px;
     line-height: 48px;
     font-weight: bold;
     padding: 0 5px;
@@ -52,23 +65,62 @@ a:hover{
 }
 
 .navMeasurement{
-    font-size: 16px;
-    line-height: 46px;
+    font-size: 14px;
+    line-height: 40px;
 }
 
 .navNutrition{
-    font-size: 26px;
+    font-size: 22px;
     
 }
 
 .navNutrition_goal{
     padding: 0 5px;
-    vertical-align:5%;
+    vertical-align:7%;
 }
 
 .navTodayWeight{
     font-size: 16px;
 }
+
+
+.registAndlogin__btn{
+    display: flex;
+    text-align: end;
+    margin: 0 0 0 auto;
+}
+
+
+.nav_item{
+    display: block;
+    background-color: #ff2d2d;
+    height: 40px;
+    width: 130px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.nav_item:nth-child(1){
+    border-right: solid 1px #fff;
+}
+
+
+
+
+.logo{
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+}
+.logo:hover{
+    color: #fff;
+}
+
+
 
 .navTodayWeight span{
     font-size: 32px;
@@ -86,9 +138,133 @@ a:hover{
     padding: 20px 0px;
 }
 
+.userSetting{
+    position: relative;
+}
+
+
+.userSetting:hover{
+    cursor: pointer;
+}
+
+.userSetting__list{
+    display: none;
+    position: absolute;
+    width: 180px;
+    font-size: 14px;
+    background-color: #fff;
+    right: 0;
+    top: 38px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 10px;
+    z-index: 90;
+    border-radius: 5px;
+}
+
+.userSetting__list a{
+    padding: 18px 30px;
+    text-decoration: none;
+    color: rgb(110, 110, 110);
+    width: 100%;
+    display: block;
+}
+
+.userSetting__list a:hover{
+    background-color: rgb(214, 214, 214);
+}
+
+
 .settingMenu__inner > div{
 
 }
+
+.backBtn{
+    display: block;
+    background-color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+
+.backBtn{
+    margin: 20px 0 0 20px;
+    box-shadow: 10px 10px 25px 10px rgb(0 0 0 / 1%);
+}
+
+.arrow {
+
+    position: relative;
+    padding-right: 15px;
+    color: rgb(51, 51, 51);
+    text-decoration: none;
+    
+}
+    
+    .arrow::after {
+    content: '';
+    display: block;
+    width: 12px; /* 矢印の大きさの指定 */
+    height: 12px; /* 矢印の大きさの指定 */
+    border-top: 3px solid #636363;
+    border-left: 3px solid #636363;
+    
+}
+    
+    .arrow--right::after {
+    transform: rotate(315deg); /* 矢印の角度の指定 */
+    position: absolute; /* 矢印の位置の指定 */
+    left: 16px; /* 矢印の位置の指定 */
+    top: 14px; /* 矢印の位置の指定 */
+    
+}
+
+input[type="text"]:focus {
+    border: 2px solid #ff9900;
+    outline: 0;
+  }
+
+
+
+/*-----------------------------------------------
+    ログインフォーム＆ユーザー登録フォーム
+-----------------------------------------------*/
+
+.login__container{
+    margin-top: 50px;
+}
+
+.login__title{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login__form__container{
+    margin-top: 30px;
+}
+
+.form-title{
+    margin-bottom: 10px;
+    padding-left: 8px;
+}
+
+.login__btn{
+    background-color: #000;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    margin: 40px 0 20px;
+}
+
+
+.mini__link a{
+    color: #ff2d2d;
+}
+
+.login__form__container .form-control{
+    border: none;
+}
+
+
 
 /*-----------------------------------------------
     ユーザーの現状ステータス
@@ -97,21 +273,38 @@ a:hover{
 
 .userStatus{
     background-color: #d7d7d7;
-
 }
-.userStatus__inner{
+
+.status_background{
+    
+}
+
+.status_background__inner{
     width: 1140px;
-    padding: 70px 0;
+    margin: 0 auto;
+}
+
+.userStatus__inner__pfc >div{
+    position: relative;
+}
+
+
+.userStatus__inner{
+    width: 1070px;
+    padding: 60px 0;
     margin: 0 auto;
     display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .userStatus__inner__kcal{
-    width: 700px;
+    width: 680px;
     display: flex;
     
-    margin-bottom: 45px;
-    padding: 0 40px;
+    margin-bottom: 30px;
+    padding: 0 60px;
     justify-content: space-between;
 }
 
@@ -121,13 +314,13 @@ a:hover{
 }
 
 .userStatus__inner__kcal > div > p:nth-of-type(1){
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .userStatus__inner__kcal > div > p > span:nth-of-type(1){
-    font-size: 60px;
+    font-size: 54px;
     font-weight: bold;
 }
 
@@ -139,17 +332,18 @@ a:hover{
 
 
 .userStatus__inner__pfc{
-    width: 700px;
-    height: 150px;
+    width: 680px;
+    /*height: 150px;*/
     display: flex;
     background-color: #ffffff;
     border-radius: 30px;
-    padding: 40px 40px;
+    padding: 30px 60px;
     justify-content: space-between;
+    margin: none;
 }
 
 .userStatus__inner__pfc > div{
-    width: 175px;
+    width: 165px;
     text-align: center;
 }
 
@@ -178,7 +372,7 @@ a:hover{
 
 .userStatus__inner__metabo{
     position: relative;
-    width: 300px;
+    width: 260px;
 }
 
 
@@ -188,7 +382,7 @@ a:hover{
 }
 
 .userStatus__weight{
-    width: 300px;
+    
     position: absolute;
     top: 0;
     left: 30%;
@@ -196,7 +390,7 @@ a:hover{
 }
 
 .userStatus__weight p{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -213,21 +407,24 @@ a:hover{
 }
 
 .userStatus__weight .userStatus__weight__week{
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .userStatus__metabo{
     position: absolute;
     bottom: 0;
     border-radius: 30px;
-    width: 300px;
-    height: 150px;
-    padding: 32px;
+    width: 260px;
+    padding: 22px 25px;
     border: solid 3px #ffffff ;
 }
 
+.userStatus__metabo div:nth-of-type(3) p{
+    padding: 0;
+}
+
 .userStatus__metabo p{
-    font-size: 18px;
+    font-size: 16px;
     padding-bottom: 14px;
     font-weight: bold;
     color: #ffffff;
@@ -235,12 +432,20 @@ a:hover{
 
 
 .human{
-    height: 285px;
-    padding: 0 40px;
+    height: 245px;
+    padding: 0 30px;
 }
 
 .human img{
     height: 100%;
+}
+
+.protainIcon{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: aquamarine;
+    border-radius: 50px;
 }
 
 
@@ -250,10 +455,25 @@ a:hover{
 
 .todayWeight{
     height: 150px;
-    background-color: #D0D0D0;
+    background-color: #ffd300;
     display: flex;
     align-items: center;
     justify-content: center;
+    animation:blink 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes blink{
+    0%,100% {
+        background-color: #ffd300;
+      }
+    
+      50% {
+        background-color: #ffe45d;
+      }
+}
+
+.todayWeight__form-control:hover{
+    cursor: pointer;
 }
 
 .todayWeight__form{
@@ -302,7 +522,7 @@ a:hover{
     color: #292929;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    border: none;
     border-radius: 10px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
@@ -329,20 +549,27 @@ a:hover{
 .topMealsList__inner{
     width: 940px;
     margin: 0 auto;
-    padding: 70px 0 0 0;
+    padding: 60px 0 60px 0;
 }
 
 .topMealsList__inner > p{
     text-align: center;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
-    margin-bottom: 70px;
+    margin-bottom: 60px;
 }
 
 .topMealsList__container{
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    height: 325px;
+    margin-bottom: 45px;
+    overflow: scroll;
+}
+
+.topMealsList__container::-webkit-scrollbar {
+    display:none;
 }
 
 .topMealsList__Box {
@@ -398,10 +625,6 @@ a:hover{
     display: none;
 }
 
-.itemImage{
-    background: center / contain no-repeat;
-    background-size: cover;
-}
 
 
 .topMealsList__group{
@@ -413,11 +636,11 @@ a:hover{
 .mealtype__meal__tab,
 .mealtype__snack__tab,
 .mealtype__drink__tab{
-    width: 152px;
+    width: 132px;
     font-size: 20px;
-    height: 66px;
+    height: 55px;
     text-align: center;
-    line-height: 66px;
+    line-height: 65px;
     color: #7D7D7D;
     
 }
@@ -428,7 +651,7 @@ a:hover{
     border: solid 2px #7D7D7D;
     border-radius: 10px 10px 0 0;
     border-bottom: none;
-    line-height: 63px;
+    line-height: 60px;
     background-color:#ececec;
     z-index: 5;
     color: #292929;
@@ -472,10 +695,12 @@ a:hover{
 }
 
 .topMealsList__input{
+    display: none;
     display: flex;
     align-items: center;
-    margin-bottom: 70px;
 }
+
+
 
 .topMealsList__net{
     display: flex;
@@ -508,9 +733,21 @@ a:hover{
     margin-bottom: 0px;
 }
 
-.topMealsList__container{
-    margin-bottom: 20px;
+
+.itemImage{
+    background: center / contain no-repeat;
+    background-size: cover;
+    text-indent:-9999px;
+    white-space: nowrap;
+    overflow: hidden;
 }
+
+
+.noItemImage{
+    color: rgb(131, 131, 131);
+    font-weight: bold;
+}
+
 
 
 /*-----------------------------------------------
@@ -523,7 +760,7 @@ a:hover{
 }
 
 .todayProtain > p{
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
     padding-top: 70px;
     text-align: center;
@@ -575,6 +812,8 @@ a:hover{
 
 .todayProtaintask:hover{
     cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
 }
 
 .todayProtaintask__done{
@@ -723,14 +962,158 @@ a:hover{
 }
 
 /*-----------------------------------------------
+    日誌詳細
+-----------------------------------------------*/
+
+.daypage_meallist{
+    
+    width: 900px;
+    margin: 0 auto;
+}
+
+.daypage_meallist__rows__title{
+    width: 800px;
+    
+}
+
+.daypage_meallist__rows__title p{
+    font-size: 12px;
+    padding: 8px 5px;
+    width: 100px;
+    text-align: center;
+    background-color: #636363;
+    color: #fff;
+    border: solid 1px #d2d2d2;
+    border-right: none;
+    border-bottom: none;
+}
+
+.daypage_meallist__rows__title p:first-child{
+    width: 200px;
+}
+
+
+
+.daypage_meallist__rows__container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.daypage_meallist__rows{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 800px;
+    /*border: 2px solid #636363;
+    border-bottom: none;*/
+}
+
+.daypage_meallist__rows{
+    font-size: 12px;
+}
+
+.daypage_meallist__rows p{
+    padding: 8px 5px;
+    width: 100px;
+    text-align: center;
+    border: solid 1px #d2d2d2;
+    border-right: none;
+    border-bottom: none;
+}
+
+.daypage_meallist__rows p:first-child{
+    width: 200px;
+}
+
+.daypage_meallist__rows p:last-child{
+    border-right: solid 1px #d2d2d2;
+}
+
+.daypage_meallist__rows:nth-last-of-type(1) p{
+    border-bottom: solid 1px #d2d2d2;
+}
+
+
+
+.daypage_protain__rows div{
+    display: flex;
+}
+
+
+.daypage_protain__rows p{
+    font-size: 12px;
+    padding: 8px 5px;
+    background-color: #fff;
+    width: 100px;
+    text-align: center;
+    border: solid 1px #d2d2d2;
+    border-right: none;
+    border-bottom: none;
+}
+
+
+.daypage_protain__rows p:first-child{
+    width: 200px;
+}
+
+.daypage_protain__rows p:last-child{
+    border-right: solid 1px #d2d2d2;
+}
+
+.daypage_protain__rows:nth-last-of-type(1) p{
+    border-bottom: solid 1px #d2d2d2;
+}
+
+
+.daypage_nutritiondate{
+    width: 900px;
+    margin: 30px auto 0;
+}
+
+.daypage_nutritiondate div{
+    display: flex;
+    font-size: 12px;
+}
+
+.daypage_nutritiondate div p{
+    width: 100px;
+    text-align: center;
+    padding: 8px 5px;
+    background-color: #fff;
+    border: solid 1px #d2d2d2;
+    border-right: none;
+    border-bottom: none;
+}
+
+.daypage_nutritiondate div p:last-child{
+    border-right: solid 1px #d2d2d2;
+}
+
+.daypage_nutritiondate div:last-child p{ 
+    border-bottom: solid 1px #d2d2d2;
+}
+
+.daypage_nutritiondate div p:first-of-type{
+    width: 200px;
+    text-align: center;
+}
+
+.eatsdestroy_btn{
+    font-size: 10px;
+}
+
+
+
+/*-----------------------------------------------
     食事登録エリア
 -----------------------------------------------*/
 
 .mealFrom{
-    background-color: #c1c1c1;
+    background-color: #ececec;
     padding: 70px 0 ;
     font-weight: bold;
 }
+
 
 .mealFrom__inner > p{
     text-align: center;
@@ -743,6 +1126,7 @@ a:hover{
     height: 50px;
     border-radius: 5px;
     border: none;
+    padding: 0 0 0 20px;
 }
 
 .mealFrom__inner > form > div{
@@ -772,9 +1156,14 @@ a:hover{
 .mealregist{
     width: 350px;
     height: 50px;
-    margin: 0 auto;
+    margin: 30px auto 0;
     border-radius: 25px;
     border: none;
+    background-color: #fff;
+}
+
+.mealregist:hover{
+    cursor: pointer;
 }
 
 .mealFrom__inner > form > .piece{
@@ -787,16 +1176,181 @@ a:hover{
     font-weight: bold;
 }
 
-.mealregist{
-    margin-top: 70px;
-}
+
 
 .daily span{
     font-size: 12px;
 }
 
-.itemImage{
-    text-indent:-9999px;
-    white-space: nowrap;
-    overflow: hidden;
+
+
+/*-----------------------------------------------
+    個人設定
+-----------------------------------------------*/
+
+.personal_setting__container,
+.protain_setting__container{
+    width: 700px;
+    margin: 0px auto 0px;
+}
+
+
+
+.personal_setting__container input,
+.protain_setting__container input{
+    border: none;
+    margin-bottom: 25px;
+    padding: 0 0 0 20px;
+}
+
+
+.personal_setting__container p,
+.protain_setting__container p{
+    margin-bottom: 10px;
+    color: #636363;
+}
+
+
+.personal_setting__container p,
+.protain_setting__container p{
+    margin: 0 0 10px 3px;
+}
+
+
+.submitBtn{
+    width: 350px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #fff;
+    margin: 50px auto 0;
+    display: block;
+}
+
+
+.personal_setting__container input::placeholder,
+.protain_setting__container input::placeholder{
+    color: #C4C4C4;
+    font-size: 14px;
+}
+
+.personal_setting__container input,
+.protain_setting__container input{
+    border: none;
+    margin-bottom: 25px;
+    padding: 0 0 0 20px;
+}
+
+
+.personal_setting__container select,
+.protain_setting__container select{
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+
+
+/*-----------------------------------------------
+    食品一覧ページ
+-----------------------------------------------*/
+
+.mealssetting__title{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+
+.mealtype__linkBtn{
+    display: flex;
+    margin: 20px auto;
+    justify-content: center;
+}
+
+.mealtype__linkBtn > a{
+    width: 160px;
+    margin: 0 10px;
+    background: rgb(255, 255, 255);
+    line-height: 30px;
+    border-radius: 50px;
+    height: 30px;
+    text-align: center;
+    display: block;
+}
+
+.itemsHead p:nth-of-type(1){
+    width: 150px;
+}
+
+.itemsHead{
+    display: flex;
+    justify-content :center;
+}
+
+.itemsHead p{
+    font-size: 9px;
+    width: 82px;
+    padding: 8px 5px;
+    text-align: center;
+    border: solid 1px #d2d2d2;
+    border-right: none;
+    border-bottom: none;
+    background-color: #fff;
+}
+
+.itemsHead p:nth-last-of-type(1){
+    border-right: solid 1px #d2d2d2;
+}
+
+.itemsList > a:nth-last-of-type(1) > div > p{
+    border-bottom: solid 1px #d2d2d2;
+}
+
+.item{
+    width: 500px
+}
+
+.itemsHead__link:hover{
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.itemsList > .itemsHead p{
+    background-color: #636363;
+    color: #fff;
+}
+
+.itemsHead p:nth-of-type(3),
+.itemsHead p:nth-of-type(4){
+    width: 60px;
+}
+
+
+.itemsHead p:nth-of-type(5),
+.itemsHead p:nth-of-type(6),
+.itemsHead p:nth-of-type(7){
+    width: 70px;
+}
+
+.itemsList{
+    width: 1100px;
+    margin: 0 auto 200px
+}
+
+
+/*-----------------------------------------------
+    食品一覧ページ
+-----------------------------------------------*/
+
+
+.mealsupdate > input {
+    border: none;
+    margin-bottom: 25px;
+    padding: 0 0 0 20px;
+}
+
+.denger{
+    background-color: #d44a4a;
+    color: #ffffff;
 }

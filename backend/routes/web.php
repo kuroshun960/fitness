@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 use App\Http\Controllers\AUTH\RegisterController;
 use App\Http\Controllers\AUTH\LoginController;
 use App\Http\Controllers\AUTH\ResetPasswordController;
@@ -21,8 +20,6 @@ use App\Http\Controllers\ProtaintasksController;
 use App\Http\Controllers\DatesController;
 use App\Http\Controllers\MealsController;
 use App\Http\Controllers\EatsController;
-
-
 
 /*
 |--------------------------------------------------------------------------

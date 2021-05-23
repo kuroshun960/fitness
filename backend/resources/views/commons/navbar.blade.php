@@ -3,27 +3,15 @@
 
         {{-- ナビゲーションバー --}}
             
-        @if (Auth::check())
+        
+        <nav class="">
+            <div class="navibar">
 
-        @else
-        
-        <div style="display: flex">
-            <div class="">
-                {{-- ユーザ登録ページへのリンク --}}
-                {!! link_to_route('signup.get', 'ユーザー登録!', [], ['class' => 'btn btn-lg btn-primary']) !!}
-            </div>
-    
-                {{--ログインへのリンク --}}
-            <div class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'btn btn-lg btn-primary']) !!}</div>
-        </div>
-        
-        @endif
-    
-    <nav class="">
-        <div class="navibar">
+
+                {!! link_to_route('users.show', 'MY-BODY', [], ['class' => 'logo']) !!}
+            @if (Auth::check())
             <div class="navibar__inner">
 
-                @if (Auth::check())
                     <div class="navIncrease"><p class="navIncrease_item">{{ Auth::user()->IncreaseOrDecrease }}</p><p class="navIncrease_item__number">{{ $data['continueDay'] }}</p><p class="navIncrease_item">日継続中</p></div>
                     
                     <div class="navMeasurement">
@@ -45,11 +33,36 @@
                         <div class="navIncrease"><p class="navIncrease_item">現在の体重</p><p class="navIncrease_item__number">--</p><p class="navIncrease_item">kg</p></div>
                     @endif
 
-                    <div class="navIncrease userSetting"><p class="navIncrease_item">{{ Auth::user()->name }}</p><div class="userImage"><img src="" alt=""></div></div>
+                    <div class="navIncrease userSetting">
+                        <p class="navIncrease_item">{{ Auth::user()->name }}</p><div class="userImage"><img src="" alt=""></p>
+                        <div class="userSetting__list">
+                            <div>{!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'userRegistBtn']) !!}</div>
+                            <div>{!! link_to_route('personalsettingspage.show','パーソナル設定',[],['class'=>'userRegistBtn']) !!}</div>
+                            <div>{!! link_to_route('mealssetting.show','食品リスト',[],['class'=>'userRegistBtn']) !!}</div>
+                            <div>{!! link_to_route('logout.get', 'ログアウト', [], ['class' => '']) !!}</div>
+                        </div>
+                    </div>
    
 
-                @endif
-            </div>
+                </div>
+
+
+                
+            @else
+                
+                    <div class="registAndlogin__btn">
+                        {{-- ユーザ登録ページへのリンク --}}
+                            {!! link_to_route('signup.get', '新規登録', [], ['class' => 'nav_item nav__btn']) !!}
+                        {{--ログインへのリンク --}}
+                            {!! link_to_route('login', 'ログイン', [], ['class' => 'nav_item nav__btn']) !!}
+
+                    </div>
+
+                
+            @endif
+
+
+
         </div>
     </nav>
 </header>

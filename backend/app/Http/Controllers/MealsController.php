@@ -218,7 +218,8 @@ class MealsController extends Controller
 
         $user = \Auth::user();
 
-        $path = null;
+        $path = $user->meals()->find($id)->item_photo_path;
+
 
         if( isset($request->file_name) ){
         $upload_info = Storage::disk('s3')->putFile('/meals', $request->file('file_name'), 'public');

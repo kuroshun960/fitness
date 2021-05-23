@@ -4,6 +4,7 @@
 @if (Auth::check())
 
 
+{{-- 今日の日付取得 --}}
 @php
 $todaydate = date("Y-m-d");
 $i = 0;
@@ -11,6 +12,8 @@ date("Y年m月d日", strtotime("1 day"))
 @endphp
 
 
+
+    <!---
     <div class="settingMenu">
         <div class="settingMenu__inner">
         <div>{!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'userRegistBtn']) !!}</div>
@@ -19,72 +22,88 @@ date("Y年m月d日", strtotime("1 day"))
         <div>{!! link_to_route('logout.get', 'Logout', [], ['class' => '']) !!}</div>
         </div>
     </div>
+    -->
 
+
+
+    <!---------------------------------------------------------------
+        ユーザーの栄養情報セクション
+    ----------------------------------------------------------------->
 
     <div class="userStatus">
-        <div class="userStatus__inner">
-            <div class="userStatus__inner__nut">
-                <div class="userStatus__inner__kcal">
-                    <div>
-                        <p>摂取カロリー/日目標</p>
-                        <p><span>{{ isset($data['sumKcal1']) ? number_format($data['sumKcal1']['kcal']):0 }}</span><span class="slash">/</span><span>{{ number_format(Auth::user()->kcalParday) }}kcal</span></p>
+        <div class="status_background">
+
+                <div class="userStatus__inner">
+
+                    {{-- 摂取栄養素情報 --}}
+                    <div class="userStatus__inner__nut">
+                        <div class="userStatus__inner__kcal">
+                            <div>
+                                <p>摂取カロリー/日目標</p>
+                                <p><span>{{ isset($data['sumKcal1']) ? number_format($data['sumKcal1']['kcal']):0 }}</span><span class="slash">/</span><span>{{ number_format(Auth::user()->kcalParday) }}kcal</span></p>
+                            </div>
+
+                            <div>
+                                <p>目標まで残り</p>
+                                <p><span>{{ number_format($data['kcalPardayToGoal']) }}</span><span>kcal</span></p>
+                            </div>
+                        </div>
+
+                        <div class="userStatus__inner__pfc">
+                            <div>
+                                {{-- <div class="protainIcon"></div> --}}
+                                <p>タンパク質</p>
+                                <p class="P_num"><span class="P">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['protain']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P</span></p>
+                            </div>
+
+                            <div>
+                                <p>脂質</p>
+                                <p class="F_num"><span class="F">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['fat']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F</span></p>
+                            </div>
+
+                            <div>
+                                <p>炭水化物</p>
+                                <p class="C_num"><span class="C">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['carbo']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C<span></p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div>
-                        <p>目標まで残り</p>
-                        <p><span>{{ number_format($data['kcalPardayToGoal']) }}</span><span>kcal</span></p>
-                    </div>
-                </div>
-
-                <div class="userStatus__inner__pfc">
-                    <div>
-                        <p>タンパク質</p>
-                        <p><span class="P">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['protain']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P</span></p>
+                    {{-- 男性か女性かで画像を分岐 --}}
+                    <div class="human">
+                        @if (Auth::user()->sex === '男性')<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men.png" alt="">
+                        @else<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women.png" alt="">
+                        @endif
                     </div>
 
-                    <div>
-                        <p>脂質</p>
-                        <p><span class="F">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['fat']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F</span></p>
+                    {{-- 体重情報 --}}
+                    <div class="userStatus__inner__metabo">
+                        <div class="userStatus__weight">
+                            @if(isset( $data['weight']->weight))
+                            <div><p>現在の体重</p><p class="weight">{{ $data['weight']->weight }}<span>kg</span></p></div>
+                            @else
+                            <div><p>現在の体重</p><p class="weight">--<span>kg</span></p></div>
+                            @endif
+                            <p class="userStatus__weight__week">7日前より00kg</p>
+                        </div>
+                        <div class="userStatus__metabo">
+                            <div><p>適正体重</p><p>{{ $data['fitWeightFloor'] }}kg</p></div>
+                            <div><p>基礎代謝</p><p>{{ $data['baseEnergy'] }}kcal</p></div>
+                            <div><p>必要カロリー</p><p>{{ $data['needEnergy'] }}kcal</p></div>
+                        </div>
                     </div>
-
-                    <div>
-                        <p>炭水化物</p>
-                        <p><span class="C">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['carbo']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C<span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="human">
-                @if (Auth::user()->sex === '男性')<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men.png" alt="">
-                @else<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women.png" alt="">
-                @endif
-            </div>
-
-            <div class="userStatus__inner__metabo">
-                <div class="userStatus__weight">
-                    @if(isset( $data['weight']->weight))
-                    <div><p>現在の体重</p><p class="weight">{{ $data['weight']->weight }}<span>kg</span></p></div>
-                    @else
-                    <div><p>現在の体重</p><p class="weight">--<span>kg</span></p></div>
-                    @endif
-                    <p class="userStatus__weight__week">7日前より00kg</p>
-                </div>
-                <div class="userStatus__metabo">
-                    <div><p>適正体重</p><p>{{ $data['fitWeightFloor'] }}kg</p></div>
-                    <div><p>基礎代謝</p><p>{{ $data['baseEnergy'] }}kcal</p></div>
-                    <div><p>必要カロリー</p><p>{{ $data['needEnergy'] }}kcal</p></div>
-                </div>
-            </div>
 
             
+                </div>
+            </div>
+        </div>
+
+
     <!--
     <p>目標タンパク質まで:{{ $data['protainPardayToGoal'] }}</p>
     <p>目標脂質まで:{{ $data['fatPardayCeilToGoal'] }}</p>
     <p>目標炭水化物まで:{{ $data['carboPardayCeilToGoal'] }}</p>
     -->
-        </div>
-    </div>
-
+        
     <!--
     <a href="{{URL::to('daily/'.date("y-m-d", strtotime("today")) )}} "><p style="color: rgb(255, 55, 55)";>今日 : {{ $data['sumKcal1']['kcal'] }}</p></a>
     <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-1 day")) )}} "><p>{{date('m/d', strtotime('-1 day'))}} : {{ $data['sumKcal2']['kcal'] }}</p></a>
@@ -97,10 +116,12 @@ date("Y年m月d日", strtotime("1 day"))
 
 
 
-    
 
 
 
+    <!---------------------------------------------------------------
+        「体重を測定しよう」セクション
+    ----------------------------------------------------------------->
 
     @if (!isset( $data['weight']->weight ))
     {{-- 今朝の体重を測定 --}}
@@ -120,7 +141,14 @@ date("Y年m月d日", strtotime("1 day"))
     @endif
 
 
-    {{-- 食べたものをチェック --}}
+
+
+
+
+    <!---------------------------------------------------------------
+        「今日食べたものをチェック！」セクション
+    ----------------------------------------------------------------->
+
     <div class="topMealsList">
         <div class="topMealsList__inner">
 
@@ -148,7 +176,7 @@ date("Y年m月d日", strtotime("1 day"))
 
                         {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
                         @if (isset($mealslist->item_photo_path)){!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' itemImage' ,'style'=>'background-image: url("'.$mealslist->item_photo_path.'");']) !!}
-                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' noItemImage']) !!}
                         @endif
 
                     @endif
@@ -162,7 +190,7 @@ date("Y年m月d日", strtotime("1 day"))
                     @if ( $mealslist['type'] === 'おやつ')
                         {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
                         @if (isset($mealslist->item_photo_path)){!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' itemImage' ,'style'=>'background-image: url("'.$mealslist->item_photo_path.'");']) !!}
-                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' noItemImage']) !!}
                         @endif
                     @endif
                 @endforeach
@@ -175,7 +203,7 @@ date("Y年m月d日", strtotime("1 day"))
                     @if ( $mealslist['type'] === '飲料')
                         {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
                         @if (isset($mealslist->item_photo_path)){!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' itemImage' ,'style'=>'background-image: url("'.$mealslist->item_photo_path.'");']) !!}
-                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net]) !!}
+                        @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' noItemImage']) !!}
                         @endif
                     @endif
                 @endforeach
@@ -204,6 +232,12 @@ date("Y年m月d日", strtotime("1 day"))
 
 
 
+
+
+
+    <!---------------------------------------------------------------
+        プロテインタスク セクション
+    ----------------------------------------------------------------->
 
     {{-- プロテイン設定が設定されていれば表示 --}}
     <div class="todayProtain">
@@ -262,6 +296,15 @@ date("Y年m月d日", strtotime("1 day"))
                 </div>
             </div>
     @endif
+
+
+
+
+
+
+    <!---------------------------------------------------------------
+        デイリーグラフ＆日誌 セクション
+    ----------------------------------------------------------------->
 
     <div class="daily">
         <div class="dayContainer">
@@ -322,6 +365,15 @@ date("Y年m月d日", strtotime("1 day"))
     </div>
 
 
+
+
+
+
+    <!---------------------------------------------------------------
+        食品登録セクション
+    ----------------------------------------------------------------->
+
+    <!----バリデーション---->
     @if (count($errors) > 0)
         <ul class="alert alert-danger" role="alert">
             @foreach ($errors->all() as $error)
@@ -334,9 +386,7 @@ date("Y年m月d日", strtotime("1 day"))
     <div class="mealFrom">
         <div class="mealFrom__inner">
 
-
         <p>食事を登録する</p>
-
 
         {!! Form::open(['route' => 'mealssetting.setting']) !!}
         @csrf
@@ -394,10 +444,8 @@ date("Y年m月d日", strtotime("1 day"))
         <p>脂質</p>
         {!! Form::text('fat', '', ['class' => 'meal-form','placeholder' => '']) !!}
         </div>
-
         
-        
-        <div class="mealregist">{!! Form::submit('登録する', ['class' => 'mealregist']) !!}</div>
+        <div class="">{!! Form::submit('登録する', ['class' => 'mealregist']) !!}</div>
         {!! Form::close() !!}
 
         </div>
@@ -405,29 +453,27 @@ date("Y年m月d日", strtotime("1 day"))
 
 
 
-    
+
+
 
     <!---------------------------------------------------------------
-        script
+        動的表現のスクリプト類
     ----------------------------------------------------------------->
 
-
-
-
-
-
-
-
+    <!----”個数”の単位はデフォルトで非表示---->
     <style>
-        .piece{
-            display: none;
-        }
+        .piece{display: none;}
     </style>
 
 
     <script>
 
+
     $(function(){
+
+    $('.userSetting').click(function(){     
+    $('.settingMenu').slideToggle(200);
+    });
 
     //グラム、個数のフォームをセレクトで分岐
     $(".type").change(function() {
@@ -441,7 +487,6 @@ date("Y年m月d日", strtotime("1 day"))
         }
     });
 
-
     //商品をクリックすると摂取量入力画面を表示
     $('.topMealsList__Box').click(function(){  
 
@@ -451,7 +496,7 @@ date("Y年m月d日", strtotime("1 day"))
         var mealnettypes = mealnettype.split(' ');
         
         
-        $('.topMealsList__input').css('display', 'flex');
+        $('.topMealsList__input').show('display', 'flex');
         $(this).addClass('checked');
         $('.checked').not(this).removeClass('checked');
 
@@ -459,29 +504,23 @@ date("Y年m月d日", strtotime("1 day"))
         $('.eatBtn').css('display','block');
         $('.mealname').html(mealname);
         $('.mealnettype').html(mealnettypes[1]);
-        
-
-        
-
     });
 
     //商品タイプ 食事
     $('.mealtype__meal__tab').click(function(){  
-        $('.mealtype__meal').css('display','flex');
-        $('.mealtype__snack').css('display','none');
-        $('.mealtype__drink').css('display','none');
+        setTimeout(function(){ $('.mealtype__meal').fadeIn(300).css('display','flex'); },300);
+        $('.mealtype__snack').fadeOut(300);
+        $('.mealtype__drink').fadeOut(300);
 
         $(this).addClass('isActive');
         $('.isActive').not(this).removeClass('isActive');
-
     });
 
     //商品タイプ おやつ
     $('.mealtype__snack__tab').click(function(){  
-        $('.mealtype__snack').css('display','flex');
-        $('.mealtype__meal').css('display','none');
-        $('.mealtype__drink').css('display','none');
-
+        setTimeout(function(){ $('.mealtype__snack').fadeIn(300).css('display','flex'); },300);
+        $('.mealtype__meal').fadeOut(300);
+        $('.mealtype__drink').fadeOut(300);
         $(this).addClass('isActive');
         $('.isActive').not(this).removeClass('isActive');
 
@@ -489,21 +528,22 @@ date("Y年m月d日", strtotime("1 day"))
 
     //商品タイプ 飲み物
     $('.mealtype__drink__tab').click(function(){  
-        $('.mealtype__drink').css('display','flex');
-        $('.mealtype__snack').css('display','none');
-        $('.mealtype__meal').css('display','none');
-
+        setTimeout(function(){ $('.mealtype__drink').fadeIn(300).css('display','flex'); },300);
+        $('.mealtype__snack').fadeOut(300);
+        $('.mealtype__meal').fadeOut(300);
         $(this).addClass('isActive');
         $('.isActive').not(this).removeClass('isActive');
-
     });
 
-    $('.userSetting').click(function(){  
-        $('.settingMenu').toggle();
 
-    });
 
-    //商品タイプ 飲み物
+
+
+
+  /*----------------------------------------------------------------------------------------------
+        日誌/日別摂取カロリーグラフ  摂取カロリーの合計が、目標カロリーに対して、何割なのかでCSSを分岐する処理
+  ----------------------------------------------------------------------------------------------*/
+
         
     var sumKcal1parGoal = <?php echo$sumKcal1parGoal; ?> ;
     var sumKcal2parGoal = <?php echo$sumKcal2parGoal; ?> ;
@@ -543,7 +583,7 @@ date("Y年m月d日", strtotime("1 day"))
         break;
         case sumKcal1parGoal >= 0:
         $(".dayBox__today").css('height','30px')
-        $(".dayBox__today").css('padding','8px 0 0')
+        $(".dayBox__today").css('padding','8px 5px 0')
         break;
     }
 
@@ -750,6 +790,9 @@ date("Y年m月d日", strtotime("1 day"))
         $("._6").css('padding','8px 0 0')
         break;
     }
+
+
+
 
 
 
