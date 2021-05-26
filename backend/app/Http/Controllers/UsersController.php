@@ -417,9 +417,14 @@ class UsersController extends Controller
     public function protainsettingpage()
         {
             $userAlldata = $this->show();
+
+            $regist_protain = Auth::User()->protainsetting()->orderBy('id', 'desc')->first();
+
+
+            
             $data = $userAlldata['data'];
 
-            return view('protainsettings',compact('data'));
+            return view('protainsettings',compact('data','regist_protain'));
         }
 
 
@@ -505,6 +510,8 @@ public function daypage($id)
 
 
     $user = Auth::User();
+
+
 
     //今日の日付
     //$todaydate = date("y-m-d");
