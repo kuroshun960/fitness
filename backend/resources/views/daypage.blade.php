@@ -4,7 +4,7 @@
 @if (Auth::check())
 
 
-<a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
+<a class="backBtn arrow arrow--right" href="{{URL::to('/daily')}}"></a>
 
 
 <style>
@@ -16,64 +16,68 @@
 </style>
 
 
-<div>
+<div class="daypage__hidden">
 
 
 
     <h2 class="mealssetting__title">{{ $day }}の食事内容</h2>
 
-    <div class="daypage_meallist">
+
+    <div class="daypage__scroll">
+
+        <div class="daypage_meallist">
 
 
-                <div class="daypage_meallist__rows__title" style='display: flex;'>
-                <p>商品名</p>
-                <p>カロリー</p>
-                <p>タンパク質</p>
-                <p>脂質</p>
-                <p>炭水化物</p>
-                <p>費用</p>
-                <p>摂取量</p>
-                </div>
-
-
-            @foreach ( $eatmeals as $eatmeal )
-            <div class="daypage_meallist__rows__container">
-
-                    <div class="daypage_meallist__rows" style='display: flex;'>
-                    <p>{{ $eatmeal->name }}</p>
-                    <p>{{ $eatmeal->eatKcal }}kcal</p>
-                    <p>{{ $eatmeal->eatProtain }}p</p>
-                    <p>{{ $eatmeal->eatFat }}f</p>
-                    <p>{{ $eatmeal->eatCarbo }}c</p>
-                    <p>{{ $eatmeal->eatPrice }}円</p>
-                    <p>{{ $eatmeal->eatNet }}</p>
+                    <div class="daypage_meallist__rows__title daypage_meallist__rows" style='display: flex;'>
+                    <p>商品名</p>
+                    <p>カロリー</p>
+                    <p>タンパク質</p>
+                    <p>脂質</p>
+                    <p>炭水化物</p>
+                    <p>費用</p>
+                    <p>摂取量</p>
                     </div>
 
-                    <div>
-                    {!! Form::open(['route' => ['eats.destroy']]) !!}
-                        {!! Form::submit('削除', [ 'name' => $eatmeal->id,'value' => $eatmeal->id,'class' => 'btn btn-danger btn-sm eatsdestroy_btn']) !!}
-                    {!! Form::close() !!}
+
+                @foreach ( $eatmeals as $eatmeal )
+                <div class="daypage_meallist__rows__container">
+
+                        <div class="daypage_meallist__rows" style='display: flex;'>
+                        <p>{{ $eatmeal->name }}</p>
+                        <p>{{ $eatmeal->eatKcal }}<span class="phone__display__none">kcal</span></p>
+                        <p>{{ $eatmeal->eatProtain }}<span class="phone__display__none">p</span></p>
+                        <p>{{ $eatmeal->eatFat }}<span class="phone__display__none">f</span></p>
+                        <p>{{ $eatmeal->eatCarbo }}<span class="phone__display__none">c</span></p>
+                        <p>{{ $eatmeal->eatPrice }}円</p>
+                        <p>{{ $eatmeal->eatNet }}</p>
+                        </div>
+
+                        <div>
+                        {!! Form::open(['route' => ['eats.destroy']]) !!}
+                            {!! Form::submit('削除', [ 'name' => $eatmeal->id,'value' => $eatmeal->id,'class' => 'btn btn-danger btn-sm eatsdestroy_btn']) !!}
+                        {!! Form::close() !!}
+                        </div>
+
                     </div>
+                @endforeach
 
-                </div>
-            @endforeach
-
-            
-            @foreach ( $protaintasks as $protaintask )
-            <div class="daypage_protain__rows" style='display: flex;'>
-
-                        <p>プロテイン</p>
-                        <p>{{ $protaintask->kcal }}kcal</p>
-                        <p>{{ $protaintask->protain }}p</p>
-                        <p>{{ $protaintask->fat }}f</p>
-                        <p>{{ $protaintask->carbo }}c</p>
-                        <p>-</p>
-                        <p>-</p>
-
-            </div>
                 
-            @endforeach
+                @foreach ( $protaintasks as $protaintask )
+                <div class="daypage_protain__rows daypage_meallist__rows" style='display: flex;'>
 
+                            <p>プロテイン</p>
+                            <p>{{ $protaintask->kcal }}<span class="phone__display__none">kcal</span></p>
+                            <p>{{ $protaintask->protain }}<span class="phone__display__none">p</span></p>
+                            <p>{{ $protaintask->fat }}<span class="phone__display__none">f</span></p>
+                            <p>{{ $protaintask->carbo }}<span class="phone__display__none">c</span></p>
+                            <p>-</p>
+                            <p>-</p>
+
+                </div>
+                    
+                @endforeach
+
+        </div>
     </div>
 
     <div class="daypage_nutritiondate">

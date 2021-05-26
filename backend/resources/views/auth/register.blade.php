@@ -31,7 +31,7 @@
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('新規登録', ['class' => 'btn btn-primary btn-block login__btn']) !!}
+                {!! Form::submit('新規登録', ['class' => 'btn btn-primary login__btn']) !!}
             {!! Form::close() !!}
         </div>
     </div>

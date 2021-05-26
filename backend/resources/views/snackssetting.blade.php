@@ -12,20 +12,19 @@
 
 
 <a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
-
+<div class="meallistpage__hidden">    
     <h2 class="mealssetting__title">登録した食事</h2>
+
+    <div class="mealtype__linkBtn">
+        {!! link_to_route('mealssetting.show','食事リスト',[],['class'=>'userRegistBtn']) !!}
+        <div class="userRegistBtn mealtype__linkBtn__visit">おやつリスト</div>
+        {!! link_to_route('drinks.show','飲み物リスト',[],['class'=>'userRegistBtn']) !!}
+    </div>
     
-    <div>    
-        <div class="itemsList">
-            
-            
-                <div class="mealtype__linkBtn">
-                {!! link_to_route('snacks.show','おやつリスト',[],['class'=>'userRegistBtn']) !!}
-                {!! link_to_route('mealssetting.show','食事リスト',[],['class'=>'userRegistBtn']) !!}
-                {!! link_to_route('drinks.show','飲み物リスト',[],['class'=>'userRegistBtn']) !!}
-                </div>
-            
-            <div></div>
+
+    <div class="meallistpage__scroll">
+
+            <div class="itemsList">
 
             <div class="itemsHead">
                 <p>商品名</p>

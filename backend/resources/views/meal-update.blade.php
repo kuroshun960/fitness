@@ -3,7 +3,7 @@
 
 @if (Auth::check())
 
-<a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
+<a class="backBtn arrow arrow--right" href="{{URL::to('/mealssetting')}}"></a>
 <?php
 
 $url = url()->full();
@@ -34,6 +34,8 @@ $last = end($path); //最後の要素を取得
 
 <div class="protain_setting__container">
 
+    
+    <div class="meal_update_item_photo_path"><img src="{{ $meal->item_photo_path }}" width="100%" alt=""></div>
 
     <div class="meal_update_mealname"><p>{{ $meal->name }}</p></div>
 
@@ -98,13 +100,9 @@ $last = end($path); //最後の要素を取得
 
 
 
-        {!! Form::label('file_name','写真') !!}
-        {!! Form::file('file_name') !!}
+        {!! Form::label('file_name','写真',['class' => 'filename__label']) !!}
+        {!! Form::file('file_name',['class' => 'filename__form']) !!}
         
-        
-
-
-
     
     {!! Form::submit('更新', ['class' => 'submitBtn','id']) !!}
     {!! Form::close() !!}

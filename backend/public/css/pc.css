@@ -16,6 +16,15 @@ a:hover{
     color: rgb(110, 110, 110);
 }
 
+.phone__br{
+    display: none;
+}
+
+
+.phone__div{
+    display: inline-block;
+}
+
 
 
 /*-----------------------------------------------
@@ -28,6 +37,8 @@ a:hover{
     border-bottom: solid 1px #000000;
     display: flex;
 }
+
+
 
 .navibar__inner{
     padding: 0px 50px;
@@ -99,10 +110,6 @@ a:hover{
     line-height: 40px;
     text-align: center;
     color: #fff;
-}
-
-.nav_item:nth-child(1){
-    border-right: solid 1px #fff;
 }
 
 
@@ -249,6 +256,7 @@ input[type="text"]:focus {
 
 .login__btn{
     background-color: #000;
+    width: 100%;
     height: 50px;
     border-radius: 25px;
     border: none;
@@ -263,6 +271,9 @@ input[type="text"]:focus {
 .login__form__container .form-control{
     border: none;
 }
+
+
+
 
 
 
@@ -464,7 +475,7 @@ input[type="text"]:focus {
 
 @keyframes blink{
     0%,100% {
-        background-color: #ffd300;
+        background-color: #ffffff;
       }
     
       50% {
@@ -519,8 +530,8 @@ input[type="text"]:focus {
     font-size: 20px;
     font-weight: bold;
     line-height: 1.5;
-    color: #292929;
-    background-color: #fff;
+    color: #3b3b3b;
+    background-color: rgb(0, 0, 0);
     background-clip: padding-box;
     border: none;
     border-radius: 10px;
@@ -531,6 +542,10 @@ input[type="text"]:focus {
     color: #C4C4C4;
     font-size: 18px;
     text-align: center;
+}
+
+.todayWeight_number{
+    background-color: #fff;
 }
 
 .todayWeight__form-control.submit{
@@ -584,6 +599,7 @@ input[type="text"]:focus {
     margin: 10px 15px 10px 0;
     background-size: cover;
     box-shadow: 10px 10px 25px 10px rgb(0 0 0 / 2%);
+    overflow: hidden;
 }
 
 .topMealsList__Box:hover{
@@ -746,6 +762,21 @@ input[type="text"]:focus {
 .noItemImage{
     color: rgb(131, 131, 131);
     font-weight: bold;
+    padding: 2px;
+    border: solid 5px #fff;
+    box-sizing: border-box;
+    font-size: 10px;
+}
+
+.meals__noset{
+    width: auto;
+    padding: 50px 0 0;
+    margin: 0 auto;
+}
+
+.meals__noset p{
+    font-size: 20px;
+    text-align: center;
 }
 
 
@@ -789,6 +820,39 @@ input[type="text"]:focus {
     white-space: nowrap;
     overflow: hidden;
     background-color: #fff;
+    animation:protaintask 2.5s ease-in-out infinite alternate;
+}
+
+
+
+@keyframes protaintask{
+    0%,100% {
+        background-color: #fff;
+      }
+    
+      50% {
+        background-color: #ffe45d;
+      }
+}
+
+.todayProtaintask__missorder{
+    width: 295px;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    border: none;
+    color: #fff;
+    z-index: 0;
+    text-indent:-9999px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: rgb(184, 184, 184);
+}
+
+.todayProtaintask:hover{
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
 }
 
 a:hover{
@@ -802,36 +866,38 @@ a:hover{
     height: 50px;
     margin: 0 auto;
     border-radius: 25px;
-    background-color: #ffffff;
-    color: rgb(110, 110, 110);
+    background-color: #000000;
+    color: rgb(255, 255, 255);
     border: none;
     text-align: center;
     line-height: 50px;
     font-weight: bold;
 }
 
-.todayProtaintask:hover{
-    cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.2s;
-}
+
 
 .todayProtaintask__done{
 
 }
 
-.a .todayProtaintask{
+.a .todayProtaintask,
+.a .todayProtaintask__missorder{
     background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/1cup.png);
+    background-position: center;
     z-index: 10;
 }
 
-.b .todayProtaintask{
+.b .todayProtaintask,
+.b .todayProtaintask__missorder{
     background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/2cup.png);
+    background-position: center;
     z-index: 10;
 }
 
-.c .todayProtaintask{
+.c .todayProtaintask,
+.c .todayProtaintask__missorder{
     background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/3cup.png);
+    background-position: center;
     z-index: 10;
 }
 
@@ -885,6 +951,16 @@ a:hover{
     top: 38%;
     left: 31%;
 }
+
+.protainsetteing__noset{
+    padding: 100px 0;
+}
+
+.protainsetteing__noset p{
+    text-align: center;
+    font-size: 20px;
+}
+
 
 /*-----------------------------------------------
     デイリー
@@ -1159,7 +1235,8 @@ a:hover{
     margin: 30px auto 0;
     border-radius: 25px;
     border: none;
-    background-color: #fff;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
 }
 
 .mealregist:hover{
@@ -1196,12 +1273,6 @@ a:hover{
 
 
 
-.personal_setting__container input,
-.protain_setting__container input{
-    border: none;
-    margin-bottom: 25px;
-    padding: 0 0 0 20px;
-}
 
 
 .personal_setting__container p,
@@ -1218,10 +1289,11 @@ a:hover{
 
 
 .submitBtn{
-    width: 350px;
+    width: 100%;
     height: 40px;
     border-radius: 50px;
-    background-color: #fff;
+    background-color: #000;
+    color: #fff;
     margin: 50px auto 0;
     display: block;
 }
@@ -1236,9 +1308,16 @@ a:hover{
 .personal_setting__container input,
 .protain_setting__container input{
     border: none;
+}
+
+.personal_setting__container .form-control,
+.protain_setting__container .form-control{
     margin-bottom: 25px;
     padding: 0 0 0 20px;
 }
+
+
+
 
 
 .personal_setting__container select,
@@ -1271,12 +1350,25 @@ a:hover{
 .mealtype__linkBtn > a{
     width: 160px;
     margin: 0 10px;
-    background: rgb(255, 255, 255);
+    background: rgb(0, 0, 0);
+    color: #fff;
     line-height: 30px;
     border-radius: 50px;
     height: 30px;
     text-align: center;
     display: block;
+}
+
+.mealtype__linkBtn > .mealtype__linkBtn__visit{
+    width: 160px;
+    margin: 0 10px;
+    line-height: 30px;
+    border-radius: 50px;
+    height: 30px;
+    text-align: center;
+    display: block;
+    color: khaki;
+    background: rgb(88, 88, 88);
 }
 
 .itemsHead p:nth-of-type(1){
@@ -1344,7 +1436,7 @@ a:hover{
 -----------------------------------------------*/
 
 
-.mealsupdate > input {
+.mealsupdate > .form-control {
     border: none;
     margin-bottom: 25px;
     padding: 0 0 0 20px;
@@ -1354,3 +1446,107 @@ a:hover{
     background-color: #d44a4a;
     color: #ffffff;
 }
+
+
+
+
+/*-----------------------------------------------
+    食品アップデートページ
+-----------------------------------------------*/
+
+.meal_update_item_photo_path{
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.meal_update_item_photo_path img{
+    width: 100%;
+}
+
+.meal_update_mealname p{
+    font-size: 20px;
+    padding: 20px 0 20px;
+    text-align: center;
+}
+
+.filename__label{
+    display: block;
+    color: #636363;
+    margin: 0 0 10px 3px;
+}
+
+.filename__form{
+    padding: 0;
+    display: block;
+}
+
+
+
+
+
+/*-----------------------------------------------
+    日誌ページ
+-----------------------------------------------*/
+
+
+
+
+
+    .dailyContainer{
+        width: 970px;
+        background: #eeeeee;
+        margin: 80px auto;
+
+    }
+
+    .daybox{
+        width: 118px;
+        height: 118px;
+        border-radius: 10px;
+        margin: 10px 10px;
+        background-color: rgb(191, 191, 191);
+        text-align: center;
+        padding: 45px 0;
+    }
+
+    .dailyContainer_box{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .daybox_kcal{
+        font-size: 24px;
+    }
+
+    .daybox_kcal span{
+        font-size: 14px;
+    }
+
+    .daybox_date{
+        text-align: center;
+    }
+
+    .daily__today__box{
+        color: #ff3d3d;
+    }
+
+    
+
+    .daybox__today{
+        background-color: rgb(255, 113, 113);
+    }
+
+    .daybox__today p{
+        color: rgb(255, 255, 255);
+    }
+
+    .loginday{
+        background-color: #9cd2d2;
+    }
+
+    .daybox__nonday{
+        background-color: rgb(94, 94, 94);
+    }
+    

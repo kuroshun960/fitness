@@ -12,21 +12,20 @@
 <a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
 
 
-
+<div class="meallistpage__hidden">    
     <h2 class="mealssetting__title">登録した食事</h2>
-    
-    <div>    
-        <div class="itemsList">
-            
-            
-                <div class="mealtype__linkBtn">
-                    {!! link_to_route('mealssetting.show','食事リスト',[],['class'=>'userRegistBtn']) !!}
-                    {!! link_to_route('snacks.show','おやつリスト',[],['class'=>'userRegistBtn']) !!}
-                    {!! link_to_route('drinks.show','飲み物リスト',[],['class'=>'userRegistBtn']) !!}
-                </div>
-            
-            <div></div>
 
+    <div class="mealtype__linkBtn">
+        <div class="userRegistBtn mealtype__linkBtn__visit">食事リスト</div>
+        {!! link_to_route('snacks.show','おやつリスト',[],['class'=>'userRegistBtn']) !!}
+        {!! link_to_route('drinks.show','飲み物リスト',[],['class'=>'userRegistBtn']) !!}
+    </div>
+    
+
+    <div class="meallistpage__scroll">
+
+            <div class="itemsList">
+    
             <div class="itemsHead">
                 <p>商品名</p>
                 <p>カロリー</p>
@@ -43,7 +42,6 @@
                 <!-- <p>脂質/円</p> -->
                 <!-- <p>炭水化物/円</p> -->
             </div>
-
 
             @foreach ($meals as $meal)
 
@@ -98,21 +96,19 @@
 
             @endforeach
 
+            </div>
 
-        </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 </div>
+
+
+
+
+
+
+
+
+
 
 
 @endif

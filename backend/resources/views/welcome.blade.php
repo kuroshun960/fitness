@@ -30,6 +30,17 @@ date("Y年m月d日", strtotime("1 day"))
         ユーザーの栄養情報セクション
     ----------------------------------------------------------------->
 
+
+    @php
+        if( $data['kcalPardayToGoal'] < 0 ){
+            $cdcdcd = 0;
+        }elseif ($data['kcalPardayToGoal'] > 0) {
+            $cdcdcd = $data['kcalPardayToGoal'];
+        }
+
+    @endphp
+
+
     <div class="userStatus">
         <div class="status_background">
 
@@ -39,13 +50,14 @@ date("Y年m月d日", strtotime("1 day"))
                     <div class="userStatus__inner__nut">
                         <div class="userStatus__inner__kcal">
                             <div>
+                                {{-- 三項演算子 ? : 多次元配列--}}
                                 <p>摂取カロリー/日目標</p>
                                 <p><span>{{ isset($data['sumKcal1']) ? number_format($data['sumKcal1']['kcal']):0 }}</span><span class="slash">/</span><span>{{ number_format(Auth::user()->kcalParday) }}kcal</span></p>
                             </div>
 
                             <div>
                                 <p>目標まで残り</p>
-                                <p><span>{{ number_format($data['kcalPardayToGoal']) }}</span><span>kcal</span></p>
+                                <p><span>{{ number_format($cdcdcd) }}</span><span>kcal</span></p>
                             </div>
                         </div>
 
@@ -68,29 +80,35 @@ date("Y年m月d日", strtotime("1 day"))
                         </div>
                     </div>
 
-                    {{-- 男性か女性かで画像を分岐 --}}
-                    <div class="human">
-                        @if (Auth::user()->sex === '男性')<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men.png" alt="">
-                        @else<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women.png" alt="">
-                        @endif
-                    </div>
+        
+                            
 
-                    {{-- 体重情報 --}}
-                    <div class="userStatus__inner__metabo">
-                        <div class="userStatus__weight">
-                            @if(isset( $data['weight']->weight))
-                            <div><p>現在の体重</p><p class="weight">{{ $data['weight']->weight }}<span>kg</span></p></div>
-                            @else
-                            <div><p>現在の体重</p><p class="weight">--<span>kg</span></p></div>
-                            @endif
-                            <p class="userStatus__weight__week">7日前より00kg</p>
-                        </div>
-                        <div class="userStatus__metabo">
-                            <div><p>適正体重</p><p>{{ $data['fitWeightFloor'] }}kg</p></div>
-                            <div><p>基礎代謝</p><p>{{ $data['baseEnergy'] }}kcal</p></div>
-                            <div><p>必要カロリー</p><p>{{ $data['needEnergy'] }}kcal</p></div>
-                        </div>
-                    </div>
+                            {{-- 男性か女性かで画像を分岐 --}}
+                            <div class="human">
+                                @if (Auth::user()->sex === '男性')<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men.png" alt="">
+                                @else<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women.png" alt="" width="100%">
+                                @endif
+                            </div>
+
+                            {{-- 体重情報 --}}
+                            <div class="userStatus__inner__metabo">
+                                <div class="userStatus__weight">
+                                    @if(isset( $data['weight']->weight))
+                                    <div><p>現在の体重</p><p class="weight">{{ $data['weight']->weight }}<span>kg</span></p></div>
+                                    @else
+                                    <div><p>現在の体重</p><p class="weight">--<span>kg</span></p></div>
+                                    @endif
+                                    <p class="userStatus__weight__week">7日前より00kg</p>
+                                </div>
+                                <div class="userStatus__metabo">
+                                    <div><p>適正体重</p><p>{{ $data['fitWeightFloor'] }}kg</p></div>
+                                    <div><p>基礎代謝</p><p>{{ $data['baseEnergy'] }}kcal</p></div>
+                                    <div><p>必要カロリー</p><p>{{ $data['needEnergy'] }}kcal</p></div>
+                                </div>
+                            </div>
+
+
+
 
             
                 </div>
@@ -131,7 +149,7 @@ date("Y年m月d日", strtotime("1 day"))
             {!! Form::open(['route' => 'weight.input','class'=>'todayWeight__form']) !!} @csrf
                 
                 <p>今朝の体重を記録しましょう。</p>
-                <div class="todayWeightFrom">{!! Form::text('number', old(''), ['class' => 'todayWeight__form-control form','placeholder' => '今日の体重を入力']) !!}<div>kg</div></div>
+                <div class="todayWeightFrom">{!! Form::text('number', old(''), ['class' => 'todayWeight__form-control todayWeight_number form','placeholder' => '今日の体重を入力']) !!}<div>kg</div></div>
                 
                 <div class="todayWeightSubmit">{!! Form::submit('記録', ['class' => 'todayWeight__form-control submit']) !!}</div>
 
@@ -139,7 +157,6 @@ date("Y年m月d日", strtotime("1 day"))
         </div>
     </div>
     @endif
-
 
 
 
@@ -168,14 +185,28 @@ date("Y年m月d日", strtotime("1 day"))
             </div>
         <hr class="topMealsList__group__hr">
         
+
+            @php
+                $userid = Auth::id();
+                $isset_type_meal = DB::select(" SELECT * FROM meals WHERE type='食事' AND user_id=$userid ");
+                $isset_type_snack = DB::select(" SELECT * FROM meals WHERE type='おやつ' AND user_id=$userid ");
+                $isset_type_drink = DB::select(" SELECT * FROM meals WHERE type='飲料' AND user_id=$userid ");
+            @endphp
+
+
             <div class="topMealsList__container mealtype__meal">
+                @if( count( $isset_type_meal ) === 0 )
+                <div class="meals__noset"><p>登録した食品はこちらに登録されます。</p></div>
+                @endif
+
                 @foreach ( $data['mealslists'] as $mealslist)
-                    
                     @if (isset($mealslist->gram))<?php $net = 'g' ?>@elseif (isset($mealslist->piece))<?php $net = '個' ?>@endif
                     @if ( $mealslist['type'] === '食事')
 
                         {!! Form::radio('eatmeal', $mealslist->id, false, ['id' => $mealslist->id,'class' => 'topMealsList__Box__radio']) !!}
+                        {{-- 商品写真がある場合は 写真 を表示 --}}
                         @if (isset($mealslist->item_photo_path)){!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' itemImage' ,'style'=>'background-image: url("'.$mealslist->item_photo_path.'");']) !!}
+                        {{-- 商品写真がない場合は 商品名 を表示 --}}
                         @else{!! Form::label($mealslist->id, $mealslist->name, ['class' => 'topMealsList__Box '.$net.' noItemImage']) !!}
                         @endif
 
@@ -184,6 +215,11 @@ date("Y年m月d日", strtotime("1 day"))
             </div>
 
             <div class="topMealsList__container mealtype__snack">
+
+                @if( count( $isset_type_snack ) === 0 )
+                <div class="meals__noset"><p>登録した食品はこちらに登録されます。</p></div>
+                @endif
+
                 @foreach ( $data['mealslists'] as $mealslist)
 
                     @if (isset($mealslist->gram))<?php $net = 'g' ?>@elseif (isset($mealslist->piece))<?php $net = '個' ?>@endif
@@ -197,6 +233,11 @@ date("Y年m月d日", strtotime("1 day"))
             </div>
 
             <div class="topMealsList__container mealtype__drink">
+
+                @if( count( $isset_type_drink ) === 0 )
+                <div class="meals__noset"><p>登録した食品はこちらに登録されます。</p></div>
+                @endif
+                
                 @foreach ( $data['mealslists'] as $mealslist)
 
                     @if (isset($mealslist->gram))<?php $net = 'g' ?>@elseif (isset($mealslist->piece))<?php $net = '個' ?>@endif
@@ -210,7 +251,6 @@ date("Y年m月d日", strtotime("1 day"))
             </div>
 
 
-        
 
 
             <div class="topMealsList__input">
@@ -265,15 +305,21 @@ date("Y年m月d日", strtotime("1 day"))
                             
                         {!! Form::close() !!}
                     </div>
+
+
                     
                     {{-- プロテインタスクが達成数1の場合 --}}
                     <div class="b">
                         {!! Form::open(['route' => 'protaintasks.drank']) !!}
                         @csrf
-                        
-                        @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(1)->first() === null)
-                            {!! Form::submit('飲んだ!', ['name' => 'secondcup','class' => 'todayProtaintask']) !!}
-                        @else <div class="todayProtaintask__done"></div>
+
+                        @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->first() === null)
+                                <div class="todayProtaintask__missorder">飲んだ</div>
+                        @else
+                            @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(1)->first() === null)
+                                {!! Form::submit('飲んだ!', ['name' => 'secondcup','class' => 'todayProtaintask']) !!}
+                            @else <div class="todayProtaintask__done"></div>
+                            @endif
                         @endif
 
                         {!! Form::close() !!}
@@ -285,16 +331,29 @@ date("Y年m月d日", strtotime("1 day"))
                         {!! Form::open(['route' => 'protaintasks.drank']) !!}
                         @csrf
                         
-                        @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(2)->first() === null)
-                            {!! Form::submit('飲んだ!', ['name' => 'thirdcup','class' => 'todayProtaintask']) !!}
-                        @else <div class="todayProtaintask__done"></div>
+
+                        @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(1)->first() === null)
+                                <div class="todayProtaintask__missorder">飲んだ</div>
+                        @else
+                            @if( Auth::user()->protaintasks()->whereDate('created_at', $todaydate)->skip(2)->first() === null)
+                                {!! Form::submit('飲んだ!', ['name' => 'secondcup','class' => 'todayProtaintask']) !!}
+                            @else <div class="todayProtaintask__done"></div>
+                            @endif
                         @endif
+
                         {!! Form::close() !!}
                     </div>
                     
 
                 </div>
             </div>
+
+    @else
+
+    <div class="protainsetteing__noset">
+        <p>プロテインをお飲みの方は、<br class="phone__br">{!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'userRegistBtn']) !!}をしましょう。</p>
+    </div>
+    
     @endif
 
 
@@ -309,52 +368,59 @@ date("Y年m月d日", strtotime("1 day"))
     <div class="daily">
         <div class="dayContainer">
             <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-6 day")) )}} ">
-            <div class="dayBox _6">{{ $data['sumKcal7']['kcal'] }}<span>kcal</span></div>
-            @php $sumKcal7parGoal = $data['sumKcal7']['kcal']/ Auth::user()->kcalParday *100;@endphp
-            <div class="date">{{date('m/d', strtotime('-6 day'))}}</div>
+                <div class="dayBox _6">{{ $data['sumKcal7']['kcal'] }}<span>kcal</span></div>
+                    {{-- プロテインタスクが達成数2の場合 --}}
+                    @php $sumKcal7parGoal = $data['sumKcal7']['kcal']/ Auth::user()->kcalParday *100;@endphp
+                <div class="date">{{date('m/d', strtotime('-6 day'))}}</div>
             </a>
         </div>
         <div class="dayContainer">
             <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-5 day")) )}} ">
-            <div class="dayBox _5">{{ $data['sumKcal6']['kcal'] }}<span>kcal</span></div>
-            @php $sumKcal6parGoal = $data['sumKcal6']['kcal']/Auth::user()->kcalParday*100;@endphp
-            <div class="date">{{date('m/d', strtotime('-5 day'))}}</div>
+                <div class="dayBox _5">{{ $data['sumKcal6']['kcal'] }}<span>kcal</span></div>
+                    {{-- プロテインタスクが達成数2の場合 --}}
+                    @php $sumKcal6parGoal = $data['sumKcal6']['kcal']/Auth::user()->kcalParday*100;@endphp
+                <div class="date">{{date('m/d', strtotime('-5 day'))}}</div>
             </a>
         </div>
         <div class="dayContainer">
             <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-4 day")) )}} ">
-            <div class="dayBox _4">{{ $data['sumKcal5']['kcal'] }}<span>kcal</span></div>
-            @php $sumKcal5parGoal = $data['sumKcal5']['kcal']/Auth::user()->kcalParday*100;@endphp
-            <div class="date">{{date('m/d', strtotime('-4 day'))}}</div>
+                <div class="dayBox _4">{{ $data['sumKcal5']['kcal'] }}<span>kcal</span></div>
+                    {{-- プロテインタスクが達成数2の場合 --}}
+                    @php $sumKcal5parGoal = $data['sumKcal5']['kcal']/Auth::user()->kcalParday*100;@endphp
+                <div class="date">{{date('m/d', strtotime('-4 day'))}}</div>
             </a>
         </div>
         <div class="dayContainer">
             <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-3 day")) )}} ">
-            <div class="dayBox _3">{{ $data['sumKcal4']['kcal'] }}<span>kcal</span></div>
-            @php $sumKcal4parGoal = $data['sumKcal4']['kcal']/Auth::user()->kcalParday*100;@endphp
-            <div class="date">{{date('m/d', strtotime('-3 day'))}}</div>
+                <div class="dayBox _3">{{ $data['sumKcal4']['kcal'] }}<span>kcal</span></div>
+                    {{-- プロテインタスクが達成数2の場合 --}}
+                    @php $sumKcal4parGoal = $data['sumKcal4']['kcal']/Auth::user()->kcalParday*100;@endphp
+                <div class="date">{{date('m/d', strtotime('-3 day'))}}</div>
             </a>
         </div>
         <div class="dayContainer">
             <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-2 day")) )}} ">
-            <div class="dayBox _2">{{ $data['sumKcal3']['kcal'] }}<span>kcal</span></div>
-            @php $sumKcal3parGoal = $data['sumKcal3']['kcal']/Auth::user()->kcalParday*100;@endphp
-            <div class="date">{{date('m/d', strtotime('-2 day'))}}</div>
+                <div class="dayBox _2">{{ $data['sumKcal3']['kcal'] }}<span>kcal</span></div>
+                    {{-- プロテインタスクが達成数2の場合 --}}    
+                    @php $sumKcal3parGoal = $data['sumKcal3']['kcal']/Auth::user()->kcalParday*100;@endphp
+                <div class="date">{{date('m/d', strtotime('-2 day'))}}</div>
         </div>
 
         <div class="dayContainer">
             <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-1 day")) )}} ">
-            <div class="dayBox _1">{{ $data['sumKcal2']['kcal'] }}<span>kcal</span></div>
-            @php $sumKcal2parGoal = $data['sumKcal2']['kcal']/Auth::user()->kcalParday*100;@endphp
-            <div class="date">{{date('m/d', strtotime('-1 day'))}}</div>
+                <div class="dayBox _1">{{ $data['sumKcal2']['kcal'] }}<span>kcal</span></div>
+                    {{-- プロテインタスクが達成数2の場合 --}}    
+                    @php $sumKcal2parGoal = $data['sumKcal2']['kcal']/Auth::user()->kcalParday*100;@endphp
+                <div class="date">{{date('m/d', strtotime('-1 day'))}}</div>
             </a>
         </div>
 
         <div class="dayContainer__today">
             <a href="{{URL::to('daily/'.date("y-m-d", strtotime("today")) )}} ">
-            <div class="dayBox__today">{{ $data['sumKcal1']['kcal'] }}<span>kcal</span></div>
-            @php $sumKcal1parGoal = $data['sumKcal1']['kcal']/Auth::user()->kcalParday*100;@endphp
-            <div class="date__today">今日</div>
+                <div class="dayBox__today">{{ $data['sumKcal1']['kcal'] }}<span>kcal</span></div>
+                    {{-- プロテインタスクが達成数2の場合 --}}
+                    @php $sumKcal1parGoal = $data['sumKcal1']['kcal']/Auth::user()->kcalParday*100;@endphp
+                <div class="date__today">今日</div>
             </a>
         </div>
     </div>
@@ -388,7 +454,7 @@ date("Y年m月d日", strtotime("1 day"))
 
         <p>食事を登録する</p>
 
-        {!! Form::open(['route' => 'mealssetting.setting']) !!}
+        {!! Form::open(['route' => 'mealssetting.setting','enctype'=>'multipart/form-data']) !!}
         @csrf
         
         <div>
@@ -443,6 +509,11 @@ date("Y年m月d日", strtotime("1 day"))
         <div>
         <p>脂質</p>
         {!! Form::text('fat', '', ['class' => 'meal-form','placeholder' => '']) !!}
+        </div>
+
+        <div>
+        <p>写真</p>
+        {!! Form::file('file_name') !!}
         </div>
         
         <div class="">{!! Form::submit('登録する', ['class' => 'mealregist']) !!}</div>

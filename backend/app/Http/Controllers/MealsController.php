@@ -220,7 +220,6 @@ class MealsController extends Controller
 
         $path = $user->meals()->find($id)->item_photo_path;
 
-
         if( isset($request->file_name) ){
         $upload_info = Storage::disk('s3')->putFile('/meals', $request->file('file_name'), 'public');
 
@@ -229,7 +228,6 @@ class MealsController extends Controller
             
         
 
-        //プロテインタスクに保存
         $user->meals()->find($id)->update([
 
             'name' => $request->name,
@@ -312,7 +310,6 @@ class MealsController extends Controller
             }
             
 
-            //プロテインタスクに保存
             $user->eats()->create([
 
                 'name' => $name,
@@ -338,10 +335,7 @@ class MealsController extends Controller
     public function setting(Request $request)
         {
 
-
-
             $request->validate([
-
                 'name' => 'required|max:20',
                 //'gram' => 'required|max:4',
                 //'piece' => 'required|max:5',
@@ -350,7 +344,7 @@ class MealsController extends Controller
                 'protain' => 'required',
                 'fat' => 'required',
                 'carbo' => 'required',
-                
+                'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
             ]);
 
 
@@ -360,20 +354,25 @@ class MealsController extends Controller
             //ログインユーザーのidでユーザーを取得
             $user = User::find($id);
 
-            //プロテインタスクに保存
-            $user->meals()->create([
+            $path = null;
 
+            if( isset($request->file_name) ){
+                $upload_info = Storage::disk('s3')->putFile('/meals', $request->file('file_name'), 'public');
+                $path = Storage::disk('s3')->url($upload_info);
+                }
+                
+
+            $user->meals()->create([
                 'name' => $request->name,
                 'price' => $request->price,
                 'kcal' => $request->kcal,
                 'protain' => $request->protain,
                 'fat' => $request->fat,
                 'carbo' => $request->carbo,
-
                 'piece' => $request->piece,
                 'gram' => $request->gram,
                 'type' => $request->type,
-                
+                'item_photo_path' => $path,
             ]);
 
             return redirect()->route('users.show');

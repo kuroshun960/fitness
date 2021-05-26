@@ -12,25 +12,26 @@
             @if (Auth::check())
             <div class="navibar__inner">
 
-                    <div class="navIncrease"><p class="navIncrease_item">{{ Auth::user()->IncreaseOrDecrease }}</p><p class="navIncrease_item__number">{{ $data['continueDay'] }}</p><p class="navIncrease_item">日継続中</p></div>
+                    <div class="navIncrease"><p class="navIncrease_item">{{ Auth::user()->IncreaseOrDecrease }}</p><p class="navIncrease_item__number continueDay">{{ $data['continueDay'] }}</p><p class="navIncrease_item continueDay">日継続中</p></div>
                     
                     <div class="navMeasurement">
 
-                        <p style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? number_format($data['sumKcal1']['kcal']):0 }}</span><span class="navNutrition_goal">/</span><span>{{ number_format(Auth::user()->kcalParday) }}kcal</span></p>
+                        <p class="navSumKcal" style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? number_format($data['sumKcal1']['kcal']):0 }}</span><span class="navNutrition_goal">/</span><span>{{ number_format(Auth::user()->kcalParday) }}kcal</span></p>
 
-                        <p style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['protain']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P</span></p>
+                        <p class="navSumProtain" style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['protain']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P</span></p>
                         
-                        <p style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['fat']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F</span></p>
-                        <p><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['carbo']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C<span></p>
+                        <p class="navSumFat" style="margin-right:15px;"><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['fat']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F</span></p>
+                        
+                        <p class="navSumCarbo"><span class="navNutrition">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['carbo']:0 }}</span><span class="navNutrition_goal">/</span><span>{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C<span></p>
                         
                     </div>
                     
 
                     @if(isset( $data['weight']->weight ))
 
-                        <div class="navIncrease"><p class="navIncrease_item">現在の体重</p><p class="navIncrease_item__number">{{ $data['weight']->weight }}</p><p class="navIncrease_item">kg</p></div>
+                        <div class="navIncrease navWeight"><p class="navIncrease_item">現在の体重</p><p class="navIncrease_item__number">{{ $data['weight']->weight }}</p><p class="navIncrease_item">kg</p></div>
                     @else
-                        <div class="navIncrease"><p class="navIncrease_item">現在の体重</p><p class="navIncrease_item__number">--</p><p class="navIncrease_item">kg</p></div>
+                        <div class="navIncrease navWeight"><p class="navIncrease_item">現在の体重</p><p class="navIncrease_item__number">--</p><p class="navIncrease_item">kg</p></div>
                     @endif
 
                     <div class="navIncrease userSetting">
@@ -52,7 +53,8 @@
                 
                     <div class="registAndlogin__btn">
                         {{-- ユーザ登録ページへのリンク --}}
-                            {!! link_to_route('signup.get', '新規登録', [], ['class' => 'nav_item nav__btn']) !!}
+                        {{--     {!! link_to_route('signup.get', '新規登録', [], ['class' => 'nav_item nav__btn nav__register__btn']) !!} --}}
+                        
                         {{--ログインへのリンク --}}
                             {!! link_to_route('login', 'ログイン', [], ['class' => 'nav_item nav__btn']) !!}
 

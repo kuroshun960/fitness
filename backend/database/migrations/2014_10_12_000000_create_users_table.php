@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             // 目標カロリー/1日 //
-            $table->integer('kcalParday')->nullable();
+            $table->integer('kcalParday')->nullable()->default(2000);
             // 目標カロリー/１週 //
             $table->integer('kcalParweek')->nullable();
             // 増量or減量 //

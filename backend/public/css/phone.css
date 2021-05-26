@@ -1,4 +1,3 @@
-
 @media screen and (min-width:200px) and ( max-width:1024px) {
 
 
@@ -14,20 +13,94 @@
         font-size: 10px;
     }
 
+    .phone__br{
+        display: block;
+    }
+
+    .phone__div{
+        display: block;
+    }
+    
+    
+
 
 
 /*-----------------------------------------------
     ナビアイテム
 -----------------------------------------------*/
 
-.navIncrease {
+
+.navIncrease_item {
+    font-size: 8px;
+    width: 30px;
+}
+
+.navIncrease:nth-of-type(1) .navIncrease_item {
+    font-size: 8px;
+    width: 50px;
+    padding: 3px;
+    line-height: 1;
+    border-radius: 50px;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    text-align: center;
+}
+
+.navIncrease_item__number {
+    font-size: 12px;
+}
+
+.navibar__inner {
+    padding: 0px 20px 0 10px;
+}
+
+.continueDay{
+    font-size: 10px;
+}
+
+.navIncrease_item__number,
+.continueDay,
+.navSumFat,
+.navSumCarbo,
+.navSumProtain,
+.navWeight{
     display: none;
 }
 
+.logo {
+    width: 90px;
+}
+
 .navMeasurement {
-    display: none;
+    font-size: 12px;
+}
+
+.navNutrition {
+    font-size: 18px;
+}
+
+.nav_item {
+    width: 110px;
+}
+
+.nav__btn{
+    font-size: 14px;
+}
+
+.login__form__container .form-group{
+    width: 90%;
+    margin: 10px auto;
 }
     
+.login__btn{
+    display: block;
+    width: 90%;
+    margin: 30px auto 20px;
+}
+
+.mini__link{
+    text-align: center;
+}
     
 /*-----------------------------------------------
     ユーザーの現状ステータス
@@ -44,9 +117,6 @@
     }
 
 
-    .userStatus__inner__kcal {
-        display: none;
-    }
 
     .userStatus__inner__pfc > div > p:nth-of-type(1) {
         margin-bottom: 12px;
@@ -64,6 +134,7 @@
         padding: 10px 10px;
         justify-content: space-between;
         margin: none;
+        
     }
 
 
@@ -79,7 +150,7 @@
     }
 
     .userStatus__metabo p {
-        font-size: 10px;
+        font-size: 12px;
         padding-bottom: 14px;
         font-weight: bold;
         color: #ffffff;
@@ -108,8 +179,9 @@
     .userStatus__inner__pfc .P,
     .userStatus__inner__pfc .F,
     .userStatus__inner__pfc .C {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: bold;
+        line-height: 30px;
     }
 
     .userStatus__inner__pfc span {
@@ -152,6 +224,59 @@
         font-weight: bold;
     }
 
+    .userStatus__inner__pfc span:nth-of-type(n+2){
+        padding-left: 2px;
+    }
+
+
+    /*------　スマホ表示　-----*/
+    .userStatus__inner__kcal {
+        display: none;
+    }
+
+    .userStatus__inner{
+        display: block;
+    }
+
+    .userStatus__inner__pfc {
+        display: flex;
+        padding: 20px 20px 0px;
+    }
+    
+    .userStatus__metabo{
+        position: static;
+    }
+
+    .userStatus__weight{
+        position: static;
+        padding-left: 10px;
+    }
+
+    .human{
+        display: inline-block;
+        height: 200px;
+        padding: 0;
+        margin: 20px 0 0 30px;
+    }
+
+    .userStatus__inner__metabo {
+        width: auto;
+        display: inline-block;
+        position: absolute;
+        top: 27%;
+        left: 37%;
+    }
+
+    .userStatus__metabo {
+        width: 180px;
+        padding: 10px 10px;
+    }
+
+    .userStatus__weight p {
+        font-size: 18px;
+    }
+    
+    /*------　スマホ表示　-----*/
 
 /*-----------------------------------------------
     体重リスト
@@ -167,10 +292,17 @@
 
     .todayWeight__form {
         display: block;
+        justify-content: center;
+    }
+
+    .todayWeightFrom{
+        margin-top: 30px;
+        justify-content: start;
     }
 
     .todayWeight__inner p {
         font-size: 20px;
+        text-align: center;
     }
 
     .todayWeight {
@@ -178,8 +310,20 @@
         padding: 50px;
     }
 
+    .todayWeight__form-control.submit{
+        margin-top: 30px;
+        width: 100%;
+    }
+
     .todayWeightSubmit{
         margin: 0 auto;
+    }
+
+   
+
+    .todayWeight__inner p {
+        font-size: 20px;
+        
     }
     
 /*-----------------------------------------------
@@ -191,17 +335,47 @@
     }
 
     .topMealsList__Box {
-        width: 60px;
-        height: 60px;
+        width: 65px;
+        height: 65px;
         margin: 10px 10px 10px 0;
     }
 
 
     .topMealsList__inner > p,
     .todayProtain > p{
-
         font-size: 20px;
+    }
 
+    .meals__noset p{
+        font-size: 14px;
+    }
+
+    .topMealsList__container {
+        height: 260px;
+    }
+
+    .topMealsList__input{
+        display: block;
+    }
+
+    .topMealsList__input > p {
+        margin-bottom: 20px;
+    }
+
+    .topMealsList__net {
+        justify-content: space-between;
+    }
+
+    .eatnet{
+        margin: 0;
+        width: 100px;
+    }
+    .eatBtn{
+        width: 130px;
+    }
+
+    .topMealsList__Box:nth-of-type(10n) {
+        margin-right: 10px;
     }
 
 
@@ -214,40 +388,46 @@
     }
 
     .todayProtaintask,
-    .a .todayProtaintask__done{
+    .todayProtaintask__missorder,
+    .a .todayProtaintask__done,
+    .b .todayProtaintask__done,
+    .c .todayProtaintask__done{
         width: 100px;
         height: 60px;
+        background-size: cover;
+        background-position: center;
     }
+
 
     .todayProtaintask__done::after {
         font-size: 16px;
         left: 26%;
     }
 
-    .todayProtaintask,
-    .a .todayProtaintask__done{
-        background-size: cover;
-    }
-
-
-
-
-
-
     .mealFrom__inner > form > div {
         width: 280px;
     }
 
+    .todayProtain > p{
+        font-size: 18px;
+    }
 
 
 
+/*-----------------------------------------------
+    ボタン
+-----------------------------------------------*/
 
+
+    .dailyBtn {
+        width: 320px;
+    }
 
 
 
 
 /*-----------------------------------------------
-    プロテイン
+    デイリー
 -----------------------------------------------*/
 
 
@@ -257,10 +437,12 @@
 
     .daily{
         width: 320px;
+        margin: 0 auto 30px;
     }
 
     .dayBox{
         width: 40px;
+        font-size: 10px;
     }
 
     .date {
@@ -274,11 +456,6 @@
         font-size: 10px;
     }
 
-
-
-
-
-
     .dayBox {
 
         font-size: 12px;
@@ -290,6 +467,284 @@
         font-size: 10px;
     }
 
+    .dayContainer__today {
+        width: 40px;
+    }
     
+    .loginday{
+        font-size: 11px;
+    }
+
+
+/*-----------------------------------------------
+    商品登録
+-----------------------------------------------*/
+
+
+
+.mealFrom__inner > form > div > p {
+    width: 70px;
+    font-size: 12px;
+     margin-right: 10px; 
+    text-align: start;
+}
+
+.mealFrom__inner > form > div > p:last-child {
+    width: 30px;
+    margin-left: 10px;
+    font-size: 12px;
+
+}
+
+.mealFrom__inner > form > div {
+    width: 320px;
+}
+
+.meal-form {
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    padding: 0 0 0 20px;
+}
+
+
+
+/*-----------------------------------------------
+    日誌ページ
+-----------------------------------------------*/
+
+
+    .daypage__hidden{
+        overflow: hidden;
+        padding: 10px;
+    }
+
+    .daypage__scroll{
+        overflow: scroll;
+        
+    }
+
+    .dailyContainer {
+        width: 330px;
+        margin: 40px auto;
+    }
+
+    .daybox{
+        width: 41px;
+        height: 41px;
+        padding: 0;
+        margin: 3px;
+        line-height: 41px;
+    }
+
+    .daybox p{
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .daybox__kcal{
+        display: none;
+    }
+
+    .daybox__date{
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+
+
+
+ 
+
+
+    .daypage_meallist__rows__title p:first-child,
+    .daypage_meallist__rows p:first-child,
+    .daypage_protain__rows p:first-child {
+        width: 120px;
+    }
+
+    .daypage_meallist__rows__title p,
+    .daypage_meallist__rows p,
+    .daypage_protain__rows p{
+        width: 75px;
+    }
+
+    .daypage_meallist__rows{
+        justify-content: start;
+        width: auto;
+    }
+
+    .daypage_meallist__rows p,
+    .daypage_protain__rows:nth-last-of-type(1) p,
+    .daypage_meallist__rows__title p {
+        font-size: 10px;
+    }
+
+    .daypage_meallist__rows p {
+        font-size: 10px;
+    }
+
+
+    .phone__display__none{
+        display: none;
+    }
+
+    .daypage__container{
+        padding: 0 10px;
+    }
+
+
+    .daypage_meallist {
+        width: 630px;
+        margin: 0 auto;
+    }
+
+    .daypage_meallist__rows {
+        justify-content: start;
+        width: 630px;
+        background-color: inherit;
+    }
+ 
+    .daypage_meallist__rows p {
+        font-size: 10px;
+        background-color: #fff;
+    }
+
+    .daypage_meallist__rows__title p{
+        background-color: #636363;
+    }
+
+    .daypage_nutritiondate {
+        width: 320px;
+        margin: 30px 0 0;
+    }
+
+    .daypage_nutritiondate div p:first-of-type {
+        width: 200px;
+    }
+
+    .daypage_nutritiondate div p {
+        width: 120px;
+    }
+
+
+
+
+
+/*-----------------------------------------------
+    プロテイン設定
+-----------------------------------------------*/
+
+
+.mealssetting__title {
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+
+.personal_setting__container, .protain_setting__container{
+    width: 100%;
+    margin-top: 30px;
+}
+
+
+.personal_setting__container p, .protain_setting__container p {
+    width: 90%;
+    margin: 0 auto 15px;
+}
+
+.personal_setting__container .form-control,
+.protain_setting__container .form-control{
+    margin-bottom: 25px;
+    padding: 0 0 0 20px;
+    width: 90%;
+    margin: 0 auto 20px;
+}
+
+.personal_setting__container input,
+.protain_setting__container input{
+    border: none;
+}
+
+.personal_setting__container.submitBtn,
+.protain_setting__container.submitBtn {
+
+    margin-top: 100px;
+
+
+}
+
+.submitBtn{
+    width: 90%;
+    background-color: #000;
+    color: #fff;
+}
+
+
+
+
+.personal_setting__container select, .protain_setting__container select {
+    width: 90%;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+
+.denger {
+    background-color: #d44a4a;
+    color: #ffffff;
+}
+
+.filename__label,
+.filename__form{
+    width:90% ;
+    margin: 0 auto;
+}
+
+.filename__form{
+    margin-top: 20px;
+}
+
+
+
+
+/*-----------------------------------------------
+    食品リストページ
+-----------------------------------------------*/
+
+
+.meallistpage__hidden{
+    overflow: hidden;
+    padding: 10px;
+}
+
+.meallistpage__scroll{
+    overflow: scroll;
+    
+}
+
+.itemsList{
+    width: 750px;
+    margin: 0 auto 50px;
+}
+
+.mealtype__linkBtn{
+    font-size: 12px;
+}
+
     
 }    
+
+
+
+
+@media screen and (min-height:200px) and ( max-height:667px) {
+
+    .userStatus__inner__metabo {
+
+        top: 33%;
+        left: 37%;
+    }
+
+
+}
