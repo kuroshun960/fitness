@@ -123,13 +123,13 @@ date("Y年m月d日", strtotime("1 day"))
     -->
         
     <!--
-    <a href="{{URL::to('daily/'.date("y-m-d", strtotime("today")) )}} "><p style="color: rgb(255, 55, 55)";>今日 : {{ $data['sumKcal1']['kcal'] }}</p></a>
-    <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-1 day")) )}} "><p>{{date('m/d', strtotime('-1 day'))}} : {{ $data['sumKcal2']['kcal'] }}</p></a>
-    <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-2 day")) )}} "><p>{{date('m/d', strtotime('-2 day'))}} : {{ $data['sumKcal3']['kcal'] }}</p></a>
-    <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-3 day")) )}} "><p>{{date('m/d', strtotime('-3 day'))}} :{{ $data['sumKcal4']['kcal'] }}</p></a>
-    <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-4 day")) )}} "><p>{{date('m/d', strtotime('-4 day'))}} :{{ $data['sumKcal5']['kcal'] }}</p></a>
-    <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-5 day")) )}} "><p>{{date('m/d', strtotime('-5 day'))}} :{{ $data['sumKcal6']['kcal'] }}</p></a>
-    <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-6 day")) )}} "><p>{{date('m/d', strtotime('-6 day'))}} :{{ $data['sumKcal7']['kcal'] }}</p></a>
+    <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("today")) )}} "><p style="color: rgb(255, 55, 55)";>今日 : {{ $data['sumKcal1']['kcal'] }}</p></a>
+    <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-1 day")) )}} "><p>{{date('m/d', strtotime('-1 day'))}} : {{ $data['sumKcal2']['kcal'] }}</p></a>
+    <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-2 day")) )}} "><p>{{date('m/d', strtotime('-2 day'))}} : {{ $data['sumKcal3']['kcal'] }}</p></a>
+    <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-3 day")) )}} "><p>{{date('m/d', strtotime('-3 day'))}} :{{ $data['sumKcal4']['kcal'] }}</p></a>
+    <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-4 day")) )}} "><p>{{date('m/d', strtotime('-4 day'))}} :{{ $data['sumKcal5']['kcal'] }}</p></a>
+    <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-5 day")) )}} "><p>{{date('m/d', strtotime('-5 day'))}} :{{ $data['sumKcal6']['kcal'] }}</p></a>
+    <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-6 day")) )}} "><p>{{date('m/d', strtotime('-6 day'))}} :{{ $data['sumKcal7']['kcal'] }}</p></a>
     -->
 
 
@@ -367,7 +367,7 @@ date("Y年m月d日", strtotime("1 day"))
 
     <div class="daily">
         <div class="dayContainer">
-            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-6 day")) )}} ">
+            <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-6 day")) )}} ">
                 <div class="dayBox _6">{{ $data['sumKcal7']['kcal'] }}<span>kcal</span></div>
                     {{-- プロテインタスクが達成数2の場合 --}}
                     @php $sumKcal7parGoal = $data['sumKcal7']['kcal']/ Auth::user()->kcalParday *100;@endphp
@@ -375,7 +375,7 @@ date("Y年m月d日", strtotime("1 day"))
             </a>
         </div>
         <div class="dayContainer">
-            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-5 day")) )}} ">
+            <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-5 day")) )}} ">
                 <div class="dayBox _5">{{ $data['sumKcal6']['kcal'] }}<span>kcal</span></div>
                     {{-- プロテインタスクが達成数2の場合 --}}
                     @php $sumKcal6parGoal = $data['sumKcal6']['kcal']/Auth::user()->kcalParday*100;@endphp
@@ -383,7 +383,7 @@ date("Y年m月d日", strtotime("1 day"))
             </a>
         </div>
         <div class="dayContainer">
-            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-4 day")) )}} ">
+            <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-4 day")) )}} ">
                 <div class="dayBox _4">{{ $data['sumKcal5']['kcal'] }}<span>kcal</span></div>
                     {{-- プロテインタスクが達成数2の場合 --}}
                     @php $sumKcal5parGoal = $data['sumKcal5']['kcal']/Auth::user()->kcalParday*100;@endphp
@@ -391,7 +391,7 @@ date("Y年m月d日", strtotime("1 day"))
             </a>
         </div>
         <div class="dayContainer">
-            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-3 day")) )}} ">
+            <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-3 day")) )}} ">
                 <div class="dayBox _3">{{ $data['sumKcal4']['kcal'] }}<span>kcal</span></div>
                     {{-- プロテインタスクが達成数2の場合 --}}
                     @php $sumKcal4parGoal = $data['sumKcal4']['kcal']/Auth::user()->kcalParday*100;@endphp
@@ -399,7 +399,7 @@ date("Y年m月d日", strtotime("1 day"))
             </a>
         </div>
         <div class="dayContainer">
-            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-2 day")) )}} ">
+            <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-2 day")) )}} ">
                 <div class="dayBox _2">{{ $data['sumKcal3']['kcal'] }}<span>kcal</span></div>
                     {{-- プロテインタスクが達成数2の場合 --}}    
                     @php $sumKcal3parGoal = $data['sumKcal3']['kcal']/Auth::user()->kcalParday*100;@endphp
@@ -407,7 +407,7 @@ date("Y年m月d日", strtotime("1 day"))
         </div>
 
         <div class="dayContainer">
-            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("-1 day")) )}} ">
+            <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("-1 day")) )}} ">
                 <div class="dayBox _1">{{ $data['sumKcal2']['kcal'] }}<span>kcal</span></div>
                     {{-- プロテインタスクが達成数2の場合 --}}    
                     @php $sumKcal2parGoal = $data['sumKcal2']['kcal']/Auth::user()->kcalParday*100;@endphp
@@ -416,7 +416,7 @@ date("Y年m月d日", strtotime("1 day"))
         </div>
 
         <div class="dayContainer__today">
-            <a href="{{URL::to('daily/'.date("y-m-d", strtotime("today")) )}} ">
+            <a href="{{URL::to('daily/'.date("Y-m-d", strtotime("today")) )}} ">
                 <div class="dayBox__today">{{ $data['sumKcal1']['kcal'] }}<span>kcal</span></div>
                     {{-- プロテインタスクが達成数2の場合 --}}
                     @php $sumKcal1parGoal = $data['sumKcal1']['kcal']/Auth::user()->kcalParday*100;@endphp
