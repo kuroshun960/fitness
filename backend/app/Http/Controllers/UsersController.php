@@ -502,7 +502,7 @@ public function daypage($id)
 
     $day = $id;
 
-    //dd($day);
+
 
     $user = Auth::User();
 
@@ -512,7 +512,7 @@ public function daypage($id)
     $eatmeals = $user->eats()->whereDate('created_at', $day)->get();
     $protaintasks = $user->protaintasks()->whereDate('created_at', $day)->get();
 
-    
+
 
     $allKcal = 0;
     $allProtain = 0;

@@ -36,7 +36,7 @@
                                 @for ($c = 0; $c < $lastday; $c++)
                                         <div>
 
-                                                        <a href="{{URL::to('daily/'.$date->modify($i.' day')->format('y-m-d') )}}">
+                                                        <a href="{{URL::to('daily/'.$date->modify($i.' day')->format('Y-m-d') )}}">
 
                                                             
                                                                         {{--今日の日付のボックス--}}
