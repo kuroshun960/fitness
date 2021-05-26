@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AUTH\RegisterController;
@@ -53,7 +55,7 @@ Route::get('/', function () {
 --------------------------------------------------------------------------*/
 
         // ログインページ表示
-        Route::get('login', [App\Http\Controllers\AUTH\LoginController::class, 'showLoginForm'])->name('login');
+        Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
         // ログイン処理
         Route::post('login', [LoginController::class, 'login'])->name('login.post');
         // ログアウトボタン
