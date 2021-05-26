@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\AUTH\RegisterController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\AUTH\ResetPasswordController;
-use App\Http\Controllers\AUTH\VerificationController;
-use App\Http\Controllers\AUTH\ForgotPasswordController;
-use App\Http\Controllers\AUTH\ConfirmPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
 
 use App\Http\Controllers\ArtistsController;
 use App\Http\Controllers\TagsController;
