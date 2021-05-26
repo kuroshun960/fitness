@@ -507,7 +507,7 @@ public function daypage($id)
     $user = Auth::User();
 
     //今日の日付
-    $todaydate = date("Y-m-d");
+    //$todaydate = date("y-m-d");
 
     $eatmeals = $user->eats()->whereDate('created_at', $day)->get();
     $protaintasks = $user->protaintasks()->whereDate('created_at', $day)->get();
