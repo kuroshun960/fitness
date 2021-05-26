@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AUTH\RegisterController;
-use App\Http\Controllers\AUTH\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AUTH\ResetPasswordController;
 use App\Http\Controllers\AUTH\VerificationController;
 use App\Http\Controllers\AUTH\ForgotPasswordController;
