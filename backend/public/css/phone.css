@@ -116,6 +116,7 @@
         top: 0;
         left: 0;
         right: 0;
+        position: relative;
     }
 
 
@@ -266,8 +267,8 @@
         width: auto;
         display: inline-block;
         position: absolute;
-        top: 27%;
-        left: 37%;
+        top: 44%;
+        left: 36%;
     }
 
     .userStatus__metabo {
@@ -746,39 +747,36 @@
 
 
 
+/* iphoneX */
 
 @media screen and (min-height:200px) and ( max-height:667px) {
 
     .userStatus__inner__metabo {
 
-        top: 33%;
-        left: 37%;
+
     }
 
 }
 
 
+/* iphone6,7,8 plus */
 
 @media screen and (min-width:414px) and ( max-width:1024px) {
 
     .userStatus__inner__metabo {
 
-        top: 32%;
-        left: 37%;
+
     }
 }
 
-@media screen and (min-width:200px) and ( max-width:321px) {
+
+/* iphone5 */
+
+@media screen and (min-width: 200px) and (max-width: 321px){
 
     .userStatus__inner__metabo {
 
-        top: 41%;
-        left: 37%;
     }
-}
-
-
-@media screen and (min-width: 200px) and (max-width: 321px){
 
     .userStatus__inner{
         width: 300px;
@@ -869,6 +867,181 @@
 
     }
 
+}
+
+
+/* ipad */
+
+@media screen and (min-width:600px) and ( max-width:1024px) {
+
+    .userStatus__inner {
+        width: 500px;
+    }
+
+    .userStatus__inner__metabo {
+        top: 44%;
+        left: 38%;
+    }
+
+    .navIncrease:nth-of-type(1) .navIncrease_item:nth-of-type(3){
+        background-color: #fff;
+        color: #212529;
+        font-size: 12px;
+    }
+
+    .continueDay {
+        font-size: 22px;
+    }
+
+    .navIncrease:nth-of-type(1) .navIncrease_item {
+        width: 60px;
+    }
+
+    .userStatus__inner__pfc {
+        display: flex;
+        padding: 25px 50px 0px;
+    }
+
+    .userStatus__inner__pfc > div > p:nth-of-type(1) {
+        font-size: 18px;
+    }
+
+    .userStatus__inner__pfc .P,
+    .userStatus__inner__pfc .F,
+    .userStatus__inner__pfc .C {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 30px;
+    }
+
+    .human {
+        margin: 20px 0 0 18%;
+    }
+
+    .userStatus__inner__metabo {
+        top: 44%;
+        left: 45%;
+    }
+
+    .navIncrease_item__number {
+        padding: 0 0px 0 10px;
+    }
+
+    .navIncrease_item__number,
+    .continueDay{
+        display: block;
+    }
+
+    .topMealsList__inner,
+    .daily{
+        width: 450px;
+    }
+
+    .daily {
+        justify-content: space-between;
+    }
+
+    .dayBox {
+        width: 50px;
+    }
+
+    .date {
+        width: 50px;
+    }
+
+    .dayBox__today {
+        width: 50px;
+    }
+
+    .dayContainer__today {
+        width: 50px;
+    }
+
+
+}
+
+
+/* ipad ipad pro */
+
+@media screen and (min-width:750px) and ( max-width:1024px) {
+
+    .navSumFat,
+    .navSumCarbo,
+    .navSumProtain{
+        display: block;
+    }
+
+}
+
+
+/* ipad ipad pro */
+
+@media screen and (min-width:1023px) and ( max-width:1024px) {
+
+    .userStatus__inner {
+        width: 600px;
+    }
+
+    .userStatus__metabo {
+        width: 300px;
+    }
+
+    .userStatus__weight p {
+        font-size: 20px;
+    }
+
+    .userStatus__weight .weight {
+        font-size: 40px;
+    }
+
+    .userStatus__metabo p {
+        font-size: 16px;
+    }
+
+    .human {
+        height: 250px;
+        margin: 20px 0 0 100px;
+    }
+
+    .topMealsList__inner, .daily {
+        width: 700px;
+    }
+
+    .dayBox {
+        width: 80px;
+    }
+
+    .date {
+        width: 80px;
+    }
+
+    .dayBox__today {
+        width: 80px;
+    }
+
+    .dayContainer__today {
+        width: 80px;
+    }
+
+    .mealFrom__inner > form > div {
+        width: 600px;
+    }
+
+    .meal-form {
+        width: 450px;
+        height: 50px;
+        border-radius: 5px;
+        border: none;
+        padding: 0 0 0 20px;
+    }
+
+    .mealFrom__inner > form > div > p {
+        font-size: 18px;
+    }
+
+    .mealFrom__inner > form > div > p {
+        width: 90px;
+    }
 
 
 }

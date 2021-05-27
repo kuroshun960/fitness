@@ -415,6 +415,7 @@ date("Y年m月d日", strtotime("1 day"))
                     {{-- プロテインタスクが達成数2の場合 --}}    
                     @php $sumKcal3parGoal = $data['sumKcal3']['kcal']/Auth::user()->kcalParday*100;@endphp
                 <div class="date">{{date('m/d', strtotime('-2 day'))}}</div>
+            </a>
         </div>
 
         <div class="dayContainer">
