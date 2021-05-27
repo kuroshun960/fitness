@@ -44,7 +44,7 @@
     {!! Form::text('fat','' , ['class' => 'form-control','placeholder' => '脂質']) !!}
     
     {!! Form::submit('設定', ['class' => 'submitBtn']) !!}
-    {!! Form::close() !!}
+        {!! Form::close() !!}
     
     @else
 
