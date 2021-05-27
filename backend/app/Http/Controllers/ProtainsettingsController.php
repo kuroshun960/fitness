@@ -23,10 +23,10 @@ class ProtainsettingsController extends Controller
 
             $request->validate([
                 'name' => 'required',
-                'kcal' => 'required',
-                'protain' => 'required',
-                'carbo' => 'required',
-                'fat' => 'required',
+                'kcal' => 'required|numeric',
+                'protain' => 'required|numeric',
+                'carbo' => 'required|numeric',
+                'fat' => 'required|numeric',
             ]);
 
             //ログインユーザーのid取得
