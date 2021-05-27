@@ -54,10 +54,16 @@ class UsersController extends Controller
                 // 基礎代謝(ハリスベネディクト式) //
                 $baseEnergy = floor( 66.4730 + $user->height * 5.0033 + $weight->weight * 13.7516 - $user->age*6.7550 );
 
-                // 男性の1日の消費カロリー (基礎代謝+身体活動指数) //
-                if( $user->HardOrSoft == 'soft' ){ $needEnergy = $baseEnergy * 1.5; }
-                if( $user->HardOrSoft == 'middle' ){ $needEnergy = $baseEnergy * 1.75; }
-                if( $user->HardOrSoft == 'hard' ){ $needEnergy = $baseEnergy * 2; }
+                // 男性の1日の消費カロリー (基礎代謝+身体活動指数) 
+                //TDEEとは基礎代謝量に一日の活動カロリーを足したもので、一日の総消費カロリーのことをいいます。 //
+
+                
+                    // ほぼ運動しない (基礎代謝 × 1.2)
+                    if( $user->HardOrSoft == 'soft' ){ $needEnergy = $baseEnergy * 1.2; }
+                    // 中程度の運動 (基礎代謝 × 1.55)
+                    if( $user->HardOrSoft == 'middle' ){ $needEnergy = $baseEnergy * 1.55; }
+                    // 激しい運動 (基礎代謝 × 1.725)
+                    if( $user->HardOrSoft == 'hard' ){ $needEnergy = $baseEnergy * 1.72; }
 
             }
 
