@@ -87,6 +87,10 @@
     font-size: 14px;
 }
 
+.login__container{
+    width: 320px;
+}
+
 .login__form__container .form-group{
     width: 90%;
     margin: 10px auto;
@@ -774,6 +778,9 @@
 
 @media screen and (min-width: 200px) and (max-width: 321px){
 
+
+
+
     .userStatus__inner__metabo {
 
     }
@@ -873,6 +880,11 @@
 /* ipad */
 
 @media screen and (min-width:600px) and ( max-width:1024px) {
+
+    .login__container{
+        width: 500px;
+    }
+
 
     .userStatus__inner {
         width: 500px;
