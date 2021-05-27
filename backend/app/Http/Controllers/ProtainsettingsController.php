@@ -21,6 +21,14 @@ class ProtainsettingsController extends Controller
     public function setting(Request $request)
         {
 
+            $request->validate([
+                'name' => 'required',
+                'kcal' => 'required',
+                'protain' => 'required',
+                'carbo' => 'required',
+                'fat' => 'required',
+            ]);
+
             //ログインユーザーのid取得
             $id = Auth::id();
 
