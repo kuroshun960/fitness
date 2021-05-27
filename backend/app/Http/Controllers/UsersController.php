@@ -420,8 +420,6 @@ class UsersController extends Controller
 
             $regist_protain = Auth::User()->protainsetting()->orderBy('id', 'desc')->first();
 
-
-            
             $data = $userAlldata['data'];
 
             return view('protainsettings',compact('data','regist_protain'));

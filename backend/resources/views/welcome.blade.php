@@ -515,7 +515,7 @@ date("Y年m月d日", strtotime("1 day"))
 
         <div>
         <p>写真</p>
-        {!! Form::file('file_name') !!}
+        {!! Form::file('file_name', ['class' => 'filename__form','style' => 'margin-top: 0px']) !!}
         </div>
         
         <div class="">{!! Form::submit('登録する', ['class' => 'mealregist']) !!}</div>
