@@ -415,6 +415,11 @@
     }
 
 
+    .protainsetteing__noset p{
+        line-height: 1.5;
+    }
+
+
 
 /*-----------------------------------------------
     ボタン
@@ -736,7 +741,7 @@
 }
 
     
-}    
+}  
 
 
 
@@ -748,6 +753,82 @@
         top: 33%;
         left: 37%;
     }
+
+}
+
+
+
+@media screen and (min-width:414px) and ( max-width:1024px) {
+
+    .userStatus__inner__metabo {
+
+        top: 32%;
+        left: 37%;
+    }
+}
+
+@media screen and (min-width:200px) and ( max-width:321px) {
+
+    .userStatus__inner__metabo {
+
+        top: 41%;
+        left: 37%;
+    }
+}
+
+
+@media screen and (min-width: 200px) and (max-width: 321px){
+
+    .userStatus__inner{
+        width: 300px;
+    }
+
+    .todayWeight__form {
+        width: 280px;
+    }
+
+    .protainsetteing__noset p{
+        line-height: 1.5;
+    }
+
+    .protainsetteing__noset p {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .mealtype__meal__tab, .mealtype__snack__tab, .mealtype__drink__tab {
+        font-size: 16px;
+
+    }
+
+    .topMealsList__inner {
+        width: 290px;
+    }
+
+    .mealname {
+        font-size: 14px;
+    }
+
+    .daily {
+        width: 300px;
+        margin: 0 auto 30px;
+    }
+
+    .dayBox {
+        width: 37px;
+    }
+
+    .dayBox__today {
+        width: 37px;
+    }
+
+    .dailyBtn {
+        width: 280px;
+    }
+
+
+
+
 
 
 }

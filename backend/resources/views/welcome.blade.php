@@ -455,7 +455,7 @@ date("Y年m月d日", strtotime("1 day"))
     <div class="mealFrom">
         <div class="mealFrom__inner">
 
-        <p>食事を登録する</p>
+        <p>食品を登録する</p>
 
         {!! Form::open(['route' => 'mealssetting.setting','enctype'=>'multipart/form-data']) !!}
         @csrf

@@ -1,14 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
+@if (count($errors) > 0)
+<ul class="alert alert-danger" role="alert">
+    @foreach ($errors->all() as $error)
+        <li class="ml-4">{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+
+
 <div class="login__container">
 
     <div class="text-center">
         <h2 class="login__title">ログイン</h2>
     </div>
 
-    <div class="row login__form__container">
-        <div class="col-sm-6 offset-sm-3">
+    <div class="login__form__container">
+        <div class="">
 
             {!! Form::open(['route' => 'login.post']) !!}
                 <div class="form-group">

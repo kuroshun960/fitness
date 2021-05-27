@@ -7,8 +7,8 @@
         <h2 class="login__title">新規登録</h2>
     </div>
 
-    <div class="row login__form__container">
-        <div class="col-sm-6 offset-sm-3">
+    <div class="login__form__container">
+        <div class="">
 
             {!! Form::open(['route' => 'signup.post']) !!}
                 <div class="form-group">
