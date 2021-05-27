@@ -56,12 +56,8 @@ class UsersController extends Controller
 
                 // 男性の1日の消費カロリー (基礎代謝+身体活動指数) 
                 //TDEEとは基礎代謝量に一日の活動カロリーを足したもので、一日の総消費カロリーのことをいいます。 //
-                    //参考文献
-                    //https://keisan.casio.jp/exec/system/1567491116 
-                    //https://www.maff.go.jp/j/syokuiku/zissen_navi/balance/required.html 
-                    //https://joyfit.jp/aojoy/health_column/post03/ 
 
-
+                
                     // ほぼ運動しない (基礎代謝 × 1.2)
                     if( $user->HardOrSoft == 'soft' ){ $needEnergy = $baseEnergy * 1.2; }
                     // 中程度の運動 (基礎代謝 × 1.55)
