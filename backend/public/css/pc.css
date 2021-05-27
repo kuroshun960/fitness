@@ -2,11 +2,9 @@
 
 a{
     text-decoration: none;
+    color: rgb(110, 110, 110);
 }
 
-a{
-    color: #212529;
-}
 
 body{
     background-color: #ececec;
@@ -15,6 +13,7 @@ body{
 
 a:hover{
     text-decoration: none;
+    color: rgb(110, 110, 110);
 }
 
 .phone__br{
@@ -100,10 +99,6 @@ a:hover{
     display: flex;
     text-align: end;
     margin: 0 0 0 auto;
-}
-
-.registAndlogin__btn a{
-    color: #fff;
 }
 
 
@@ -266,14 +261,8 @@ input[type="text"]:focus {
     border-radius: 25px;
     border: none;
     margin: 40px 0 20px;
-    color: #fff;
-    transition: background-color 0.2s;
 }
 
-.login__btn:hover{
-    background-color: #ff2d2d;
-    color: #fff;
-}
 
 .mini__link a{
     color: #ff2d2d;
@@ -530,7 +519,7 @@ input[type="text"]:focus {
 .todayWeightFrom div{
     font-size: 24px;
     font-weight: bold;
-padding-left: 10px;
+    padding-left: 10px;
 }
 
 .todayWeight__form-control{
@@ -541,23 +530,13 @@ padding-left: 10px;
     font-size: 20px;
     font-weight: bold;
     line-height: 1.5;
-    color: #ffffff;
+    color: #3b3b3b;
     background-color: rgb(0, 0, 0);
     background-clip: padding-box;
     border: none;
     border-radius: 10px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-
-.todayWeightSubmit >.todayWeight__form-control:hover{
-    background-color: #ff2d2d;
-    transition: background-color 0.2s;
-}
-
-.todayWeightFrom > .todayWeight__form-control{
-    color: #212529;
-}
-
 
 .todayWeight__form-control::placeholder{
     color: #C4C4C4;
@@ -679,7 +658,7 @@ padding-left: 10px;
     text-align: center;
     line-height: 65px;
     color: #7D7D7D;
-    cursor: pointer;
+    
 }
 
 
@@ -786,8 +765,7 @@ padding-left: 10px;
     padding: 2px;
     border: solid 5px #fff;
     box-sizing: border-box;
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 10px;
 }
 
 .meals__noset{
@@ -877,8 +855,10 @@ padding-left: 10px;
     transition: opacity 0.2s;
 }
 
-
-
+a:hover{
+    text-decoration: none;
+    color: rgb(110, 110, 110);
+}
 
 .dailyBtn{
     display: block;
@@ -892,12 +872,6 @@ padding-left: 10px;
     text-align: center;
     line-height: 50px;
     font-weight: bold;
-    transition: background-color 0.2s;
-}
-
-.dailyBtn:hover{
-    color: rgb(255, 255, 255);
-    background-color: #ff2d2d;
 }
 
 
@@ -987,10 +961,6 @@ padding-left: 10px;
     font-size: 20px;
 }
 
-.protainsetteing__noset p a{
-    color: #ff2d2d;
-}
-
 
 /*-----------------------------------------------
     デイリー
@@ -1034,10 +1004,6 @@ padding-left: 10px;
     font-size: 14px;
 }
 
-.date:hover{
-    color: #ff2d2d;
-}
-
 .dayContainer__today{
     width: 220px;
 }
@@ -1067,16 +1033,9 @@ padding-left: 10px;
     transition: opacity 0.2s;
 }
 
-
-
 .dayContainer__today:hover{
     opacity: 0.5;
     transition: opacity 0.2s;
-}
-
-.dayContainer:hover a,
-.dayContainer__today:hover a{
-    color: #ff2d2d;
 }
 
 /*-----------------------------------------------
@@ -1109,6 +1068,8 @@ padding-left: 10px;
 .daypage_meallist__rows__title p:first-child{
     width: 200px;
 }
+
+
 
 .daypage_meallist__rows__container{
     display: flex;
@@ -1277,12 +1238,10 @@ padding-left: 10px;
     border: none;
     background-color: rgb(0, 0, 0);
     color: #fff;
-    transition: background-color 0.2s;
 }
 
 .mealregist:hover{
     cursor: pointer;
-    background-color: #ff2d2d;
 }
 
 .mealFrom__inner > form > .piece{
@@ -1339,12 +1298,6 @@ padding-left: 10px;
     color: #fff;
     margin: 50px auto 0;
     display: block;
-    transition: background-color 0.2s;
-}
-
-.submitBtn:hover{
-    background-color: #ff2d2d;
-    cursor: pointer;
 }
 
 
@@ -1407,11 +1360,6 @@ padding-left: 10px;
     height: 30px;
     text-align: center;
     display: block;
-    transition: background-color 0.2s;
-}
-
-.mealtype__linkBtn > a:hover{
-    background-color: #ff2d2d;
 }
 
 .mealtype__linkBtn > .mealtype__linkBtn__visit{
@@ -1422,8 +1370,8 @@ padding-left: 10px;
     height: 30px;
     text-align: center;
     display: block;
-    color: #fff;
-    background: #ff2d2d;
+    color: khaki;
+    background: rgb(88, 88, 88);
 }
 
 .itemsHead p:nth-of-type(1){
@@ -1498,7 +1446,7 @@ padding-left: 10px;
 }
 
 .denger{
-    background-color: #883c3c;
+    background-color: #d44a4a;
     color: #ffffff;
 }
 
@@ -1563,30 +1511,12 @@ padding-left: 10px;
         background-color: rgb(191, 191, 191);
         text-align: center;
         padding: 45px 0;
-        transition: opacity 0.2s;
     }
 
     .dailyContainer_box{
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
-        
-    }
-
-    .dailyContainer_box .daybox:hover{
-        opacity: 0.6;
-        color: #ff2d2d;
-    }
-
-    .dailyContainer_box .daybox__nonday:hover{
-        opacity: 1;
-        background-color: rgb(94, 94, 94);
-    }
-    
-    
-
-    .daybox__date{
-        color: #212529;
     }
 
     .daybox_kcal{

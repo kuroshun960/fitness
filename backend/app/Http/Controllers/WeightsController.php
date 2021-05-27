@@ -22,10 +22,6 @@ class WeightsController extends Controller
     public function input(Request $request)
     {
 
-        $request->validate([
-            'weight' => 'numeric',
-        ]);
-
         //ログインユーザーのid取得
         $id = Auth::id();
 

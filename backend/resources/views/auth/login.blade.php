@@ -33,7 +33,7 @@
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('ログイン', ['class' => 'login__btn']) !!}
+                {!! Form::submit('ログイン', ['class' => 'btn btn-primary login__btn']) !!}
             {!! Form::close() !!}
 
             {{-- ユーザ登録ページへのリンク --}}
