@@ -27,6 +27,14 @@ date("Y年m月d日", strtotime("1 day"))
     -->
 
 
+        <!----バリデーション---->
+        @if (count($errors) > 0)
+        <ul class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $error)
+                <li class="ml-4">{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
 
     <!---------------------------------------------------------------
         ユーザーの栄養情報セクション
@@ -152,7 +160,7 @@ date("Y年m月d日", strtotime("1 day"))
             {!! Form::open(['route' => 'weight.input','class'=>'todayWeight__form']) !!} @csrf
                 
                 <p>今朝の体重を記録しましょう。</p>
-                <div class="todayWeightFrom">{!! Form::text('number', old(''), ['class' => 'todayWeight__form-control todayWeight_number form','placeholder' => '今日の体重を入力']) !!}<div>kg</div></div>
+                <div class="todayWeightFrom">{!! Form::text('weight', old(''), ['class' => 'todayWeight__form-control todayWeight_number form','placeholder' => '今日の体重を入力']) !!}<div>kg</div></div>
                 
                 <div class="todayWeightSubmit">{!! Form::submit('記録', ['class' => 'todayWeight__form-control submit']) !!}</div>
 
@@ -354,7 +362,7 @@ date("Y年m月d日", strtotime("1 day"))
     @else
 
     <div class="protainsetteing__noset">
-        <p>プロテインをお飲みの方は、<br class="phone__br">{!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'userRegistBtn']) !!}をしましょう。</p>
+        <p>プロテインをお飲みの方は、<br class="phone__br">{!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'']) !!} をしましょう。</p>
     </div>
     
     @endif
@@ -442,14 +450,7 @@ date("Y年m月d日", strtotime("1 day"))
         食品登録セクション
     ----------------------------------------------------------------->
 
-    <!----バリデーション---->
-    @if (count($errors) > 0)
-        <ul class="alert alert-danger" role="alert">
-            @foreach ($errors->all() as $error)
-                <li class="ml-4">{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
+
 
 
     <div class="mealFrom">

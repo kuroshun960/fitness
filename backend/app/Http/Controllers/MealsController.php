@@ -206,11 +206,13 @@ class MealsController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'price' => 'required',
-            'kcal' => 'required',
-            'protain' => 'required',
-            'fat' => 'required',
-            'carbo' => 'required',
+            'price' => 'required|numeric',
+            'kcal' => 'required|numeric',
+            'protain' => 'required|numeric',
+            'fat' => 'required|numeric',
+            'carbo' => 'required|numeric',
+            'gram' => 'numeric',
+            'carbo' => 'required|numeric',
 
             'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
  
@@ -253,7 +255,7 @@ class MealsController extends Controller
         {
 
             $request->validate([
-                'net' => 'required',
+                'net' => 'required|numeric',
             ]);
 
             
@@ -339,11 +341,12 @@ class MealsController extends Controller
                 'name' => 'required|max:20',
                 //'gram' => 'required|max:4',
                 //'piece' => 'required|max:5',
-                'price' => 'required|max:5',
-                'kcal' => 'required',
-                'protain' => 'required',
-                'fat' => 'required',
-                'carbo' => 'required',
+                'price' => 'required|numeric',
+                'kcal' => 'required|numeric',
+                'gram' => 'numeric',
+                'protain' => 'required|numeric',
+                'fat' => 'required|numeric',
+                'carbo' => 'required|numeric',
                 'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
             ]);
 
