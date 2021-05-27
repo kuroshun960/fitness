@@ -214,6 +214,7 @@
         border: solid 2px #ffffff;
         padding: 30px 10px;
         width: 130px;
+        margin-top: 20px;
     }
 
     .userStatus__weight span {
@@ -826,8 +827,47 @@
         width: 280px;
     }
 
+    .userImage {
+        margin-left: 0px;
+        width: 20px;
+        height: 20px;
+        border-radius: 40px;
+        background-color: rgb(255, 152, 67);
+    }
 
+    .navibar__inner {
+    padding: 0px 10px 0 10px;
+    }
 
+    .meal-form {
+        width: 160px;
+    }
+
+    .mealFrom__inner > form > div {
+        width: 280px;
+    }
+
+    .navibar__inner {
+        padding: 0px 7px 0 10px;
+    }
+
+    .userStatus__inner__pfc .P, .userStatus__inner__pfc .F, .userStatus__inner__pfc .C {
+        font-size: 13px;
+    }
+
+    .userStatus__inner__pfc span {
+        font-size: 13px;
+    }
+
+    .userStatus__inner__pfc {
+        padding: 20px 15px 0px;
+    }
+
+    .navIncrease:nth-of-type(1) .navIncrease_item {
+
+        margin-right: 5px;
+
+    }
 
 
 

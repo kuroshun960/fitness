@@ -42,9 +42,10 @@ date("Y年m月d日", strtotime("1 day"))
 
 
     @php
-        if( $data['kcalPardayToGoal'] < 0 ){
+
+        if( filter_var($data['kcalPardayToGoal']) ){
             $cdcdcd = 0;
-        }elseif ($data['kcalPardayToGoal'] > 0) {
+        }else{
             $cdcdcd = $data['kcalPardayToGoal'];
         }
 
@@ -759,7 +760,7 @@ date("Y年m月d日", strtotime("1 day"))
         break;
         case sumKcal4parGoal >= 0:
         $("._3").css('height','30px')
-        $("._3").css('padding','8px 0 0')
+        $("._3").css('padding','8px 0 ')
         break;
     }
 

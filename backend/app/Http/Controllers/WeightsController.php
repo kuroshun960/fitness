@@ -34,7 +34,7 @@ class WeightsController extends Controller
 
         //ログインユーザーの体重を作成
         $weight = $user->weights()->create([
-            'weight' => $request->number,
+            'weight' => $request->weight,
         ]);
 
 
