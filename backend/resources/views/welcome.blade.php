@@ -52,10 +52,26 @@ date("Y年m月d日", strtotime("1 day"))
     @endphp
 
 
+
+
+
     <div class="userStatus">
         <div class="status_background">
 
+                    <div class="userSettingAlert"> 
+                        @if (! isset( Auth::user()->height) )
+                            <div class="">{!! link_to_route('personalsettingspage.show','身長・体重・運動量を登録しましょう。',[],['class'=>'userSettingAlert__personal']) !!}</div>   
+                        @endif
+                        @if (! isset($data['regist_protain']) )
+                            <div class="">{!! link_to_route('protainsettingpage','飲んでいるプロテインを設定しましょう。',[],['class'=>'userSettingAlert__protain']) !!}</div>
+                        @endif
+                        @if (! isset($data['mealslists'][0]) )
+                            <div><a href="#mealFrom" class="userSettingAlert__meal">食生活を記録する為の食品を登録しましょう</a></div>
+                        @endif
+                    </div>
+
                 <div class="userStatus__inner">
+
 
                     {{-- 摂取栄養素情報 --}}
                     <div class="userStatus__inner__nut">
@@ -476,7 +492,7 @@ date("Y年m月d日", strtotime("1 day"))
 
 
 
-    <div class="mealFrom">
+    <div class="mealFrom" id="mealFrom">
         <div class="mealFrom__inner">
 
         <p>食品を登録する</p>

@@ -573,7 +573,7 @@ public function daypage($id)
 
     }
 
-    
+
 
     $nutdata = [
         'allKcal' => $allKcal,

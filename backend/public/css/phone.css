@@ -116,10 +116,28 @@
 /*-----------------------------------------------
     ユーザーの現状ステータス
 -----------------------------------------------*/
+  
+    .userSettingAlert {
+        width: auto;
+        margin: 0 auto;
+    }
+
+
+    .userSettingAlert__personal, .userSettingAlert__protain, .userSettingAlert__meal {
+        display: block;
+        padding: 10px 10px 10px 20px;
+        background-color: #17bd8f;
+        color: #fff;
+        width: 280px;
+        border-radius: 50px;
+        font-size: 12px;
+        margin: 0px auto 10px;
+    }
+
 
     .userStatus__inner {
         width: 320px;
-        padding: 60px 0;
+        padding: 20px 0 40px;
         margin: 0 auto;
         display: flex;
         top: 0;
@@ -895,6 +913,39 @@
         font-size: 16px;
         margin-bottom: 50px;
     }
+
+    .todayProtain__tasks {
+        width: 290px;
+    }
+
+    .todayProtaintask,
+    .todayProtaintask__missorder,
+    .a .todayProtaintask__done,
+    .b .todayProtaintask__done, 
+    .c .todayProtaintask__done{
+        width: 90px;
+    }
+
+    .daypage_nutritiondate {
+        width: 300px;
+        margin: 30px 0 0;
+    }
+
+    .dailyContainer {
+        width: 300px;
+        margin: 40px auto;
+    }
+
+    .daybox {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        margin: 3px;
+        line-height: 36px;
+    }
+
+
+
 
 }
 

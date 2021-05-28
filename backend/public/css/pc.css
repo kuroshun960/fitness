@@ -303,8 +303,35 @@ input[type="text"]:focus {
 -----------------------------------------------*/
 
 
+.userSettingAlert{
+    width: 1050px;
+    margin: 0 auto;
+    
+}
+
+
+.userSettingAlert__personal,
+.userSettingAlert__protain,
+.userSettingAlert__meal{
+    display: block;
+    padding: 10px 10px 10px 20px;
+    background-color: #17bd8f;
+    color: #fff;
+    width: 400px;
+    border-radius: 50px;
+    font-size: 16px;
+    margin: 0px auto 10px;
+}
+
+.userSettingAlert > div > a:hover,
+.userSettingAlert > div > a:hover,
+.userSettingAlert > a:hover{
+    color: #fff;
+}
+
 .userStatus{
     background-color: #d7d7d7;
+    padding-top: 20px;
 }
 
 .status_background{
@@ -312,7 +339,7 @@ input[type="text"]:focus {
 }
 
 .status_background__inner{
-    width: 1140px;
+    width: 1070px;
     margin: 0 auto;
 }
 
@@ -323,7 +350,7 @@ input[type="text"]:focus {
 
 .userStatus__inner{
     width: 1070px;
-    padding: 60px 0;
+    padding: 40px 0 60px;
     margin: 0 auto;
     display: flex;
     top: 0;
@@ -1232,6 +1259,10 @@ padding-left: 10px;
 
 .eatsdestroy_btn{
     font-size: 10px;
+}
+
+.dailypade__norecord{
+    text-align: center;
 }
 
 
