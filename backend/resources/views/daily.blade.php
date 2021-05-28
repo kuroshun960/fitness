@@ -3,7 +3,9 @@
 
 @if (Auth::check())
 
+<div class="backBtn__container">
 <a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
+</div>
 
 <div>
     <h2 style="text-align: center;font-size: 36px;">{{date('n')}}月の日誌</h2>

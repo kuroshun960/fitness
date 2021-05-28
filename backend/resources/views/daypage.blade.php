@@ -4,8 +4,9 @@
 @if (Auth::check())
 
 
-<a class="backBtn arrow arrow--right" href="{{URL::to('/daily')}}"></a>
-
+<div class="backBtn__container">
+    <a class="backBtn arrow arrow--right" href="{{URL::to('/daily')}}"></a>
+</div>
 
 <style>
 

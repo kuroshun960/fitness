@@ -3,7 +3,24 @@
 
 @if (Auth::check())
 
-<a class="backBtn arrow arrow--right" href="{{URL::to('/mealssetting')}}"></a>
+
+
+@if (count($errors) > 0)
+<ul class="alert alert-danger" role="alert">
+    @foreach ($errors->all() as $error)
+        <li class="ml-4">{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+
+
+
+
+<div class="backBtn__container">
+    <a class="backBtn arrow arrow--right" href="{{URL::to('/mealssetting')}}"></a>
+</div>
+
+
 <?php
 
 $url = url()->full();
@@ -16,14 +33,6 @@ $last = end($path); //最後の要素を取得
 
 
 
-
-@if (count($errors) > 0)
-<ul class="alert alert-danger" role="alert">
-    @foreach ($errors->all() as $error)
-        <li class="ml-4">{{ $error }}</li>
-    @endforeach
-</ul>
-@endif
 
 
 <style>

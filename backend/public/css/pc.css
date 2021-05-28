@@ -300,8 +300,15 @@ input[type="text"]:focus {
 }
 
 
+.alert-danger {
+
+    padding-top: 60px;
+}
 
 
+.backBtn__container{
+    padding-top: 50px;
+}
 
 
 /*-----------------------------------------------

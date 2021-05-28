@@ -13,9 +13,9 @@
 </ul>
 @endif
 
-
-<a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
-
+<div class="backBtn__container">
+    <a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
+</div>
 
 <div class="protain_setting__container">
 

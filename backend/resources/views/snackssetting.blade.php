@@ -10,8 +10,12 @@
 @endphp
 
 
+<div class="backBtn__container">
+    <a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
+</div>
+    
 
-<a class="backBtn arrow arrow--right" href="{{URL::to('/')}}"></a>
+
 <div class="meallistpage__hidden">    
     <h2 class="mealssetting__title">登録した食事</h2>
 
