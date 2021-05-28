@@ -108,14 +108,94 @@ date("Y年m月d日", strtotime("1 day"))
                     </div>
 
         
-                            
+                                {{-- 男性か女性かで画像を分岐 --}}
+                                @if (Auth::user()->sex === '男性')
+                                    <div class="human">
 
-                            {{-- 男性か女性かで画像を分岐 --}}
-                            <div class="human">
-                                @if (Auth::user()->sex === '男性')<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men.png" alt="">
-                                @else<img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women.png" alt="" width="100%">
+                                    @switch(true)
+
+                                        @case( 19 > $data['kcalParcent'] && $data['kcalParcent'] > 10 )                    
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_10.png" alt="">
+                                        @break
+                                        @case( 29 > $data['kcalParcent'] && $data['kcalParcent'] >= 19 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_20.png" alt="">
+                                        @break
+                                        @case( 39 > $data['kcalParcent'] && $data['kcalParcent'] >= 30 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_30.png" alt="">
+                                        @break
+                                        @case( 49 > $data['kcalParcent'] && $data['kcalParcent'] >= 40 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_40.png" alt="">
+                                        @break
+                                        @case( 59 > $data['kcalParcent'] && $data['kcalParcent'] >= 50 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_50.png" alt="">
+                                        @break
+                                        @case( 69 > $data['kcalParcent'] && $data['kcalParcent'] >= 60 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_60.png" alt="">
+                                        @break
+                                        @case( 79 > $data['kcalParcent'] && $data['kcalParcent'] >= 70 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_70.png" alt="">
+                                        @break
+                                        @case( 89 > $data['kcalParcent'] && $data['kcalParcent'] >= 80 )
+                                       <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_80.png" alt="">
+                                        @break
+                                        @case( 99 > $data['kcalParcent'] && $data['kcalParcent'] >= 90 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_90.png" alt="">
+                                        @break
+                                        @case( $data['kcalParcent'] >= 99 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_100.png" alt="">
+                                        @break                            
+
+                                        @default
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/men_0.png" alt=""> 
+                                    @endswitch
+                                    
+                                    </div>
+                                @else
+                                <div class="human">
+
+                                    @switch(true)
+
+                                        @case( 19 > $data['kcalParcent'] && $data['kcalParcent'] > 10 )                    
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_10.png" alt="">
+                                        @break
+                                        @case( 29 > $data['kcalParcent'] && $data['kcalParcent'] >= 19 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_20.png" alt="">
+                                        @break
+                                        @case( 39 > $data['kcalParcent'] && $data['kcalParcent'] >= 30 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_30.png" alt="">
+                                        @break
+                                        @case( 49 > $data['kcalParcent'] && $data['kcalParcent'] >= 40 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_40.png" alt="">
+                                        @break
+                                        @case( 59 > $data['kcalParcent'] && $data['kcalParcent'] >= 50 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_50.png" alt="">
+                                        @break
+                                        @case( 69 > $data['kcalParcent'] && $data['kcalParcent'] >= 60 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_60.png" alt="">
+                                        @break
+                                        @case( 79 > $data['kcalParcent'] && $data['kcalParcent'] >= 70 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_70.png" alt="">
+                                        @break
+                                        @case( 89 > $data['kcalParcent'] && $data['kcalParcent'] >= 80 )
+                                       <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_80.png" alt="">
+                                        @break
+                                        @case( 99 > $data['kcalParcent'] && $data['kcalParcent'] >= 90 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_90.png" alt="">
+                                        @break
+                                        @case( $data['kcalParcent'] >= 99 )
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_100.png" alt="">
+                                        @break                            
+
+                                        @default
+                                        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/women_0.png" alt=""> 
+                                    @endswitch
+                                    
+                                    </div>
+                                    
                                 @endif
-                            </div>
+
+
+
 
                             {{-- 体重情報 --}}
                             <div class="userStatus__inner__metabo">

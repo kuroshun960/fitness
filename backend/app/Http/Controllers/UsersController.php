@@ -113,15 +113,18 @@ class UsersController extends Controller
 
 
                 if( $user->IncreaseOrDecrease === '増量期' ){
-                //日あたりの目標タンパク質//
+                    //日あたりの目標タンパク質//
+                    // 摂取目安タンパク質（で総カロリーの30％を摂る） = 目標カロリー ÷ 100 × 30 ÷ 4(タンパク質は1gあたり4カロリーあたり) //
                     $protainParday = $kcalPardayPar100 * 30 / 4;
                     $protainPardayCeil = ceil($protainParday);
 
                     //日あたりの目標脂質//
+                    // 摂取目安脂質（で総カロリーの20％を摂る） = 目標カロリー ÷ 100 × 20 ÷ 4(脂質は１gあたり9カロリー) //
                     $fatParday = $kcalPardayPar100 * 20 / 9;
                     $fatPardayCeil = ceil($fatParday);
 
                     //日あたりの目標炭水化物//
+                    // 摂取目安炭水化物（で総カロリーの50％を摂る） = 目標カロリー ÷ 100 × 50 ÷ 4(脂質は１gあたり4カロリー) //
                     $carboParday = $kcalPardayPar100 * 50 / 4;
                     $carboPardayCeil = ceil($carboParday);
                     
@@ -207,6 +210,7 @@ class UsersController extends Controller
         
         $daily = [];
 
+        //今日の摂取栄養素
         $sumKcal1 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
 
         $sumKcal2 = ['kcal'=>0,'protain'=>0,'fat'=>0,'carbo'=>0,];
@@ -316,13 +320,26 @@ class UsersController extends Controller
         }
 
 /*-----------------------------------------------------------------------------------------
-    目標値までの数値の表示
+    目標値までの残り数値の表示
 -----------------------------------------------------------------------------------------*/   
                 
         $kcalPardayToGoal = $kcalParday - $sumKcal1['kcal'];
         $protainPardayToGoal = $protainPardayCeil - $sumKcal1['protain'];
         $fatPardayCeilToGoal = $fatPardayCeil - $sumKcal1['fat'];
         $carboPardayCeilToGoal = $carboPardayCeil - $sumKcal1['carbo'];
+
+
+/*-----------------------------------------------------------------------------------------
+        目標値までの数値のパーセンテージ
+-----------------------------------------------------------------------------------------*/
+
+        $kcalParcent = $sumKcal1['kcal'] / $kcalParday * 100 ;
+        $protainParcent = $sumKcal1['protain'] / $protainPardayCeil * 100 ;
+        $fatParcent = $sumKcal1['fat'] / $fatPardayCeil * 100 ;
+        $carboParcent = $sumKcal1['carbo'] / $carboPardayCeil * 100 ;
+
+
+
                 
 /*-----------------------------------------------------------------------------------------
         継続日数
@@ -363,6 +380,11 @@ class UsersController extends Controller
 
             array_push($mealslists,$getMeal);
         }
+
+
+    
+
+
 
 /*-----------------------------------------------------------------------------------------
         ビューに渡す
@@ -408,6 +430,12 @@ class UsersController extends Controller
             'sumKcal6' => $sumKcal6,
             'sumKcal7' => $sumKcal7,
 
+            //摂取栄養素のパーセンテージ
+            'kcalParcent'=> $kcalParcent,
+            'protainParcent' => $protainParcent,
+            'fatParcent' => $fatParcent,
+            'carboParcent' => $carboParcent,
+
             //登録した食品のリスト
             'mealslists' => $mealslists,
 
@@ -415,6 +443,8 @@ class UsersController extends Controller
             'continueDay' => $continueDay,
 
         ];
+
+        
 
         return view('welcome',compact('data'));
     }
