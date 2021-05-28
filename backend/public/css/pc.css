@@ -11,6 +11,11 @@ a{
 body{
     background-color: #ececec;
     padding-bottom: 100px;
+    
+}
+
+body {
+    font-family:"MS Pゴシック",sans-serif,"Meiryo","メイリオ","Hiragino Sans","ヒラギノ角ゴシック";
 }
 
 a:hover{
