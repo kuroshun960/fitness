@@ -51,7 +51,7 @@
 }
 
 .navibar__inner {
-    padding: 0px 20px 0 10px;
+    padding: 0px 15px 0 10px;
 }
 
 .userSetting>.navIncrease_item{
@@ -107,7 +107,13 @@
     margin: 30px auto 20px;
 }
 
+.navNutrition_goal {
+    padding: 0 2px;
+}
 
+.userImage {
+    margin-left: 5px;
+}
 
 .mini__link{
     text-align: center;
@@ -818,6 +824,10 @@
 
     .userStatus__inner__metabo {
 
+    }
+
+    .userSetting>.navIncrease_item{
+        display: none;
     }
 
     .userStatus__inner{
