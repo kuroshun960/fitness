@@ -23,7 +23,7 @@ class WeightsController extends Controller
     {
 
         $request->validate([
-            'weight' => 'numeric',
+            'weight' => 'numeric|max:300|min:1',
         ]);
 
         //ログインユーザーのid取得

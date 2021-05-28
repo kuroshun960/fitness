@@ -31,16 +31,44 @@ class UsersController extends Controller
             $user = \Auth::user();
 
             //登録プロテイン情報
-
             $regist_protain = $user->protainsetting()->orderBy('created_at', 'desc')->first();
 
             //今日の体重//
             $weight = $user->weights()->whereDate('created_at', $todaydate)->first();
 
-            //今日の体重、測る前までの最新の体重//
+            //今日の体重を測ってなければ、測る前までの最新の体重//
             if(! isset($weight) ){
-                $weight = $user->weights()->first();
+                $weight = $user->weights()->orderBy('created_at', 'desc')->first();
             }
+
+
+            //１週間前の体重
+            $weights7daysago = $user->weights()->orderBy('created_at', 'desc')->skip(7)->first();
+
+            //１週間前の体重と今の体重を比較した数値を代入した変数を定義
+            $weights7daysagoCompare = '--';
+
+            //１週間前の体重データがあれば
+            if( isset($weights7daysago) ){
+
+                //体重データがあれば
+                if( isset($weight) ){
+                    //体重データがあれば体重比較変数に比較結果を代入
+                    $weights7daysagoCompare = $weight->weight - $weights7daysago->weight;
+                }
+            }
+            //１週間前の体重データがなければ
+            else{
+                //１週間前の体重データはゼロを代入
+                $weights7daysago = 0;
+            }
+
+            if($weights7daysagoCompare > 0){
+                $weights7daysagoCompare = "+".$weights7daysagoCompare;
+            }
+
+            
+
 
 
 /*-----------------------------------------------------------------------------------------
@@ -441,6 +469,9 @@ class UsersController extends Controller
 
             //継続日数
             'continueDay' => $continueDay,
+
+            //継続日数
+            'weights7daysagoCompare' => $weights7daysagoCompare ,
 
         ];
 

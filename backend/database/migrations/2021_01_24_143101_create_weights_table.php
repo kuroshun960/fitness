@@ -17,8 +17,8 @@ class CreateWeightsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
-            $table->integer('weight')->nullable();
-            
+            //$table->integer('weight')->nullable();
+            $table->float('weight', 3, 1)->nullable();
             // 外部キー制約
             $table->foreign('user_id')->references('id')->on('users');
         });

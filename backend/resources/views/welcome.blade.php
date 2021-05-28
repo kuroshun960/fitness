@@ -205,7 +205,7 @@ date("Y年m月d日", strtotime("1 day"))
                                     @else
                                     <div><p>現在の体重</p><p class="weight">--<span>kg</span></p></div>
                                     @endif
-                                    <p class="userStatus__weight__week">7日前より00kg</p>
+                                    <p class="userStatus__weight__week">7日前より{{ $data['weights7daysagoCompare'] }}kg</p>
                                 </div>
                                 <div class="userStatus__metabo">
                                     <div><p>適正体重</p><p>{{ $data['fitWeightFloor'] }}kg</p></div>

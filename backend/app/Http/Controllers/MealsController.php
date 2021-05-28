@@ -239,7 +239,6 @@ class MealsController extends Controller
             'fat' => $request->fat,
             'carbo' => $request->carbo,
             'item_photo_path' => $path,
-
             'piece' => $request->piece,
             'gram' => $request->gram,
             'type' => $request->type,
@@ -340,7 +339,7 @@ class MealsController extends Controller
             $request->validate([
                 'name' => 'required|max:20',
                 //'gram' => 'required|max:4',
-                //'piece' => 'required|max:5',
+                //'piece' => 'required|max:5',　
                 'price' => 'required|numeric',
                 'kcal' => 'required|numeric',
                 'gram' => 'numeric',
