@@ -151,22 +151,37 @@ date("Y年m月d日", strtotime("1 day"))
     <!---------------------------------------------------------------
         「体重を測定しよう」セクション
     ----------------------------------------------------------------->
+    
+    
+    {{--新規ユーザーなど、最新の体重データがそもそもない場合、$latestWeight_dateには00-00-00を代入--}}
+    {{--既存ユーザーには、最新の体重データの日付型を、$latestWeight_dateに代入--}}
+    @php
+        if (isset($data['weight'])){
+            $latestWeight = $data['weight']->created_at;
+            $latestWeight_date = $latestWeight->format('Y-m-d');
+        }else {
+            $latestWeight_date = "00-00-00";
+        }
+    @endphp
 
-    @if (!isset( $data['weight']->weight ))
-    {{-- 今朝の体重を測定 --}}
-    <div class="todayWeight">
-        <div class="todayWeight__inner">
-            {{-- 今朝の体重を測定”済み”であれば、体重測定フォームは表示しない --}}
-            {!! Form::open(['route' => 'weight.input','class'=>'todayWeight__form']) !!} @csrf
-                
-                <p>今朝の体重を記録しましょう。</p>
-                <div class="todayWeightFrom">{!! Form::text('weight', old(''), ['class' => 'todayWeight__form-control todayWeight_number form','placeholder' => '今日の体重を入力']) !!}<div>kg</div></div>
-                
-                <div class="todayWeightSubmit">{!! Form::submit('記録', ['class' => 'todayWeight__form-control submit']) !!}</div>
 
-            {!! Form::close() !!}
+ 
+    {{--もし、渡されている最新の体重データが、今日の日付のモノじゃなかったら体重測定フォームを表示--}}
+    @if ( $latestWeight_date !== $todaydate )
+        {{-- 今朝の体重を測定 --}}
+        <div class="todayWeight">
+            <div class="todayWeight__inner">
+                {{-- 今朝の体重を測定”済み”であれば、体重測定フォームは表示しない --}}
+                {!! Form::open(['route' => 'weight.input','class'=>'todayWeight__form']) !!} @csrf
+                    
+                    <p>今朝の体重を記録しましょう。</p>
+                    <div class="todayWeightFrom">{!! Form::text('weight', old(''), ['class' => 'todayWeight__form-control todayWeight_number form','placeholder' => '今日の体重を入力']) !!}<div>kg</div></div>
+                    
+                    <div class="todayWeightSubmit">{!! Form::submit('記録', ['class' => 'todayWeight__form-control submit']) !!}</div>
+
+                {!! Form::close() !!}
+            </div>
         </div>
-    </div>
     @endif
 
 

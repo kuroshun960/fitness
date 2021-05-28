@@ -54,7 +54,7 @@
                 
                     <div class="registAndlogin__btn">
                         {{-- ユーザ登録ページへのリンク --}}
-                        {{--     {!! link_to_route('signup.get', '新規登録', [], ['class' => 'nav_item nav__btn nav__register__btn']) !!} --}}
+                        {{-- {!! link_to_route('signup.get', '新規登録', [], ['class' => 'nav_item nav__btn nav__register__btn']) !!} --}}
 
                         {{--ログインへのリンク --}}
                             {!! link_to_route('login', 'ログイン', [], ['class' => '']) !!}
