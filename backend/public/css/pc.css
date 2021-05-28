@@ -838,13 +838,13 @@ padding-left: 10px;
 .todayProtain__tasks__inner{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 50px;
 }
 
 .todayProtaintask{
     width: 295px;
     height: 150px;
     border-radius: 10px;
-    margin-bottom: 100px;
     border: none;
     color: #fff;
     z-index: 0;
@@ -871,7 +871,6 @@ padding-left: 10px;
     width: 295px;
     height: 150px;
     border-radius: 10px;
-    margin-bottom: 100px;
     border: none;
     color: #fff;
     z-index: 0;
@@ -887,6 +886,16 @@ padding-left: 10px;
     transition: opacity 0.2s;
 }
 
+.regist_protain {
+    background-color: #212529;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 100px;
+    width: 350px;
+    margin: 0 auto 50px;
+    font-size: 12px;
+}
 
 
 
@@ -941,7 +950,6 @@ padding-left: 10px;
     width: 295px;
     height: 150px;
     border-radius: 10px;
-    margin-bottom: 100px;
     position: relative;
     border: none;
     color: #fff;
@@ -956,7 +964,6 @@ padding-left: 10px;
     width: 295px;
     height: 150px;
     border-radius: 10px;
-    margin-bottom: 100px;
     position: relative;
     border: none;
     color: #fff;
@@ -970,7 +977,6 @@ padding-left: 10px;
     width: 295px;
     height: 150px;
     border-radius: 10px;
-    margin-bottom: 100px;
     position: relative;
     border: none;
     color: #fff;

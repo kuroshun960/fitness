@@ -30,6 +30,9 @@ class UsersController extends Controller
             //ログインユーザー//
             $user = \Auth::user();
 
+            //登録プロテイン情報
+
+            $regist_protain = $user->protainsetting()->orderBy('created_at', 'desc')->first();
 
             //今日の体重//
             $weight = $user->weights()->whereDate('created_at', $todaydate)->first();
@@ -50,7 +53,7 @@ class UsersController extends Controller
 
         if( isset($weight) ){
 
-            // 適正体重 //
+            // 身長からわかる適正体重 //
             $fitWeight = $user->height / 100 * $user->height / 100 * 22 ;
             $fitWeightFloor = floor( $fitWeight );
 
@@ -376,6 +379,9 @@ class UsersController extends Controller
             //プロテインの摂取栄養素
             'protainAll' => $protainAll,
 
+            //ユーザーが登録したプロテイン
+            'regist_protain'=> $regist_protain,
+
             //適正体重、基礎代謝、必要カロリー
             'fitWeightFloor' => $fitWeightFloor,
             'baseEnergy' => $baseEnergy,
@@ -591,7 +597,7 @@ public function daypage($id)
     public function setting(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:20',
+            'name' => 'required|max:8',
             'age' => 'required|max:3',
             'height' => 'required|max:3',
             'kcalParday' => 'required',

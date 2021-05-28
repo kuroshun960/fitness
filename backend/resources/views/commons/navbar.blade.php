@@ -3,7 +3,14 @@
 
         {{-- ナビゲーションバー --}}
         
-            
+
+            @php
+            if( isset( Auth::user()->name ) ){
+                $usename5chara = Auth::user()->name;
+            }else {
+                $usename5chara = null;
+            }
+            @endphp
         
         <nav class="">
             <div class="navibar">
@@ -36,7 +43,8 @@
                     @endif
 
                     <div class="navIncrease userSetting">
-                        <p class="navIncrease_item">{{ Auth::user()->name }}</p><div class="userImage"><img src="" alt=""></p>
+                        {{--名前は五文字まで表示--}}
+                        <p class="navIncrease_item">{{ mb_substr($usename5chara, 0, 6) }}</p><div class="userImage"><img src="" alt=""></p>
                         <div class="userSetting__list">
                             <div>{!! link_to_route('protainsettingpage','プロテイン設定',[],['class'=>'userRegistBtn']) !!}</div>
                             <div>{!! link_to_route('personalsettingspage.show','パーソナル設定',[],['class'=>'userRegistBtn']) !!}</div>

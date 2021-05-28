@@ -54,6 +54,11 @@
     padding: 0px 20px 0 10px;
 }
 
+.userSetting>.navIncrease_item{
+    width: 60px;
+    text-align: end;
+}
+
 .continueDay{
     font-size: 10px;
 }
@@ -237,7 +242,7 @@
     }
 
 
-    /*------　スマホ表示　-----*/
+    /*------　基礎代謝情報スマホ表示　-----*/
     .userStatus__inner__kcal {
         display: none;
     }
@@ -284,7 +289,7 @@
         font-size: 18px;
     }
     
-    /*------　スマホ表示　-----*/
+    /*------　基礎代謝情報スマホ表示　-----*/
 
 /*-----------------------------------------------
     体重リスト
@@ -412,6 +417,17 @@
         left: 26%;
     }
 
+    .regist_protain {
+        background-color: #212529;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        border-radius: 100px;
+        width: 280px;
+        margin: 0 auto 50px;
+        font-size: 10px;
+    }
+
     .mealFrom__inner > form > div {
         width: 280px;
     }
@@ -424,6 +440,7 @@
     .protainsetteing__noset p{
         line-height: 1.5;
     }
+
 
 
 
@@ -874,6 +891,11 @@
 
     }
 
+    .mealssetting__title {
+        font-size: 16px;
+        margin-bottom: 50px;
+    }
+
 }
 
 
@@ -945,7 +967,8 @@
     }
 
     .topMealsList__inner,
-    .daily{
+    .daily,
+    .todayProtain__tasks{
         width: 450px;
     }
 
@@ -967,6 +990,17 @@
 
     .dayContainer__today {
         width: 50px;
+    }
+
+    .todayProtaintask, 
+    .todayProtaintask__missorder, 
+    .a .todayProtaintask__done, 
+    .b .todayProtaintask__done, 
+    .c .todayProtaintask__done {
+        width: 140px;
+        height: 90px;
+        background-size: cover;
+        background-position: center;
     }
 
 

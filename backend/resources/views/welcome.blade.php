@@ -114,7 +114,7 @@ date("Y年m月d日", strtotime("1 day"))
                                 <div class="userStatus__metabo">
                                     <div><p>適正体重</p><p>{{ $data['fitWeightFloor'] }}kg</p></div>
                                     <div><p>基礎代謝</p><p>{{ $data['baseEnergy'] }}kcal</p></div>
-                                    <div><p>必要カロリー</p><p>{{ $data['needEnergy'] }}kcal</p></div>
+                                    <div><p>消費カロリー</p><p>{{ $data['needEnergy'] }}kcal</p></div>
                                 </div>
                             </div>
 
@@ -222,7 +222,9 @@ date("Y年m月d日", strtotime("1 day"))
 
             <div class="topMealsList__container mealtype__meal">
                 @if( count( $isset_type_meal ) === 0 )
-                <div class="meals__noset"><p>登録した食品はこちらに登録されます。</p></div>
+                <div class="meals__noset">
+                    <p>登録した食品はこちらに登録されます。</p>
+                </div>
                 @endif
 
                 @foreach ( $data['mealslists'] as $mealslist)
@@ -244,6 +246,7 @@ date("Y年m月d日", strtotime("1 day"))
 
                 @if( count( $isset_type_snack ) === 0 )
                 <div class="meals__noset"><p>登録した食品はこちらに登録されます。</p></div>
+                
                 @endif
 
                 @foreach ( $data['mealslists'] as $mealslist)
@@ -372,6 +375,10 @@ date("Y年m月d日", strtotime("1 day"))
                     
 
                 </div>
+
+                <div class="regist_protain">
+                    登録プロテイン : {{ $data['regist_protain']->name }}
+                </div>
             </div>
 
     @else
@@ -488,7 +495,7 @@ date("Y年m月d日", strtotime("1 day"))
         </div>
 
         <div>
-        <p>種別</p>
+        <p>内容量単位</p>
         {{ Form::select('',['gram'=> 'グラム' ,'piece'=> '個数'], 'gram', ['class' => 'meal-form type']) }}
         </div>
 
