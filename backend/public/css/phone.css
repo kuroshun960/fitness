@@ -212,16 +212,6 @@
         margin-bottom: 12px;
     }
 
-    .userStatus__inner__pfc {
-        width: 150px;
-        display: block;
-        background-color: #ffffff;
-        border-radius: 30px;
-        padding: 10px 10px;
-        justify-content: space-between;
-        margin: none;
-        
-    }
 
 
 
@@ -257,8 +247,26 @@
     }
 
     .userStatus__inner__pfc {
+        width: 150px;
+        display: block;
+        background-color: #ffffff;
+        justify-content: space-between;
+        margin: none;
         width: auto;
+        border-radius: 5px;
+        padding: 30px 10px;
+        
     }
+
+    .userStatus__inner__pfc > .userStatus__inner__pfc__icon {
+        width: 150px;
+        font-size: 12px;
+        padding: 3px;
+        top: inherit;
+        bottom: -7%;
+    }
+
+
 
     
 
@@ -278,10 +286,6 @@
         margin-bottom: 5px;
     }
 
-    .userStatus__inner__pfc {
-
-        border-radius: 5px;
-    }
 
     .P_num,
     .F_num,
@@ -289,9 +293,6 @@
         margin-bottom: 18px;
     }
 
-    .userStatus__inner__pfc {
-        padding: 30px 10px;
-    }
 
     .userStatus__metabo {
         border-radius: 5px;
@@ -316,6 +317,19 @@
     }
 
 
+    .protainIcon,
+    .fatIcon,
+    .carboIcon{
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: -88%;
+    }
+    
+
+
+
+
     /*------　基礎代謝情報スマホ表示　-----*/
     .userStatus__inner__kcal {
         display: none;
@@ -327,7 +341,8 @@
 
     .userStatus__inner__pfc {
         display: flex;
-        padding: 20px 20px 0px;
+        padding: 40px 20px 5px;
+        margin-bottom: 20px;
     }
     
     .userStatus__metabo{
@@ -350,7 +365,7 @@
         width: auto;
         display: inline-block;
         position: absolute;
-        top: 40%;
+        top: 44%;
         left: 36%;
     }
 
@@ -960,7 +975,7 @@
     }
 
     .userStatus__inner__pfc {
-        padding: 20px 15px 0px;
+        padding: 40px 15px 0px;
     }
 
     .navIncrease:nth-of-type(1) .navIncrease_item {
@@ -1024,7 +1039,6 @@
     }
 
     .userStatus__inner__metabo {
-        top: 40%;
         left: 38%;
     }
 
@@ -1044,7 +1058,7 @@
 
     .userStatus__inner__pfc {
         display: flex;
-        padding: 25px 50px 0px;
+        padding: 45px 50px 10px;
     }
 
     .userStatus__inner__pfc > div > p:nth-of-type(1) {
@@ -1064,7 +1078,6 @@
     }
 
     .userStatus__inner__metabo {
-        top: 40%;
         left: 45%;
     }
 
