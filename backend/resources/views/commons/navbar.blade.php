@@ -16,7 +16,12 @@
             <div class="navibar">
 
 
-                {!! link_to_route('users.show', 'MY-BODY', [], ['class' => 'logo']) !!}
+                {!! link_to_route('users.show', '', [], ['class' => 'logo__phone']) !!}
+                
+                {!! link_to_route('users.show', 'MY-BODY', [], ['class' => 'logo']) !!} 
+                
+
+
             @if (Auth::check())
             <div class="navibar__inner">
 

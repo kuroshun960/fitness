@@ -20,8 +20,53 @@
     .phone__div{
         display: block;
     }
+
+    .serviceTop{
+        height: 280px;
+    }
     
     
+    .serviceTop__innner {
+        width: 320px;
+
+    }
+
+    .mybody_logo {
+        width: 300px;
+        top: 24%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .mybody_logo__inner{
+        width: 40px;
+    }
+    
+    .mybody_logo__text{
+        margin-left: 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+    .logo{
+        display: none;
+    }
+
+    .logo__phone{
+        width: 70px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        background-color: rgb(0, 0, 0);
+        background-image: url(https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/mybody_logo_white.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-size: 43%;
+        background-position: center;
+        display: block;
+    }
 
 
 
@@ -91,6 +136,11 @@
 .nav__btn{
     font-size: 14px;
 }
+
+.login__container{
+    padding-top: 50px;
+}
+
 
 .login__container{
     width: 320px;

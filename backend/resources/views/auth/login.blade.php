@@ -4,6 +4,17 @@
 
 
 
+
+<div class="serviceTop">
+    <div class="mybody_logo">
+        <div class="mybody_logo__inner"><img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/mybody_logo.png" alt="" width="100%"></div>
+        <div class="mybody_logo__text">MY-BODY</div>
+    </div>
+    <div class="serviceTop__innner">
+        <img src="https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/mybody_servicetop.jpg" alt="" width="100%">
+    </div>
+</div>
+
 @if (count($errors) > 0)
 <ul class="alert alert-danger" role="alert">
     @foreach ($errors->all() as $error)
@@ -11,7 +22,6 @@
     @endforeach
 </ul>
 @endif
-
 
 <div class="login__container">
 
