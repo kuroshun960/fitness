@@ -399,34 +399,37 @@ class UsersController extends Controller
         デフォルト食品を登録
 -----------------------------------------------------------------------------------------*/
 
-if(! isset($defaultmeals[0] ) ){
+    $defaultmeals = $user->meals()->get();
 
-    $user->meals()->createMany([
-    [
-        'name' => '白米 (茶碗１杯の場合150g)',
-        'price' => 26,
-        'kcal' => 252,
-        'protain' => 3.8,
-        'fat' => 0.5,
-        'carbo' => 55.7,
-        'gram' => 150,
-        'type' => '食事',
-        'item_photo_path' => 'https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/default_images/hakumai.jpg',
-    ],
-    [
-        'name' => '鶏もも肉',
-        'price' => 90,
-        'kcal' => 204,
-        'protain' => 16.6,
-        'fat' => 14.2,
-        'carbo' => 0,
-        'gram' => 100,
-        'type' => '食事',
-        'item_photo_path' => 'https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/default_images/torimomo.jpg',
-    ]
-    ]);
 
-}
+    if(! isset($defaultmeals[0] ) ){
+
+        $user->meals()->createMany([
+        [
+            'name' => '白米 (茶碗１杯の場合150g)',
+            'price' => 26,
+            'kcal' => 252,
+            'protain' => 3.8,
+            'fat' => 0.5,
+            'carbo' => 55.7,
+            'gram' => 150,
+            'type' => '食事',
+            'item_photo_path' => 'https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/default_images/hakumai.jpg',
+        ],
+        [
+            'name' => '鶏もも肉',
+            'price' => 90,
+            'kcal' => 204,
+            'protain' => 16.6,
+            'fat' => 14.2,
+            'carbo' => 0,
+            'gram' => 100,
+            'type' => '食事',
+            'item_photo_path' => 'https://kurofiles.s3-ap-northeast-1.amazonaws.com/meals/default_images/torimomo.jpg',
+        ]
+        ]);
+
+    }
 
 
 
@@ -442,9 +445,6 @@ if(! isset($defaultmeals[0] ) ){
 
             array_push($mealslists,$getMeal);
         }
-
-        $defaultmeals = $user->meals()->get();
-
 
 
 

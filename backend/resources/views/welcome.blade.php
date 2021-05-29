@@ -65,7 +65,7 @@ date("Y年m月d日", strtotime("1 day"))
                         @if (! isset($data['regist_protain']) )
                             <div class="">{!! link_to_route('protainsettingpage','飲んでいるプロテインを設定しましょう。',[],['class'=>'userSettingAlert__protain']) !!}</div>
                         @endif
-                        @if (! isset($data['mealslists'][0]) )
+                        @if (! isset($data['mealslists'][2]) )
                             <div><a href="#mealFrom" class="userSettingAlert__meal">食生活を記録する為の食品を登録しましょう</a></div>
                         @endif
                     </div>
@@ -575,7 +575,7 @@ date("Y年m月d日", strtotime("1 day"))
 
 
 
-    <div class="mealFrom" id="mealFrom">
+    <div class="mealFrom overLay" id="mealFrom">
         <div class="mealFrom__inner">
 
         <p>食品を登録する</p>
@@ -639,7 +639,7 @@ date("Y年m月d日", strtotime("1 day"))
 
         <div>
         <p>写真</p>
-        {!! Form::file('file_name', ['class' => 'filename__form','style' => 'margin-top: 0px']) !!}
+        {!! Form::file('file_name', ['class' => 'filename__form mealregist_filename__form','style' => 'margin-top: 0px']) !!}
         </div>
         
         <div class="">{!! Form::submit('登録する', ['class' => 'mealregist']) !!}</div>
