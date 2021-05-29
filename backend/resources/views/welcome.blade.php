@@ -89,7 +89,7 @@ date("Y年m月d日", strtotime("1 day"))
                         </div>
 
                         <div class="userStatus__inner__pfc">
-                            <div class="userStatus__inner__pfc__icon">PFCバランス</div>
+                            <div class="userStatus__inner__pfc__icon">摂取量とPFCバランス</div>
                             <div>
                                 <div class="protainIcon"></div>
                                 <p>タンパク質</p>
