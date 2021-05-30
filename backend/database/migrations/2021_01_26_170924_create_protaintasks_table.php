@@ -20,11 +20,11 @@ class CreateProtaintasksTable extends Migration
 
             $table->string('cups');
 
-            $table->integer('kcal')->nullable();
-            $table->integer('protain')->nullable();
-            $table->integer('carbo')->nullable();
-            $table->integer('fat')->nullable();
-
+            $table->float('kcal', 4, 1)->nullable();
+            $table->float('protain', 4, 1)->nullable();
+            $table->float('carbo', 4, 1)->nullable();
+            $table->float('fat', 4, 1)->nullable();
+    
             // 格納時の日あたりの目標カロリー
             $table->integer('KcalPardayAtThatTime')->nullable();
 
