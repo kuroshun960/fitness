@@ -18,12 +18,12 @@ class CreateProtainsettingsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->string('name')->default('ビーレジェンド ナチュラル');;
-            $table->integer('kcal')->default(115);
-            
-            $table->integer('protain')->default(20);
-            $table->integer('carbo')->default(4);
-            $table->integer('fat')->default(1);
+            $table->string('name')->default('ビーレジェンド ナチュラル')->nullable();
+            $table->float('kcal', 4, 1)->default(115)->nullable();
+            $table->float('protain', 4, 1)->default(20)->nullable();
+            $table->float('carbo', 4, 1)->default(4)->nullable();
+            $table->float('fat', 4, 1)->default(1)->nullable();
+
             
             // 外部キー制約
             $table->foreign('user_id')->references('id')->on('users');
