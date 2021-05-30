@@ -19,10 +19,10 @@ class CreateProtainsettingsTable extends Migration
             $table->timestamps();
 
             $table->string('name')->default('ビーレジェンド ナチュラル')->nullable();
-            $table->float('kcal', 4, 1)->default(115)->nullable();
-            $table->float('protain', 4, 1)->default(20)->nullable();
-            $table->float('carbo', 4, 1)->default(4)->nullable();
-            $table->float('fat', 4, 1)->default(1)->nullable();
+            $table->float('kcal', 10, 1)->default(115)->nullable();
+            $table->float('protain', 10, 1)->default(20)->nullable();
+            $table->float('carbo', 10, 1)->default(4)->nullable();
+            $table->float('fat', 10, 1)->default(1)->nullable();
 
             
             // 外部キー制約

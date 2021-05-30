@@ -93,19 +93,19 @@ date("Y年m月d日", strtotime("1 day"))
                             <div>
                                 <div class="protainIcon"></div>
                                 <p>タンパク質</p>
-                                <p class="P_num"><span class="P">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['protain']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P</span></p>
+                                <p class="P_num"><span class="P">{{ isset($data['sumKcal1']) ? intval($data['sumKcal1']['protain']):0 }}</span><span class="slash">/</span><span>{{ isset($data['parprotain']) ? $data['parprotain'] : 0 }}P</span></p>
                             </div>
 
                             <div>
                                 <div class="fatIcon"></div>
                                 <p>脂質</p>
-                                <p class="F_num"><span class="F">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['fat']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F</span></p>
+                                <p class="F_num"><span class="F">{{ isset($data['sumKcal1']) ? intval($data['sumKcal1']['fat']) :0 }}</span><span class="slash">/</span><span>{{ isset($data['parfat']) ? $data['parfat'] : 0 }}F</span></p>
                             </div>
 
                             <div>
                                 <div class="carboIcon"></div>
                                 <p>炭水化物</p>
-                                <p class="C_num"><span class="C">{{ isset($data['sumKcal1']) ? $data['sumKcal1']['carbo']:0 }}</span><span class="slash">/</span><span>{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C<span></p>
+                                <p class="C_num"><span class="C">{{ isset($data['sumKcal1']) ? intval($data['sumKcal1']['carbo']) :0 }}</span><span class="slash">/</span><span>{{ isset($data['parcarbo']) ? $data['parcarbo'] : 0 }}C<span></p>
                             </div>
                         </div>
                     </div>

@@ -25,17 +25,17 @@ class CreateMealsTable extends Migration
             // 商品写真
             $table->text('item_photo_path')->nullable();
             // 内容量
-            $table->float('gram', 4, 1)->nullable();
-            $table->float('piece', 4, 1)->nullable();
+            $table->float('gram', 10, 1)->nullable();
+            $table->float('piece', 10, 1)->nullable();
             // 価格
-            $table->float('price', 4, 1)->nullable();
+            $table->float('price', 10, 1)->nullable();
             // 栄養素
-            $table->float('kcal', 4, 1)->nullable();
-            $table->float('protain', 4, 1)->nullable();
-            $table->float('carbo', 4, 1)->nullable();
-            $table->float('fat', 4, 1)->nullable();
+            $table->float('kcal', 10, 1)->nullable();
+            $table->float('protain', 10, 1)->nullable();
+            $table->float('carbo', 10, 1)->nullable();
+            $table->float('fat', 10, 1)->nullable();
             // 格納時の日あたりの目標カロリー
-            $table->float('KcalPardayAtThatTime', 4, 1)->nullable();
+            $table->float('KcalPardayAtThatTime', 10, 1)->nullable();
 
             // 外部キー制約
             $table->foreign('user_id')->references('id')->on('users');

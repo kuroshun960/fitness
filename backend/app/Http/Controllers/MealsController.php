@@ -207,12 +207,12 @@ class MealsController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
-            'kcal' => 'required|numeric',
-            'protain' => 'required|numeric',
-            'fat' => 'required|numeric',
-            'carbo' => 'required|numeric',
-            'gram' => 'numeric',
-            'carbo' => 'required|numeric',
+            'kcal' => 'required|numeric|max:9999',
+            'protain' => 'required|numeric|max:1000',
+            'fat' => 'required|numeric|max:1000',
+            'carbo' => 'required|numeric|max:1000',
+            'gram' => 'numeric|max:9999',
+            'carbo' => 'required|numeric|max:1000',
 
             'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
  
