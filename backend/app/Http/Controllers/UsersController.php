@@ -693,9 +693,9 @@ public function daypage($id)
     {
         $request->validate([
             'name' => 'required|max:8',
-            'age' => 'required|numeric',
-            'height' => 'required|numeric',
-            'kcalParday' => 'required|numeric',
+            'age' => 'required|integer',
+            'height' => 'required|integer',
+            'kcalParday' => 'required|integer',
             
         ]);
 
