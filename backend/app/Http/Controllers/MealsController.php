@@ -254,7 +254,7 @@ class MealsController extends Controller
         {
 
             $request->validate([
-                'net' => 'required|integer',
+                'net' => 'required|numeric',
             ]);
 
             

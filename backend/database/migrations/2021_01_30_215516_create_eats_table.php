@@ -25,7 +25,9 @@ class CreateEatsTable extends Migration
             $table->integer('eatFat')->nullable();
             $table->integer('eatCarbo')->nullable();
             $table->integer('eatPrice')->nullable();
-            $table->integer('eatNet')->nullable();
+
+            $table->float('eatNet', 4, 1)->default(4)->nullable();
+
             $table->integer('KcalPardayAtThatTime')->nullable();
             $table->string('type')->default('食事');
 
