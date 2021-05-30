@@ -697,6 +697,7 @@ public function daypage($id)
             'height' => 'required|integer',
             'kcalParday' => 'required|integer',
             
+            
         ]);
 
         //ログインユーザーのid取得
