@@ -79,7 +79,7 @@ $last = end($path); //最後の要素を取得
             <style> .gram{display: none;}</style>
 
             <p>種別</p>
-            {{ Form::select('',['gram'=> 'gram' ,'piece'=> 'kosuu'], 'piece', ['class' => 'form-control type']) }}
+            {{ Form::select('',['gram'=> 'グラム' ,'piece'=> '個数'], 'piece', ['class' => 'form-control type']) }}
             
 
             <p class="gram">内容量/g</p>

@@ -202,7 +202,13 @@ class MealsController extends Controller
     public function update(Request $request ,$id)
     {
         
-        //dd($request->file_name);
+
+        if( isset($request->gram) ){
+            $netValidate =  'gram' ;
+        }else{
+            
+            $netValidate = 'piece' ;
+        }
 
         $request->validate([
             'name' => 'required',
@@ -211,7 +217,7 @@ class MealsController extends Controller
             'protain' => 'required|numeric|max:1000',
             'fat' => 'required|numeric|max:1000',
             'carbo' => 'required|numeric|max:1000',
-            'gram' => 'numeric|max:9999',
+            $netValidate => 'numeric|max:9999',
             'carbo' => 'required|numeric|max:1000',
 
             'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
@@ -336,16 +342,23 @@ class MealsController extends Controller
     public function setting(Request $request)
         {
 
+            if( isset($request->gram) ){
+                $netValidate =  'gram' ;
+            }else{
+                
+                $netValidate = 'piece' ;
+            }
+
             $request->validate([
                 'name' => 'required|max:20',
                 //'gram' => 'required|max:4',
-                //'piece' => 'required|max:5',　
+                
                 'price' => 'required|numeric',
-                'kcal' => 'required|numeric',
-                'gram' => 'numeric',
-                'protain' => 'required|numeric',
-                'fat' => 'required|numeric',
-                'carbo' => 'required|numeric',
+                'kcal' => 'required|numeric|max:9999',
+                $netValidate => 'numeric|max:9999',
+                'protain' => 'required|numeric|max:1000',
+                'fat' => 'required|numeric|max:1000',
+                'carbo' => 'required|numeric|max:1000',
                 'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
             ]);
 
