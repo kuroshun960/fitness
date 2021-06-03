@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use App\Http\Requests\EatRequest;  // ←フォームリクエストを使ったバリデーション
+
 
 use App\Models\User;
 use App\Models\Weight;
@@ -276,23 +278,14 @@ class MealsController extends Controller
 
 
 
-    public function eats(Request $request)
+    public function eats(EatRequest $request)
         {
-
-       
-
-
-                $request->validate([
-                    'net' => 'required|numeric|max:1000',
-                ]);
-
                 
                 $user = \Auth::user();
 
                 $eatmeal = $user->meals()->find($request->eatmeal);
 
-                
-
+            
                 if( isset($eatmeal->gram) ){
 
                 //摂取した量に対しての炭水化物
