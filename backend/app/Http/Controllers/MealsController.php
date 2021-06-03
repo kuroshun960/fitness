@@ -190,22 +190,29 @@ class MealsController extends Controller
     public function updatepage($id)
     {
 
-        if (\Auth::check()){
 
+        if (\Auth::check()){
 
         $user = \Auth::user();
         $meal = $user->meals()->find($id);
-        
-        $users_controller = app()->make('App\Http\Controllers\UsersController');
-        $userAlldata = $users_controller->show();
-        $data = $userAlldata['data'];
 
-        return view('meal-update',compact('data','meal'));
+            if($meal === null){
 
+                return redirect('/mealssetting');
+
+            }else{
+
+            $users_controller = app()->make('App\Http\Controllers\UsersController');
+            $userAlldata = $users_controller->show();
+            $data = $userAlldata['data'];
+
+            return view('meal-update',compact('data','meal'));
+
+            }
 
 
     }else{
-        redirect()->route('/');
+        return redirect('/');
     }
 
 
