@@ -279,9 +279,11 @@ class MealsController extends Controller
     public function eats(Request $request)
         {
 
+       
+
 
                 $request->validate([
-                    'net' => 'required|numeric',
+                    'net' => 'required|numeric|max:1000',
                 ]);
 
                 
