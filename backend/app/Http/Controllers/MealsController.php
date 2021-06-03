@@ -189,6 +189,10 @@ class MealsController extends Controller
 
     public function updatepage($id)
     {
+
+        if (\Auth::check()){
+
+
         $user = \Auth::user();
         $meal = $user->meals()->find($id);
         
@@ -197,6 +201,15 @@ class MealsController extends Controller
         $data = $userAlldata['data'];
 
         return view('meal-update',compact('data','meal'));
+
+
+
+    }else{
+        redirect()->route('/');
+    }
+
+
+
     }
 
     public function update(Request $request ,$id)
@@ -259,79 +272,83 @@ class MealsController extends Controller
     public function eats(Request $request)
         {
 
-            $request->validate([
-                'net' => 'required|numeric',
-            ]);
 
-            
-            $user = \Auth::user();
+                $request->validate([
+                    'net' => 'required|numeric',
+                ]);
 
-            $eatmeal = $user->meals()->find($request->eatmeal);
-
-            
-
-            if( isset($eatmeal->gram) ){
-
-            //摂取した量に対しての炭水化物
-            $name = $eatmeal->name;
-            //摂取した量に対してのカロリー
-            $eatKcal = ceil ($eatmeal->kcal / $eatmeal->gram * $request->net);
-            //摂取した量に対してのタンパク質
-            $eatProtain = ceil ($eatmeal->protain / $eatmeal->gram * $request->net);
-            //摂取した量に対しての脂質
-            $eatFat = ceil ($eatmeal->fat / $eatmeal->gram * $request->net);
-            //摂取した量に対しての炭水化物
-            $eatCarbo = ceil ($eatmeal->carbo / $eatmeal->gram * $request->net);
-            //摂取した量に対してかかった金額
-            $eatPrice = ceil ($eatmeal->price / $eatmeal->gram * $request->net);
-            //摂取していた時にユーザーが設定していた目標摂取カロリー
-            $KcalPardayAtThatTime = ceil ($user->kcalParday);
-            //摂取したグラム
-            $eatNet = $request->net;
-            //摂取した食品タイプ
-            $type = $eatmeal->type;
-
-            }
-            elseif( isset($eatmeal->piece) ){
-
-            //摂取した量に対しての炭水化物
-            $name = $eatmeal->name;
-            //摂取した量に対してのカロリー
-            $eatKcal = ceil ($eatmeal->kcal / $eatmeal->piece * $request->net);
-            //摂取した量に対してのタンパク質
-            $eatProtain = ceil ($eatmeal->protain / $eatmeal->piece * $request->net);
-            //摂取した量に対しての脂質
-            $eatFat = ceil ($eatmeal->fat / $eatmeal->piece * $request->net);
-            //摂取した量に対しての炭水化物
-            $eatCarbo = ceil ($eatmeal->carbo / $eatmeal->piece * $request->net);
-            //摂取した量に対してかかった金額
-            $eatPrice = ceil ($eatmeal->price / $eatmeal->piece * $request->net);
-            //摂取していた時にユーザーが設定していた目標摂取カロリー
-            $KcalPardayAtThatTime = ceil ($user->kcalParday);
-            //摂取したグラム
-            $eatNet = $request->net;
-            //摂取した食品タイプ
-            $type = $eatmeal->type;
-
-
-            }
-            
-
-            $user->eats()->create([
-
-                'name' => $name,
-                'eatKcal' => $eatKcal,
-                'eatProtain' => $eatProtain,
-                'eatCarbo' => $eatCarbo,
-                'eatFat' => $eatFat,
-                'eatNet' => $eatNet,
-                'eatPrice' => $eatPrice,
-                'KcalPardayAtThatTime' => $KcalPardayAtThatTime,
-                'type' => $type,
                 
-            ]);
+                $user = \Auth::user();
 
-            return redirect()->route('users.show');
+                $eatmeal = $user->meals()->find($request->eatmeal);
+
+                
+
+                if( isset($eatmeal->gram) ){
+
+                //摂取した量に対しての炭水化物
+                $name = $eatmeal->name;
+                //摂取した量に対してのカロリー
+                $eatKcal = ceil ($eatmeal->kcal / $eatmeal->gram * $request->net);
+                //摂取した量に対してのタンパク質
+                $eatProtain = ceil ($eatmeal->protain / $eatmeal->gram * $request->net);
+                //摂取した量に対しての脂質
+                $eatFat = ceil ($eatmeal->fat / $eatmeal->gram * $request->net);
+                //摂取した量に対しての炭水化物
+                $eatCarbo = ceil ($eatmeal->carbo / $eatmeal->gram * $request->net);
+                //摂取した量に対してかかった金額
+                $eatPrice = ceil ($eatmeal->price / $eatmeal->gram * $request->net);
+                //摂取していた時にユーザーが設定していた目標摂取カロリー
+                $KcalPardayAtThatTime = ceil ($user->kcalParday);
+                //摂取したグラム
+                $eatNet = $request->net;
+                //摂取した食品タイプ
+                $type = $eatmeal->type;
+
+                }
+                elseif( isset($eatmeal->piece) ){
+
+                //摂取した量に対しての炭水化物
+                $name = $eatmeal->name;
+                //摂取した量に対してのカロリー
+                $eatKcal = ceil ($eatmeal->kcal / $eatmeal->piece * $request->net);
+                //摂取した量に対してのタンパク質
+                $eatProtain = ceil ($eatmeal->protain / $eatmeal->piece * $request->net);
+                //摂取した量に対しての脂質
+                $eatFat = ceil ($eatmeal->fat / $eatmeal->piece * $request->net);
+                //摂取した量に対しての炭水化物
+                $eatCarbo = ceil ($eatmeal->carbo / $eatmeal->piece * $request->net);
+                //摂取した量に対してかかった金額
+                $eatPrice = ceil ($eatmeal->price / $eatmeal->piece * $request->net);
+                //摂取していた時にユーザーが設定していた目標摂取カロリー
+                $KcalPardayAtThatTime = ceil ($user->kcalParday);
+                //摂取したグラム
+                $eatNet = $request->net;
+                //摂取した食品タイプ
+                $type = $eatmeal->type;
+
+
+                }
+                
+
+                $user->eats()->create([
+
+                    'name' => $name,
+                    'eatKcal' => $eatKcal,
+                    'eatProtain' => $eatProtain,
+                    'eatCarbo' => $eatCarbo,
+                    'eatFat' => $eatFat,
+                    'eatNet' => $eatNet,
+                    'eatPrice' => $eatPrice,
+                    'KcalPardayAtThatTime' => $KcalPardayAtThatTime,
+                    'type' => $type,
+                    
+                ]);
+
+                return redirect()->route('users.show');
+
+
+
 
 
 

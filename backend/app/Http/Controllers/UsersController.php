@@ -522,6 +522,7 @@ class UsersController extends Controller
 
     public function personalsettingspage()
     {
+        
         $userAlldata = $this->show();
         $data = $userAlldata['data'];
 
@@ -691,6 +692,10 @@ public function daypage($id)
 
     public function setting(Request $request)
     {
+
+        if (\Auth::check()){
+
+
         $request->validate([
             'name' => 'required|max:8',
             'age' => 'required|integer',
@@ -718,6 +723,11 @@ public function daypage($id)
         $user->save();
         
         return redirect()->route('users.show');
+
+        }else{
+            redirect()->route('/');
+        }
+
     }
 
 
