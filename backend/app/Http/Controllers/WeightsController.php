@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\Weight;
 use App\Models\Date;
 
+use App\Http\Requests\WeightsRequest;  // ←フォームリクエストを使ったバリデーション
+
 class WeightsController extends Controller
 {
 /*--------------------------------------------------------------------------
@@ -19,12 +21,19 @@ class WeightsController extends Controller
 --------------------------------------------------------------------------*/
     
 
-    public function input(Request $request)
+    //フォームリクエスト使用の場合は、メソッドの引数を Request から WeightsRequest（フォームリクエストクラス） に変更。
+
+    public function input(WeightsRequest $request)
     {
+
+        /*-------------------------
+        フォームリクエストを使ったバリデーションなら、従来の記載はいらない！
+        記述なしで自動で検証される。
 
         $request->validate([
             'weight' => 'numeric|max:300|min:1',
         ]);
+        -------------------------*/
 
         //ログインユーザーのid取得
         $id = Auth::id();
@@ -37,8 +46,10 @@ class WeightsController extends Controller
             'weight' => $request->weight,
         ]);
 
-
         return redirect('/');
+
+
+
 
 
 
