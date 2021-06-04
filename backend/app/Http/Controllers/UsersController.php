@@ -12,6 +12,9 @@ use App\Models\User;
 use App\Models\Weight;
 use App\Models\Date;
 
+
+use App\Http\Requests\PersonalRequest;  // ←フォームリクエストを使ったバリデーション
+
 class UsersController extends Controller
 {
 
@@ -690,20 +693,12 @@ public function daypage($id)
         ユーザー設定
 -----------------------------------------------------------------------------------------*/
 
-    public function setting(Request $request)
+    public function setting(PersonalRequest $request)
     {
 
         if (\Auth::check()){
 
 
-        $request->validate([
-            'name' => 'required|max:8',
-            'age' => 'required|integer',
-            'height' => 'required|integer',
-            'kcalParday' => 'required|integer',
-            
-            
-        ]);
 
         //ログインユーザーのid取得
         $id = Auth::id();
