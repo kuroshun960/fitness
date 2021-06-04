@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests\EatRequest;  // ←フォームリクエストを使ったバリデーション
 use App\Http\Requests\MealSettingRequest;  // ←フォームリクエストを使ったバリデーション
+use App\Http\Requests\MealUpdateRequest; // ←フォームリクエスト
+
 
 
 use App\Models\User;
@@ -222,7 +224,7 @@ class MealsController extends Controller
 
     }
 
-    public function update(Request $request ,$id)
+    public function update(MealUpdateRequest $request ,$id)
     {
         
 
@@ -234,15 +236,14 @@ class MealsController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'kcal' => 'required|numeric|max:9999',
-            'protain' => 'required|numeric|max:1000',
-            'fat' => 'required|numeric|max:1000',
-            'carbo' => 'required|numeric|max:1000',
-            $netValidate => 'numeric|max:9999',
-            'carbo' => 'required|numeric|max:1000',
+            'name' => 'required|string|max:20|min:1',
+            'kcal' => 'required|numeric|max:9999|min:1',
+            'protain' => 'required|numeric|max:999|min:1',
+            'fat' => 'required|numeric|max:999|min:1',
+            'carbo' => 'required|numeric|max:999|min:1',
+            'price' => 'required|numeric|max:999999|min:1',
 
+            $netValidate => 'numeric|max:9999',
             'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
  
         ]);
@@ -274,7 +275,7 @@ class MealsController extends Controller
             
         ]);
 
-        return redirect()->route('users.show');
+        return redirect()->route('mealssetting.setting');
     }
 
 
@@ -370,13 +371,14 @@ class MealsController extends Controller
             }
 
             $request->validate([
-                'name' => 'required|max:20',
-                'price' => 'required|numeric',
-                'kcal' => 'required|numeric|max:9999',
+                'name' => 'required|string|max:20|min:1',
+                'kcal' => 'required|numeric|max:9999|min:1',
+                'protain' => 'required|numeric|max:999|min:1',
+                'fat' => 'required|numeric|max:999|min:1',
+                'carbo' => 'required|numeric|max:999|min:1',
+                'price' => 'required|numeric|max:999999|min:1',
+                
                 $netValidate => 'numeric|max:9999',
-                'protain' => 'required|numeric|max:1000',
-                'fat' => 'required|numeric|max:1000',
-                'carbo' => 'required|numeric|max:1000',
                 'file_name' => ['file','mimes:jpeg,png,jpg,bmb','max:2048'],
             ]);
 
