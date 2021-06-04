@@ -12,22 +12,17 @@ use App\Models\User;
 use App\Models\Weight;
 use App\Models\Protainsetting;
 
+use App\Http\Requests\ProtainRequest;  // ←フォームリクエストを使ったバリデーション
+
 class ProtainsettingsController extends Controller
 {
 /*--------------------------------------------------------------------------
     プロテイン設定ページ
 --------------------------------------------------------------------------*/
     
-    public function setting(Request $request)
+    public function setting(ProtainRequest $request)
         {
 
-            $request->validate([
-                'name' => 'required',
-                'kcal' => 'required|numeric|max:999',
-                'protain' => 'required|numeric|max:999',
-                'carbo' => 'required|numeric|max:999',
-                'fat' => 'required|numeric|max:999',
-            ]);
 
             //ログインユーザーのid取得
             $id = Auth::id();

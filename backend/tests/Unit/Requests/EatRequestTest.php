@@ -45,6 +45,8 @@ class EatRequestTest extends TestCase
             '正常' => ['net', 65, true],
             '文字型' => ['net', 'a', false],
             'null' => ['net', null, false],
+            '文字型' => ['net', 'aあああ', false],
+            '桁数' => ['net', '33333.3333333', false],
         ];
     }
 
