@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests\EatRequest;  // ←フォームリクエストを使ったバリデーション
+use App\Http\Requests\MealSettingRequest;  // ←フォームリクエストを使ったバリデーション
 
 
 use App\Models\User;
@@ -358,7 +359,7 @@ class MealsController extends Controller
 
     
 
-    public function setting(Request $request)
+    public function setting(MealSettingRequest $request)
         {
 
             if( isset($request->gram) ){
@@ -370,8 +371,6 @@ class MealsController extends Controller
 
             $request->validate([
                 'name' => 'required|max:20',
-                //'gram' => 'required|max:4',
-                
                 'price' => 'required|numeric',
                 'kcal' => 'required|numeric|max:9999',
                 $netValidate => 'numeric|max:9999',
